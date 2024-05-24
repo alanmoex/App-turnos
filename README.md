@@ -2,18 +2,18 @@
 
 # Estructura de Ramas
 
-_Main Branch (main):
+_Main Branch (main):_
 
 Esta es la rama principal. Contiene la versión estable del código.
 No se debe trabajar directamente en esta rama.
 Solo el administrador tiene permiso para hacer merge en esta rama.
 
-_Development Branch (development):
+_Development Branch (development):_
 
 Esta es la rama de desarrollo principal. Todas las nuevas funcionalidades y correcciones deben integrarse aquí primero.
 Usamos esta rama para probar y asegurar la calidad antes de fusionar con main.
 
-_Feature Branches (feature/*):
+_Feature Branches (feature/*):_
 
 Para el desarrollo de nuevas funcionalidades.
 Cada funcionalidad o tarea debe desarrollarse en su propia rama feature/*.
@@ -46,7 +46,7 @@ Es importante mantener tu rama development actualizada con los últimos cambios 
 8. Eliminar la Rama de Funcionalidad
 Después de fusionar tu PR, elimina la rama de funcionalidad localmente y en el remoto:
 
-_Buenas Prácticas
+*Buenas Prácticas*
 Realiza commits pequeños y frecuentes.
 Escribe mensajes de commit claros y descriptivos.
 Mantén tu rama de funcionalidad enfocada en una tarea específica.
