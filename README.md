@@ -46,7 +46,8 @@ Es importante mantener tu rama development actualizada con los últimos cambios 
 8. Eliminar la Rama de Funcionalidad
 Después de fusionar tu PR, elimina la rama de funcionalidad localmente y en el remoto:
 
-*Buenas Prácticas*
+*Buenas Prácticas:*
+
 Realiza commits pequeños y frecuentes.
 Escribe mensajes de commit claros y descriptivos.
 Mantén tu rama de funcionalidad enfocada en una tarea específica.
