@@ -1,4 +1,4 @@
-import NavBar from "../../common/navBar/NavBar";
+import Navbar from "../../common/navbar/Navbar";
 import { Col, Row } from "react-bootstrap";
 import "./HomePage.css";
 
@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div className="container-fluid background-image">
       <Row>
-        <NavBar></NavBar>
+        <Navbar></Navbar>
       </Row>
       <Row className="h-50">
         <Col className="d-flex align-items-end justify-content-end pe-5 pb-3 me-5">
