@@ -1,32 +1,55 @@
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Button, Nav, NavDropdown, NavItem, Navbar } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import logo from "../../../assets/logo.png";
 
+const NavBar = () => {
+  const navigate = useNavigate();
 
-const navBar = () => {
+  const handleRegisterClick = () => {
+    navigate("/registerPatient");
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+    <Navbar
+      bg="primary"
+      data-bs-theme="dark"
+      expand="lg"
+      className="bg-body-tertiary"
+    >
+      <div className="container-fluid">
+        <Navbar.Brand href="/">
+          <img
+            src={logo}
+            alt="Logo"
+            width="30"
+            height="30"
+            className="d-inline-block align-top me-2"
+          />
+          MediCare
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+          <Nav className="ms-auto align-items-center">
+            <NavItem className="me-2">
+              <Button onClick={handleRegisterClick}>REGISTRARSE</Button>
+            </NavItem>
+            <NavItem className="me-2">
+              <Button onClick={handleLoginClick}>INICIAR SESIÓN</Button>
+            </NavItem>
+            <NavDropdown title="USUARIO" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">
+                Cerrar Sesión
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-      </Container>
+      </div>
     </Navbar>
   );
 };
 
-export default navBar;
+export default NavBar;
