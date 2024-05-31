@@ -1,4 +1,4 @@
-import Navbar from "../../common/navbar/Navbar";
+import Navbar from "../../common/navBar/navBar";
 import { Col, Row } from "react-bootstrap";
 import "./HomePage.css";
 
