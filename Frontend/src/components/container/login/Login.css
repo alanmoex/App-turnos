@@ -1,0 +1,50 @@
+.login-container {
+  background: url(https://www.google.com/search?sca_esv=f5a20a2e9138d638&sxsrf=ADLYWIJbbrUoeqwdY1Yf8Tc_Qk7Gv8PZRA:1717193195127&q=grey%27s+anatomy&uds=ADvngMhDNpEni0P7O0qvPcH0EAwuS_X2-Lic8wVLepo4VwdxH9CdKIoAp6Hhkzo1MLCJo54bX_0NBkEOubBQ1htjBT-DL9enErx_BbC0HcSXHcD_yOJ_V8rQGyAUhIJYWPR0p7QsPuDNgYeceQsJr69edey2O1WE6o9i2ZbyRxdvGQtAYGYwwg6hppOvgULci6dLyLRtt2sTFT2e2LHQnRJr84dMx1Cd_OsOOOg84vwgJtX0V4UnUDXA1V-VWv2C3L_YhNaDJxp8bgPCoDJxxRBAdPVLZMdNmCnT4sbE0sUB8gyz1-QoXJ83ENis99xR2Y9KFt1TpomO&udm=2&prmd=ivnsbmtz&sa=X&ved=2ahUKEwjy1J-T87iGAxVDpZUCHTMaDYgQtKgLegQIDRAB&biw=1920&bih=953&dpr=1#imgrc=J-xuJNioIuCygM&imgdii=z7oxZtM9Zd1JPM)
+    no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-form {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
