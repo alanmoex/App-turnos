@@ -1,6 +1,12 @@
 import "./RegisterPatient.css";
-
+import { useNavigate } from "react-router-dom";
 const RegisterPatient = () => {
+  const navigate = useNavigate();
+
+  const handleHomePageClick = () => {
+    navigate("/");
+  };
+
   return (
     <div className="registro-container">
       <div className="registro-form">
@@ -26,7 +32,7 @@ const RegisterPatient = () => {
             <label>Contraseña</label>
             <input type="password" name="password" />
           </div>
-          <button type="submit">Registrarse</button>
+          <button onClick={handleHomePageClick}>Registrarse</button>
         </form>
       </div>
     </div>

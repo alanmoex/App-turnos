@@ -3,8 +3,10 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url("/path-to-your-image.jpg") no-repeat center center;
+  background: url("../../../assets/background-image-homepage.jpg") no-repeat
+    center center;
   background-size: cover;
+  width: 100%;
 }
 
 .registro-form {
