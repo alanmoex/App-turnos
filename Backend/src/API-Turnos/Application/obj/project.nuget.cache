@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NreBhdX7rfQ=",
+  "dgSpecHash": "krO+Tezq36M=",
   "success": true,
-  "projectFilePath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
