@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Login.css";
 
 function Login() {
@@ -15,8 +15,11 @@ function Login() {
   };
   return (
     <div className="login-container">
+      <div className="backGround"></div>
       <div className="login-form">
-        <h2>MediCare</h2>
+        <h2>
+          <b>MediCare</b>
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
