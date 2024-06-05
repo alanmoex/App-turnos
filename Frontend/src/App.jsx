@@ -4,7 +4,7 @@ import Login from "./components/container/login/Login";
 import RegisterPatient from "./components/container/registerPatients/RegisterPatient";
 
 function App() {
-  /* let patientsList = [
+  let patientsList = [
     {
       name: "Pedro",
       lastName: "Martinez",
@@ -13,7 +13,7 @@ function App() {
       password: "messi123",
       role: "patient",
     },
-  ]; */
+  ];
 
   const router = createBrowserRouter([
     { path: "/", element: <HomePage /> },
