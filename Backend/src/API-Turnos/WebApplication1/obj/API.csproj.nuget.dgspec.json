@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\WebApplication1\\API.csproj": {}
+    "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj": {}
   },
   "projects": {
-    "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\Application.csproj": {
+    "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\obj\\",
+        "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\Domain.csproj": {
-                "projectPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\Domain.csproj"
+              "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
               }
             }
           }
@@ -59,26 +59,32 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.5, 8.0.5]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\Domain.csproj": {
+    "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -119,26 +125,32 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.5, 8.0.5]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -152,8 +164,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\Application.csproj": {
-                "projectPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\Application.csproj"
+              "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
               }
             }
           }
@@ -183,26 +195,32 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.5, 8.0.5]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\WebApplication1\\API.csproj": {
+    "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\WebApplication1\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
         "projectName": "API",
-        "projectPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\WebApplication1\\API.csproj",
-        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\WebApplication1\\obj\\",
+        "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
+        "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -216,11 +234,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\Application.csproj": {
-                "projectPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Application\\Application.csproj"
+              "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
               },
-              "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -256,6 +274,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.5, 8.0.5]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -264,7 +288,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
