@@ -10,3 +10,15 @@ c:\Users\54341\Desktop\programac\App-turnos\App-turnos\Backend\API-Turnos\Domain
 c:\Users\54341\Desktop\programac\App-turnos\App-turnos\Backend\API-Turnos\Domain\obj\Debug\net8.0\refint\Domain.dll
 c:\Users\54341\Desktop\programac\App-turnos\App-turnos\Backend\API-Turnos\Domain\obj\Debug\net8.0\Domain.pdb
 C:\Users\54341\Desktop\programac\App-turnos\App-turnos\Backend\API-Turnos\Domain\obj\Debug\net8.0\ref\Domain.dll
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\bin\Debug\net8.0\Domain.deps.json
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\bin\Debug\net8.0\Domain.dll
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\bin\Debug\net8.0\Domain.pdb
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.dll
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\refint\Domain.dll
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.pdb
+c:\Users\Julián\OneDrive\Escritorio\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\ref\Domain.dll
