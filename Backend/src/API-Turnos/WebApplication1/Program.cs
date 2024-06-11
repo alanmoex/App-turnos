@@ -15,10 +15,12 @@ builder.Services.AddSwaggerGen();
 
 #region Services
 builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<IMedicService , MedicService>(); 
 #endregion
 
 #region Repositories
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+builder.Services.AddScoped<IMedicRepository , MedicRepository>();
 #endregion
 
 var app = builder.Build();

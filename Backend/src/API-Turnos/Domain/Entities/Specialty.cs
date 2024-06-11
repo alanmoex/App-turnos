@@ -6,9 +6,9 @@ public class Specialty
     public string Name { get; set;}
     public List<Medic>? Medics { get; set;}
 
-    public Specialty(int id, string name)
+    public Specialty( string name)
     {
-        Id = id;
+        
         Name = name;
     }
 }

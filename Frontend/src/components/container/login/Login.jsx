@@ -5,6 +5,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ username: false, password: false });
+  const [message, setMessage] = useState("");
   const userRef = useRef(null);
   const passRef = useRef(null);
 
@@ -21,18 +22,32 @@ function Login() {
   const loginHandler = (event) => {
     event.preventDefault();
     if (userRef.current.value.length === 0) {
-      userRef.current.focus(alert("¡username vacío!"));
+      userRef.current.focus();
       setError({ ...error, username: true });
-      return;
+      return alerts();
     }
 
     if (passRef.current.value.length === 0) {
-      passRef.current.focus(alert("¡password vacío!"));
+      passRef.current.focus();
       setError({ ...error, password: true });
-      return;
+      return alerts();
     }
 
     alert("Has ingresado correctamente");
+  };
+
+  const alerts = () => {
+    if (password === "") {
+      setMessage("Debe ingresar una contraseña válida");
+    }
+
+    if (username === "") {
+      setMessage("Debe ingresar un usuario válido");
+    }
+
+    if (username != "" && password != "") {
+      setMessage("");
+    }
   };
   return (
     <div className="login-container">
@@ -66,6 +81,7 @@ function Login() {
               onChange={passwordHandler}
             ></input>
           </div>
+          <p>{message}</p>
           <button type="submit">Login</button>
         </form>
       </div>
