@@ -13,11 +13,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
       "projectName": "Domain",
       "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+      "projectName": "Domain",
+      "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
+>>>>>>> origin/development
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",

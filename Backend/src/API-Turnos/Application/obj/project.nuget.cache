@@ -1,10 +1,17 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "g2G46MF6HxRiyjO9iQgtVHoMPkiEn/IXyBvFf0V43TIvnkAJZnYA6QpEhG6oqzqVoSxs+DGPk86zf4ivF22PCA==",
   "success": true,
   "projectFilePath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Julián\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.5\\microsoft.aspnetcore.app.ref.8.0.5.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "krO+Tezq36M=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> origin/development
   "logs": []
 }

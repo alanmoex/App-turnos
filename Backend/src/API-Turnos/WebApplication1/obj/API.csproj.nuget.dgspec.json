@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
         "outputPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
+=======
+    "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+        "projectName": "Application",
+        "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
+>>>>>>> origin/development
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +42,13 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
               "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
                 "projectPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
+=======
+              "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
+>>>>>>> origin/development
               }
             }
           }
@@ -74,6 +93,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -82,6 +102,16 @@
         "projectPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
         "outputPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
+=======
+    "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
+>>>>>>> origin/development
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -140,6 +170,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -148,6 +179,16 @@
         "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\obj\\",
+=======
+    "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\obj\\",
+>>>>>>> origin/development
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -164,8 +205,13 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
               "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
                 "projectPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
+=======
+              "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
+>>>>>>> origin/development
               }
             }
           }
@@ -210,6 +256,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -218,6 +265,16 @@
         "projectPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
         "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
         "outputPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\obj\\",
+=======
+    "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
+        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\obj\\",
+>>>>>>> origin/development
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -234,11 +291,19 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
               "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
                 "projectPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
               },
               "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
                 "projectPath": "C:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj"
+=======
+              "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
+              },
+              "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj"
+>>>>>>> origin/development
               }
             }
           }

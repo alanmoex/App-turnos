@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "nmvAGS82ny/6NfZTRWl3ntPNMQfmwz6UJFftM43N2IviyZVokeTKBbbKY8uZ6K+LDqp2hjZ9etUGj5xP8av1Sg==",
   "success": true,
   "projectFilePath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
+=======
+  "dgSpecHash": "l8gdICHVILc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
+>>>>>>> origin/development
   "expectedPackageFiles": [
     "C:\\Users\\Julián\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Julián\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

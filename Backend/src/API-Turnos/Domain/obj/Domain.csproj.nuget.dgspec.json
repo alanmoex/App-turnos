@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
         "outputPath": "c:\\Users\\Julián\\OneDrive\\Escritorio\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
+=======
+    "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
+>>>>>>> origin/development
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
