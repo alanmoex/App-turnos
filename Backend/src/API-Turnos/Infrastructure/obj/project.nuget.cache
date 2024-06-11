@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G02yKqQKPVs=",
+  "dgSpecHash": "XxbOVH4Rp4wcPFICV4z03Mwc+XY9EAaeCrxSspJHkUcOnDeV0wxkMooCQNjfaVTEaUetb3bmjY/ckXpSxEkjSg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

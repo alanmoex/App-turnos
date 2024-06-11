@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\54341\\.nuget\\packages\\": {}
+    "C:\\Users\\aguss\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\Domain.csproj",
+      "projectUniqueName": "C:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\Domain.csproj",
-      "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\54341\\Desktop\\programac\\App-turnos\\App-turnos\\Backend\\API-Turnos\\Domain\\obj\\",
+      "projectPath": "C:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\aguss\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aguss\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -66,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
