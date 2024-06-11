@@ -482,3 +482,7 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/Backend/src/API-Turnos/Application/obj/Debug
+/Backend/src/API-Turnos/Domain/obj/Debug
+/Backend/src/API-Turnos/Infrastructure/obj/Debug
+/Backend/src/API-Turnos/WebApplication1/obj/Debug
