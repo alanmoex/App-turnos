@@ -34,6 +34,9 @@ public class PatientRepository : IPatientRepository
     {
         var obj = patients.FirstOrDefault(p => p.Id == patient.Id) ?? throw new Exception();
         obj.Name = patient.Name;
+        obj.LastName = patient.LastName;
+        obj.Email = patient.Email;
+        obj.Password = patient.Password;
         return obj;
     }
 }
