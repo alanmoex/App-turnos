@@ -25,13 +25,13 @@ namespace Application.Services
             var patient = _patientRepository.GetById(appointmentCreateRequest.PatientId) ?? throw new KeyNotFoundException("Patient not found");
 
             var appointment = new Appointment(
-                appointmentCreateRequest.AppointmentDateTime, // <-- Aquí falta el argumento appointmentDateTime
+                appointmentCreateRequest.AppointmentDateTime,
                 medic,
                 patient,
-                0 // Esto es un valor ficticio, asegúrate de pasar el ID correcto si es necesario
+                0
             )
             {
-                IsCancelled = false // Assuming newly created appointments are not cancelled by default
+                IsCancelled = false
             };
 
             return _appointmentRepository.Create(appointment);
@@ -60,34 +60,32 @@ namespace Application.Services
         }
         public Appointment Update(AppointmentUpdateRequest appointmentUpdateRequest)
         {
-            // Verificar si la cita existe
+
             var existingAppointment = _appointmentRepository.GetById(appointmentUpdateRequest.id);
             if (existingAppointment == null)
             {
                 throw new KeyNotFoundException("Appointment not found");
             }
 
-            // Obtener el médico correspondiente
+
             var medic = _medicRepository.GetById(appointmentUpdateRequest.MedicId);
             if (medic == null)
             {
                 throw new KeyNotFoundException("Medic not found");
             }
 
-            // Obtener el paciente correspondiente
             var patient = _patientRepository.GetById(appointmentUpdateRequest.PatientId);
             if (patient == null)
             {
                 throw new KeyNotFoundException("Patient not found");
             }
 
-            // Actualizar los datos de la cita
+
             existingAppointment.AppointmentDateTime = appointmentUpdateRequest.AppointmentDateTime;
             existingAppointment.Medic = medic;
             existingAppointment.Patient = patient;
-            existingAppointment.IsCancelled = appointmentUpdateRequest.IsCancelled; // Utilizar la propiedad IsCancelled
+            existingAppointment.IsCancelled = appointmentUpdateRequest.IsCancelled;
 
-            // Actualizar la cita en el repositorio
             return _appointmentRepository.Update(existingAppointment);
         }
     }
