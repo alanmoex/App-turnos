@@ -12,9 +12,9 @@ public class Medic
     public List<Appointment> Appointments { get; set;} = new List<Appointment>();
     public List<WorkSchedule> WorkSchedules { get; set;} = new  List<WorkSchedule>();
 
-    public Medic(int id, string name, string lastName, string licenseNumber, List<Specialty> specialties)
+    public Medic( string name, string lastName, string licenseNumber, List<Specialty> specialties)
     {
-        Id = id;
+        
         Name = name;
         LastName = lastName;
         LicenseNumber = licenseNumber;
