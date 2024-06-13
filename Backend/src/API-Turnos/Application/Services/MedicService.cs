@@ -8,9 +8,11 @@ namespace Application.Services;
 public class MedicService : IMedicService
 {
     private readonly IMedicRepository _medicRepository;
-    public MedicService(IMedicRepository medicRepository)
+    private readonly ISpecialtyRepository _specialtyRepository;
+    public MedicService(IMedicRepository medicRepository, ISpecialtyRepository specialtyRepository)
     {
         _medicRepository = medicRepository;
+        _specialtyRepository = specialtyRepository;
     }
 
     public List<MedicDto> GetAll()
@@ -33,17 +35,21 @@ public class MedicService : IMedicService
     public Medic Create(MedicCreateRequest medicCreateRequest)
     {
         var specialties = new List<Specialty>();
-        foreach (var specialtyName in medicCreateRequest.Speciality)
+        foreach (var specialtyId in medicCreateRequest.Specialties)
         {
-            specialties.Add(new Specialty(specialtyName));
+            var specialty = _specialtyRepository.GetById(specialtyId);
+            if (specialty != null)
+            {
+                specialties.Add(specialty);
+            }
         }
 
         var newMedic = new Medic(
-            id: 0, // O algún valor predeterminado o generado automáticamente
+
             name: medicCreateRequest.Name,
             lastName: medicCreateRequest.LastName,
             licenseNumber: medicCreateRequest.LicenseNumber,
-            specialties: specialties // Utiliza la propiedad Specialties
+            specialties: specialties
         );
 
         return _medicRepository.Add(newMedic);
@@ -60,12 +66,16 @@ public class MedicService : IMedicService
 
         if (medicUpdateRequest.LicenseNumber != string.Empty) obj.LicenseNumber = medicUpdateRequest.LicenseNumber;
 
-        if (medicUpdateRequest.Speciality != null)
+        if (medicUpdateRequest.Specialties != null)
         {
             var specialties = new List<Specialty>();
-            foreach (var specialtyName in medicUpdateRequest.Speciality)
+            foreach (var specialtyId in medicUpdateRequest.Specialties)
             {
-                specialties.Add(new Specialty(specialtyName));
+                var specialty = _specialtyRepository.GetById(specialtyId);
+                if (specialty != null)
+                {
+                    specialties.Add(specialty);
+                }
             }
             obj.Specialties = specialties;
         }

@@ -8,7 +8,7 @@ public class MedicDto
     public string Name { get; set; }
     public string LastName { get; set; }
 
-    public List<Specialty> Specialties {get; set;}
+    public List<SpecialtyDto> Specialties {get; set;}
 
     public static MedicDto Create(Medic medic)
     {
@@ -16,7 +16,7 @@ public class MedicDto
         dto.Id = medic.Id;
         dto.Name = medic.Name;
         dto.LastName = medic.LastName;
-        dto.Specialties = medic.Specialties;
+        dto.Specialties = SpecialtyDto.CreateList(medic.Specialties);
 
         return dto;
     }
@@ -24,9 +24,12 @@ public class MedicDto
     public static List<MedicDto> CreateList(IEnumerable<Medic> medics)
     {
         List<MedicDto> listDto = new List<MedicDto>();
-        foreach (var m in medics)
+        if(medics != null){
+            foreach (var m in medics)
         {
             listDto.Add(Create(m));
+        }
+
         }
 
         return listDto;
