@@ -10,6 +10,6 @@ public interface IAppointmentService
     Appointment? GetById(int id);
     List<Appointment> GetAll();
     Appointment Create(AppointmentCreateRequest appointmentCreateRequest);
-    Appointment Update(AppointmentUpdateRequest appointmentUpdateRequest);
+    Appointment Update(int id, AppointmentUpdateRequest appointmentUpdateRequest);
     void Delete(int id);
 }

@@ -6,7 +6,7 @@ public interface IAppointmentRepository
 {
     Appointment? GetById(int id);
     List<Appointment> GetAll();
-    Appointment Create(Appointment appointment);
+    Appointment Add(Appointment appointment);
     Appointment Update(Appointment appointment);
     void Delete(Appointment appointment);
 

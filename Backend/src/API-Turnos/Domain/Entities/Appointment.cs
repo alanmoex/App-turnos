@@ -13,9 +13,8 @@ public class Appointment
 
     public bool IsCancelled { get; set; }
 
-    public Appointment(DateTime appointmentDateTime, Medic medic, Patient patient, int id)
+    public Appointment(DateTime appointmentDateTime, Medic medic, Patient patient)
     {
-        Id = id;
         AppointmentDateTime = appointmentDateTime;
         Medic = medic;
         Patient = patient;

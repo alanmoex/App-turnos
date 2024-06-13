@@ -8,7 +8,7 @@ public class AppointmentRepository : IAppointmentRepository
     static int LastIdAssigned = 0;
     static List<Appointment> appointments = new List<Appointment>();
 
-    public Appointment Create(Appointment appointment)
+    public Appointment Add(Appointment appointment)
     {
         appointment.Id = ++LastIdAssigned;
         appointments.Add(appointment);
@@ -37,8 +37,6 @@ public class AppointmentRepository : IAppointmentRepository
 
 
         existingAppointment.AppointmentDateTime = appointment.AppointmentDateTime;
-        existingAppointment.Patient = appointment.Patient;
-        existingAppointment.Medic = appointment.Medic;
 
 
         return existingAppointment;

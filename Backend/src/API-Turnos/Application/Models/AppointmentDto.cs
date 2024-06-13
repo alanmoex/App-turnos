@@ -4,6 +4,7 @@ namespace Application;
 
 public class AppointmentDto
 {
+    public int Id { get; set; }
     public DateTime AppointmnetDateTime { get; set; }
     public MedicDto Medic { get; set; }
 
@@ -15,6 +16,7 @@ public class AppointmentDto
     public static AppointmentDto Create(Appointment appointment)
     {
         var dto = new AppointmentDto();
+        dto.Id = appointment.Id;
         dto.AppointmnetDateTime = appointment.AppointmentDateTime;
         dto.Medic = MedicDto.Create(appointment.Medic);
         dto.Patient = PatientDto.Create(appointment.Patient);
