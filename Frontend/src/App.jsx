@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./components/container/homePage/HomePage";
 import Login from "./components/container/login/Login";
 import RegisterPatient from "./components/container/registerPatients/RegisterPatient";
+import TurnosPaciente from "./components/container/TurnosPacientes/TurnosPaciente";
 
 function App() {
   /*   let patientsList = [
@@ -19,6 +20,7 @@ function App() {
     { path: "/", element: <HomePage /> },
     { path: "/login", element: <Login /> },
     { path: "/registerPatient", element: <RegisterPatient /> },
+    { path: "/TurnosPacientes", element: <TurnosPaciente /> },
   ]);
 
   return (
