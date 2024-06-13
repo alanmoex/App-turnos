@@ -9,7 +9,7 @@ public class MedicService : IMedicService
 {
     private readonly IMedicRepository _medicRepository;
     private readonly ISpecialtyRepository _specialtyRepository;
-    public  MedicService(IMedicRepository medicRepository, ISpecialtyRepository specialtyRepository )
+    public MedicService(IMedicRepository medicRepository, ISpecialtyRepository specialtyRepository)
     {
         _medicRepository = medicRepository;
         _specialtyRepository = specialtyRepository;
@@ -29,26 +29,27 @@ public class MedicService : IMedicService
         var dto = MedicDto.Create(obj);
 
         return dto;
-                             
+
     }
 
-    public Medic Create( MedicCreateRequest medicCreateRequest)
+    public Medic Create(MedicCreateRequest medicCreateRequest)
     {
         var specialties = new List<Specialty>();
         foreach (var specialtyId in medicCreateRequest.Specialties)
         {
             var specialty = _specialtyRepository.GetById(specialtyId);
-            if(specialty != null){
+            if (specialty != null)
+            {
                 specialties.Add(specialty);
             }
         }
 
         var newMedic = new Medic(
-             
+
             name: medicCreateRequest.Name,
             lastName: medicCreateRequest.LastName,
             licenseNumber: medicCreateRequest.LicenseNumber,
-            specialties: specialties 
+            specialties: specialties
         );
 
         return _medicRepository.Add(newMedic);
@@ -56,7 +57,7 @@ public class MedicService : IMedicService
 
     public void Update(int id, MedicUpdateRequest medicUpdateRequest)
     {
-        
+
         var obj = _medicRepository.GetById(id)
          ?? throw new Exception("");
         if (medicUpdateRequest.Name != string.Empty) obj.Name = medicUpdateRequest.Name;
@@ -65,25 +66,27 @@ public class MedicService : IMedicService
 
         if (medicUpdateRequest.LicenseNumber != string.Empty) obj.LicenseNumber = medicUpdateRequest.LicenseNumber;
 
-        if(medicUpdateRequest.Specialties != null){
+        if (medicUpdateRequest.Specialties != null)
+        {
             var specialties = new List<Specialty>();
             foreach (var specialtyId in medicUpdateRequest.Specialties)
             {
                 var specialty = _specialtyRepository.GetById(specialtyId);
-                if(specialty != null){
+                if (specialty != null)
+                {
                     specialties.Add(specialty);
                 }
             }
             obj.Specialties = specialties;
-        } 
-        
+        }
+
         _medicRepository.Update(obj);
     }
 
     public void Delete(int id)
     {
         var obj = _medicRepository.GetById(id);
-        if(obj == null)
+        if (obj == null)
         {
             throw new Exception("");
         }

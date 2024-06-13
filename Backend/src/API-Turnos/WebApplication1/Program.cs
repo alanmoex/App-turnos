@@ -15,14 +15,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 #region Services
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IPatientService, PatientService>();
-builder.Services.AddScoped<IMedicService , MedicService>(); 
+builder.Services.AddScoped<IMedicService, MedicService>();
 builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
 #endregion
 
 #region Repositories
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
-builder.Services.AddScoped<IMedicRepository , MedicRepository>();
+builder.Services.AddScoped<IMedicRepository, MedicRepository>();
 builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 #endregion
 

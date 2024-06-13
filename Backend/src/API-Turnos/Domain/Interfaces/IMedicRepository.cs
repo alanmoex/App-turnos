@@ -9,4 +9,5 @@ public interface IMedicRepository
     Medic Add(Medic medic);
     Medic Update(Medic medic);
     void Delete(Medic medic);
+
 }
