@@ -1,5 +1,4 @@
-import React from "react";
-import { Button } from "react-bootstrap/lib/InputGroup";
+/* import { Button } from "react-bootstrap/lib/InputGroup";
 
 const AppointmentHour = ({ hours }) => {
   const AppointmentHourMaped = () => {
@@ -11,3 +10,4 @@ const AppointmentHour = ({ hours }) => {
 };
 
 export default AppointmentHour;
+ */
