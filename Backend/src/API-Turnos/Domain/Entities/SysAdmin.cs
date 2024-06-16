@@ -2,6 +2,10 @@
 
 public class SysAdmin : User
 {
+    // Constructor sin parámetros necesario para EF
+    public SysAdmin()
+    {
+    }
     public SysAdmin(int id, string name, string email, string password)
     {
         Id = id;
