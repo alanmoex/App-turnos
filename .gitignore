@@ -19,6 +19,10 @@
 # Mono auto generated files
 mono_crash.*
 
+# Build Folders 
+[Bb]in/
+[Oo]bj/
+
 # Build results
 **/[Dd]ebug/
 [Dd]ebugPublic/
@@ -482,11 +486,3 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-/Backend/src/API-Turnos/Application/obj/Debug
-/Backend/src/API-Turnos/Domain/obj/Debug
-/Backend/src/API-Turnos/Infrastructure/obj/Debug
-/Backend/src/API-Turnos/WebApplication1/obj/Debug
-/Backend/src/API-Turnos/Application/obj
-/Backend/src/API-Turnos/Domain/obj
-/Backend/src/API-Turnos/Infrastructure/obj
-/Backend/src/API-Turnos/WebApplication1/obj

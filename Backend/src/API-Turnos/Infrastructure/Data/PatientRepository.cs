@@ -6,37 +6,42 @@ namespace Infrastructure.Data;
 
 public class PatientRepository : IPatientRepository
 {
-    static int LastIdAssigned = 0;
-    static List<Patient> patients = [];
+    private readonly ApplicationContext _context;
+    public PatientRepository(ApplicationContext context)
+    {  
+        _context = context; 
+    }
 
     public Patient Add(Patient patient)
     {
-        patient.Id = ++LastIdAssigned;
-        patients.Add(patient);
+        _context.Patients.Add(patient);
+        _context.SaveChanges();
         return patient;
     }
     public List<Patient> GetAll()
     {
-        return patients;
+        return _context.Patients.ToList();
     }
 
     public Patient? GetById(int id)
     {
-        return patients.FirstOrDefault(x => x.Id == id);
+        return _context.Patients.FirstOrDefault(x => x.Id == id);
     }
 
     public void Delete(Patient patient)
     {
-        patients.Remove(patient);
+        _context.Patients.Remove(patient);
+        _context.SaveChanges();
     }
 
     public Patient Update(Patient patient)
     {
-        var obj = patients.FirstOrDefault(p => p.Id == patient.Id) ?? throw new Exception();
+        var obj = _context.Patients.FirstOrDefault(p => p.Id == patient.Id) ?? throw new Exception();
         obj.Name = patient.Name;
         obj.LastName = patient.LastName;
         obj.Email = patient.Email;
         obj.Password = patient.Password;
+        _context.SaveChanges();
         return obj;
     }
 }
