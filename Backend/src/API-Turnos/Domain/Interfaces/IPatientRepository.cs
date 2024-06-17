@@ -1,13 +1,8 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces;
 
 namespace Domain;
 
-public interface IPatientRepository
+public interface IPatientRepository : IBaseRepository<Patient>
 {
-    Patient? GetById(int id);
-    List<Patient> GetAll();
-    Patient Add(Patient patient);
-    Patient Update(Patient patient);
-    void Delete(Patient patient);
-
 }
