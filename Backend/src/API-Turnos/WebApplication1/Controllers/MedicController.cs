@@ -76,4 +76,10 @@ public class MedicController : ControllerBase
             throw;
         }
     }
+
+    [HttpGet("specialties/{medicId}")]
+    public ActionResult<List<SpecialtyDto>> GetSpecialties(int medicId)
+    {
+        return _medicService.GetSpecialtiesByMedic(medicId).ToList();
+    }
 }

@@ -22,6 +22,11 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Medic>()
+                .HasMany(m => m.Specialties)
+                .WithMany()
+                .UsingEntity(j => j.ToTable("MedicSpecialties"));
+
             base.OnModelCreating(modelBuilder);
         }
     }
