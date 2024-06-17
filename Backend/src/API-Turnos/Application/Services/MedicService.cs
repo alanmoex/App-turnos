@@ -32,6 +32,12 @@ public class MedicService : IMedicService
 
     }
 
+    public List<SpecialtyDto> GetSpecialtiesByMedic(int medicId)
+    {
+        var specialties = _medicRepository.GetMedicSpecialties(medicId);
+        return SpecialtyDto.CreateList(specialties);
+    }
+
     public Medic Create(MedicCreateRequest medicCreateRequest)
     {
         var specialties = new List<Specialty>();
