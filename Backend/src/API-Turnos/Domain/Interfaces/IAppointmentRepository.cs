@@ -1,13 +1,8 @@
 using Domain.Entities;
+using Domain.Interfaces;
 
 namespace Domain;
 
-public interface IAppointmentRepository
+public interface IAppointmentRepository : IBaseRepository<Appointment>
 {
-    Appointment? GetById(int id);
-    List<Appointment> GetAll();
-    Appointment Add(Appointment appointment);
-    Appointment Update(Appointment appointment);
-    void Delete(Appointment appointment);
-
 }

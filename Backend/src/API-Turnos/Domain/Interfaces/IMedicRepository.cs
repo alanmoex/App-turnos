@@ -1,13 +1,9 @@
 using Domain.Entities;
+using Domain.Interfaces;
 
 namespace Domain;
 
-public interface IMedicRepository
+public interface IMedicRepository : IBaseRepository<Medic>
 {
-    Medic? GetById(int id);
-    List<Medic> GetAll();
-    Medic Add(Medic medic);
-    Medic Update(Medic medic);
-    void Delete(Medic medic);
-
+    List<Specialty> GetMedicSpecialties(int medicId);
 }
