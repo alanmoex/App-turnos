@@ -15,7 +15,7 @@ function App() {
       role: "patient",
     },
   ]; */
-  let MedicList = [
+  /* let MedicList = [
     {
       Id: 1,
       Name: "John",
@@ -127,7 +127,7 @@ function App() {
         },
       ],
     },
-  ];
+  ]; */
 
   const router = createBrowserRouter([
     { path: "/", element: <HomePage /> },
