@@ -4,6 +4,8 @@ import Login from "./components/container/login/Login";
 import RegisterPatient from "./components/container/registerPatients/RegisterPatient";
 import TurnosPaciente from "./components/container/TurnosPacientes/TurnosPaciente";
 import AppointmentPatient from "./components/container/appointment_patient/Appointmnet_patient";
+import AddCmSysAdmin from "./components/container/addCmSysAdmin/AddCmSysAdmin";
+import AddDoctor from "./components/container/addDoctor/AddDoctor";
 
 function App() {
   /*   let patientsList = [
@@ -136,6 +138,8 @@ function App() {
     { path: "/registerPatient", element: <RegisterPatient /> },
     { path: "/TurnosPacientes", element: <TurnosPaciente /> },
     { path: "/Appointment_patient", element: <AppointmentPatient /> },
+    { path: "/AddCmSysAdmin", element: <AddCmSysAdmin /> },
+    { path: "/AddDoctor", element: <AddDoctor /> },
   ]);
 
   return (

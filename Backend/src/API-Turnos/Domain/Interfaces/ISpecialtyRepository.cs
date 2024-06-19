@@ -1,12 +1,8 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces;
 
 namespace Domain;
 
-public interface ISpecialtyRepository
+public interface ISpecialtyRepository : IBaseRepository<Specialty>
 {
-    Specialty? GetById(int id);
-    List<Specialty> GetAll();
-    Specialty Add(Specialty specialty);
-    Specialty Update(Specialty specialty);
-    void Delete(Specialty specialty);
 }

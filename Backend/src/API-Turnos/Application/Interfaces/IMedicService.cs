@@ -11,4 +11,5 @@ public interface IMedicService
     Medic Create(MedicCreateRequest medicCreateRequest);   
     void Update(int id, MedicUpdateRequest medicUpdateRequest);
     void Delete(int id);
+    List<SpecialtyDto> GetSpecialtiesByMedic(int medicId);
 }
