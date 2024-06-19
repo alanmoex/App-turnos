@@ -23,12 +23,14 @@
 
 .search-box {
   display: flex;
-  width: 70%;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .centroMedic {
   padding: 10px;
   margin: 5px;
+  margin-right: 10%;
   border: 1px solid #ccc;
   border-radius: 5px;
   text-align: center;
@@ -37,6 +39,7 @@
 .Especiality {
   padding: 10px;
   margin: 5px;
+  margin-right: 10%;
   border: 1px solid #ccc;
   border-radius: 5px;
   text-align: center;
