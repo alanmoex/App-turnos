@@ -28,8 +28,7 @@ public class MedicController : ControllerBase
     {
         try
         {
-            _medicService.GetById(id);
-            return Ok();
+            return Ok(_medicService.GetById(id));
         }
         catch (System.Exception)
         {
@@ -75,11 +74,5 @@ public class MedicController : ControllerBase
             
             throw;
         }
-    }
-
-    [HttpGet("specialties/{medicId}")]
-    public ActionResult<List<SpecialtyDto>> GetSpecialties(int medicId)
-    {
-        return _medicService.GetSpecialtiesByMedic(medicId).ToList();
     }
 }

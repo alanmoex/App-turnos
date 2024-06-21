@@ -17,12 +17,12 @@ namespace Infrastructure.Data
             _context.SaveChanges();
             return entity;
         }
-        public List<T> GetAll()
+        public virtual List<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }
 
-        public T? GetById<TId>(TId id)
+        public virtual T? GetById<TId>(TId id)
         {
             return _context.Set<T>().Find(new object[] { id });
         }

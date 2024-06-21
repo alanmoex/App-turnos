@@ -6,9 +6,8 @@ public class SysAdmin : User
     public SysAdmin()
     {
     }
-    public SysAdmin(int id, string name, string email, string password)
+    public SysAdmin(string name, string email, string password)
     {
-        Id = id;
         Name = name;
         Email = email;
         Password = password;
