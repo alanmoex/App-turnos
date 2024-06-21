@@ -23,7 +23,7 @@ var connection = new SqliteConnection(connectionString);
 connection.Open();
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
-    options.UseSqlite(connection, b => b.MigrationsAssembly("API")));
+    options.UseSqlite(connection, b => b.MigrationsAssembly("Infrastructure")));
 #region Services
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IPatientService, PatientService>();

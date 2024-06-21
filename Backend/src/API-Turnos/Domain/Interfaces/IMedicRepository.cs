@@ -5,5 +5,4 @@ namespace Domain;
 
 public interface IMedicRepository : IBaseRepository<Medic>
 {
-    List<Specialty> GetMedicSpecialties(int medicId);
 }

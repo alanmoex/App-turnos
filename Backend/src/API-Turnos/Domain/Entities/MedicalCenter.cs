@@ -17,9 +17,8 @@ public class MedicalCenter
     {
     }
 
-    public MedicalCenter(int id, string name)
+    public MedicalCenter(string name)
     {
-        Id = id;
         Name = name;
     }
 
