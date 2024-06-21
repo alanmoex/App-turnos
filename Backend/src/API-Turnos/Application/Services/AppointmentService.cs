@@ -20,19 +20,21 @@ namespace Application.Services
             _patientRepository = patientRepository;
         }
 
-        public Appointment? GetById(int id)
+        public AppointmentDto? GetById(int id)
         {
             var appointment = _appointmentRepository.GetById(id);
             if (appointment == null)
             {
                 throw new Exception("Appointment not found.");
             }
-            return appointment;
+            var dto = AppointmentDto.Create(appointment);
+            return dto;
         }
 
-        public List<Appointment> GetAll()
+        public List<AppointmentDto> GetAll()
         {
-            return _appointmentRepository.GetAll();
+            var list = _appointmentRepository.GetAll();
+            return AppointmentDto.CreateList(list);
         }
 
         public Appointment Create(AppointmentCreateRequest appointmentCreateRequest)
@@ -51,7 +53,7 @@ namespace Application.Services
             return _appointmentRepository.Add(newAppointment);
         }
 
-        public Appointment Update(int id, AppointmentUpdateRequest appointmentUpdateRequest)
+        public void Update(int id, AppointmentUpdateRequest appointmentUpdateRequest)
         {
             var appointment = _appointmentRepository.GetById(id)
                              ?? throw new Exception("Appointment not found.");
@@ -69,7 +71,7 @@ namespace Application.Services
             }
 
             // Llamar al método de repositorio para actualizar el appointment
-            return _appointmentRepository.Update(appointment);
+            
         }
         public void Delete(int id)
         {

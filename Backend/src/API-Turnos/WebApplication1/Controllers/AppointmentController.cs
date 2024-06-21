@@ -20,14 +20,14 @@ public class AppointmentsController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<Appointment>> GetAll()
+    public ActionResult<List<AppointmentDto>> GetAll()
     {
         var appointments = _appointmentService.GetAll();
         return Ok(appointments);
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Appointment> GetById(int id)
+    public ActionResult<AppointmentDto> GetById(int id)
     {
         var appointment = _appointmentService.GetById(id);
         return Ok(appointment);
@@ -47,8 +47,8 @@ public class AppointmentsController : ControllerBase
 
         try
         {
-            var UpdateAppointment = _appointmentService.Update(id, appointmentUpdateRequest);
-            return Ok(UpdateAppointment);
+              _appointmentService.Update(id, appointmentUpdateRequest);
+            return Ok();
         }
         catch (System.Exception)
         {
