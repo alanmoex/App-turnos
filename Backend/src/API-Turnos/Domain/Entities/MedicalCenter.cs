@@ -10,7 +10,7 @@ public class MedicalCenter
     public int Id { get; set; }
     public string Name { get; set;}
     public List<Appointment> Appointments { get; set;} = new List<Appointment>();
-    public List<Specialty> Specialties{ get; set;} = new List<Specialty>();
+    public List<Medic> Medics{ get; set;} = new List<Medic>();
 
     // Constructor sin parámetros necesario para EF
     public MedicalCenter()

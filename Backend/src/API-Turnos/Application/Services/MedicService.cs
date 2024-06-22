@@ -9,10 +9,12 @@ public class MedicService : IMedicService
 {
     private readonly IMedicRepository _medicRepository;
     private readonly ISpecialtyRepository _specialtyRepository;
-    public MedicService(IMedicRepository medicRepository, ISpecialtyRepository specialtyRepository)
+    private readonly IMedicalCenterRepository _medicalCenterRepository;
+    public MedicService(IMedicRepository medicRepository, ISpecialtyRepository specialtyRepository, IMedicalCenterRepository medicalCenterRepository)
     {
         _medicRepository = medicRepository;
         _specialtyRepository = specialtyRepository;
+        _medicalCenterRepository = medicalCenterRepository;
     }
 
     public List<MedicDto> GetAll()
@@ -44,11 +46,15 @@ public class MedicService : IMedicService
             }
         }
 
+        var medicalCenter = _medicalCenterRepository.GetById(medicCreateRequest.MedicalCenterId)
+                         ?? throw new Exception("Medic not found.");
+
         var newMedic = new Medic(
 
             name: medicCreateRequest.Name,
             lastName: medicCreateRequest.LastName,
             licenseNumber: medicCreateRequest.LicenseNumber,
+            medicalCenter: medicalCenter,
             specialties: specialties
         );
 
