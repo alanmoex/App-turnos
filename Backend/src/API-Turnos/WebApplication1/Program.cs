@@ -30,6 +30,7 @@ builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IMedicService, MedicService>();
 builder.Services.AddScoped<IMedicalCenterService, MedicalCenterService>();
 builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
+builder.Services.AddScoped<IAdminMCService, AdminMCService>();
 #endregion
 
 #region Repositories
@@ -38,6 +39,7 @@ builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IMedicRepository, MedicRepository>();
 builder.Services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
 builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+builder.Services.AddScoped<IAdminMCRepository, AdminMCRepository>();
 #endregion
 
 var app = builder.Build();
