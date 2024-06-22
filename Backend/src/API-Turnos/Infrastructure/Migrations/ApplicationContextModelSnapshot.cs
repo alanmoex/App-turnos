@@ -78,6 +78,81 @@ namespace Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.AvailableAppointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("MedicId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicId");
+
+                    b.ToTable("AvailableAppointments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateTime = new DateTime(2023, 6, 21, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateTime = new DateTime(2023, 6, 22, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateTime = new DateTime(2023, 6, 23, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateTime = new DateTime(2023, 6, 21, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateTime = new DateTime(2023, 6, 22, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DateTime = new DateTime(2023, 6, 23, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DateTime = new DateTime(2023, 6, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DateTime = new DateTime(2023, 6, 22, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DateTime = new DateTime(2023, 6, 23, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            MedicId = 3
+                        });
+                });
+
             modelBuilder.Entity("Domain.Entities.Medic", b =>
                 {
                     b.Property<int>("Id")
@@ -92,11 +167,16 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("MedicalCenterId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicalCenterId");
 
                     b.ToTable("Medics");
 
@@ -106,6 +186,7 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             LastName = "Brown",
                             LicenseNumber = "123456",
+                            MedicalCenterId = 1,
                             Name = "Michael"
                         },
                         new
@@ -113,6 +194,7 @@ namespace Infrastructure.Migrations
                             Id = 2,
                             LastName = "Smith",
                             LicenseNumber = "654321",
+                            MedicalCenterId = 1,
                             Name = "Jane"
                         },
                         new
@@ -120,6 +202,7 @@ namespace Infrastructure.Migrations
                             Id = 3,
                             LastName = "Jackson",
                             LicenseNumber = "321123",
+                            MedicalCenterId = 2,
                             Name = "Peter"
                         });
                 });
@@ -376,43 +459,6 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MedicalCenterSpecialty", b =>
-                {
-                    b.Property<int>("MedicalCenterId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("SpecialtiesId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("MedicalCenterId", "SpecialtiesId");
-
-                    b.HasIndex("SpecialtiesId");
-
-                    b.ToTable("MedicalCenterSpecialties", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            MedicalCenterId = 1,
-                            SpecialtiesId = 1
-                        },
-                        new
-                        {
-                            MedicalCenterId = 1,
-                            SpecialtiesId = 2
-                        },
-                        new
-                        {
-                            MedicalCenterId = 2,
-                            SpecialtiesId = 2
-                        },
-                        new
-                        {
-                            MedicalCenterId = 2,
-                            SpecialtiesId = 3
-                        });
-                });
-
             modelBuilder.Entity("Domain.Entities.AdminMC", b =>
                 {
                     b.HasBaseType("Domain.Entities.User");
@@ -530,6 +576,28 @@ namespace Infrastructure.Migrations
                     b.Navigation("Patient");
                 });
 
+            modelBuilder.Entity("Domain.Entities.AvailableAppointment", b =>
+                {
+                    b.HasOne("Domain.Entities.Medic", "Medic")
+                        .WithMany("AvailableAppointments")
+                        .HasForeignKey("MedicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medic");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Medic", b =>
+                {
+                    b.HasOne("Domain.Entities.MedicalCenter", "MedicalCenter")
+                        .WithMany("Medics")
+                        .HasForeignKey("MedicalCenterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MedicalCenter");
+                });
+
             modelBuilder.Entity("MedicSpecialty", b =>
                 {
                     b.HasOne("Domain.Entities.Medic", null)
@@ -560,21 +628,6 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MedicalCenterSpecialty", b =>
-                {
-                    b.HasOne("Domain.Entities.MedicalCenter", null)
-                        .WithMany()
-                        .HasForeignKey("MedicalCenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Specialty", null)
-                        .WithMany()
-                        .HasForeignKey("SpecialtiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Domain.Entities.AdminMC", b =>
                 {
                     b.HasOne("Domain.Entities.MedicalCenter", "MedicalCenter")
@@ -589,11 +642,15 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Medic", b =>
                 {
                     b.Navigation("Appointments");
+
+                    b.Navigation("AvailableAppointments");
                 });
 
             modelBuilder.Entity("Domain.Entities.MedicalCenter", b =>
                 {
                     b.Navigation("Appointments");
+
+                    b.Navigation("Medics");
                 });
 
             modelBuilder.Entity("Domain.Entities.Patient", b =>

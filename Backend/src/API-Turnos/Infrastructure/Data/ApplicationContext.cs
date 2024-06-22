@@ -12,6 +12,7 @@ namespace Infrastructure.Data
 
         public DbSet<AdminMC> AdminMCs { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<AvailableAppointment> AvailableAppointments { get; set; }
         public DbSet<Medic> Medics { get; set; }
         public DbSet<MedicalCenter> MedicalCenters { get; set; }
         public DbSet<Patient> Patients { get; set; }
@@ -32,6 +33,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<SysAdmin>().HasData(CreateSysAdminDataSeed());
             modelBuilder.Entity<AdminMC>().HasData(CreateAdminMCDataSeed());
             modelBuilder.Entity<Appointment>().HasData(CreateAppointmentDataSeed());
+            modelBuilder.Entity<AvailableAppointment>().HasData(CreateAvailableAppointmentDataSeed());
 
             // Relación muchos a muchos entre Medic y Specialty
             modelBuilder.Entity<Medic>()
@@ -50,32 +52,6 @@ namespace Infrastructure.Data
                     .ToTable("MedicWorkSchedules")
                     .HasData(CreateMedicWorkScheduleDataSeed())
                     );
-
-            // Relación muchos a muchos entre MedicalCenter y Specialty
-            modelBuilder.Entity<MedicalCenter>()
-                .HasMany(mc => mc.Specialties)
-                .WithMany()
-                .UsingEntity(j => j
-                    .ToTable("MedicalCenterSpecialties")
-                    .HasData(CreateMedicalCenterSpecialtiesDataSeed())
-                    );
-
-            /* Configuración de relaciones uno a muchos
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.Medic)
-                .WithMany(m => m.Appointments)
-                .HasForeignKey("MedicId");
-
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.Patient)
-                .WithMany(p => p.Appointments)
-                .HasForeignKey("PatientId");
-
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.MedicalCenter)
-                .WithMany(mc => mc.Appointments)
-                .HasForeignKey("MedicalCenterId");*/
-
             
         }
 
@@ -90,13 +66,13 @@ namespace Infrastructure.Data
             return result;
         }
 
-        private Medic[] CreateMedicDataSeed()
+        private object[] CreateMedicDataSeed()
         {
-            Medic[] result = new Medic[]
+            object[] result = new[]
             {
-                new Medic { Id = 1, Name = "Michael", LastName = "Brown", LicenseNumber = "123456" },
-                new Medic { Id = 2, Name = "Jane", LastName = "Smith", LicenseNumber = "654321" },
-                new Medic { Id = 3, Name = "Peter", LastName = "Jackson", LicenseNumber = "321123" }
+                new { Id = 1, Name = "Michael", LastName = "Brown", LicenseNumber = "123456", MedicalCenterId = 1 },
+                new { Id = 2, Name = "Jane", LastName = "Smith", LicenseNumber = "654321", MedicalCenterId = 1 },
+                new { Id = 3, Name = "Peter", LastName = "Jackson", LicenseNumber = "321123", MedicalCenterId = 2 }
             };
             return result;
         }
@@ -162,6 +138,23 @@ namespace Infrastructure.Data
                 new  { Id = 1, AppointmentDateTime = new DateTime(2023, 6, 21, 10, 0, 0), MedicId = 1, PatientId = 1, MedicalCenterId = 1, IsCancelled = false },
                 new  { Id = 2, AppointmentDateTime = new DateTime(2023, 6, 22, 11, 0, 0), MedicId = 2, PatientId = 2, MedicalCenterId = 2, IsCancelled = false },
                 new  { Id = 3, AppointmentDateTime = new DateTime(2023, 6, 23, 12, 0, 0), MedicId = 3, PatientId = 3, MedicalCenterId = 1, IsCancelled = true }
+            };
+            return result;
+        }
+
+        private object[] CreateAvailableAppointmentDataSeed()
+        {
+            object[] result = new[]
+            {
+                new  { Id = 1, DateTime = new DateTime(2023, 6, 21, 10, 0, 0), MedicId = 1 },
+                new  { Id = 2, DateTime = new DateTime(2023, 6, 22, 10, 30, 0), MedicId = 1 },
+                new  { Id = 3, DateTime = new DateTime(2023, 6, 23, 11, 0, 0), MedicId = 1 },
+                new  { Id = 4, DateTime = new DateTime(2023, 6, 21, 15, 0, 0), MedicId = 2 },
+                new  { Id = 5, DateTime = new DateTime(2023, 6, 22, 15, 30, 0), MedicId = 2 },
+                new  { Id = 6, DateTime = new DateTime(2023, 6, 23, 16, 0, 0), MedicId = 2 },
+                new  { Id = 7, DateTime = new DateTime(2023, 6, 21, 17, 0, 0), MedicId = 3 },
+                new  { Id = 8, DateTime = new DateTime(2023, 6, 22, 17, 30, 0), MedicId = 3 },
+                new  { Id = 9, DateTime = new DateTime(2023, 6, 23, 18, 0, 0), MedicId = 3 }
             };
             return result;
         }
