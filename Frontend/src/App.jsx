@@ -3,9 +3,10 @@ import HomePage from "./components/container/homePage/HomePage";
 import Login from "./components/container/login/Login";
 import RegisterPatient from "./components/container/registerPatients/RegisterPatient";
 import TurnosPaciente from "./components/container/TurnosPacientes/TurnosPaciente";
-import ShiftManagement from "./components/container/shiftManagement/shiftManagement";
+import ShiftManagement from "./components/container/shiftManagement/ShiftManagement";
 import PatientManagement from "./components/container/patientManagement/PatientManagement";
 import ManagementMedicalCenters from "./components/container/ManagementMedicalCenters/ManagementMedicalCenters";
+import AppointmentSelection from "./components/container/appointmentSelection/AppointmentSelection";
 function App() {
   /*   let patientsList = [
     {
@@ -139,6 +140,7 @@ function App() {
     { path: "/GestionTurnos", element: <ShiftManagement /> },
     { path: "/GestionPacientes", element: <PatientManagement /> },
     { path: "/GestionCentroMedico", element: <ManagementMedicalCenters /> },
+    { path: "/SeleccionarTurno", element: <AppointmentSelection /> },
   ]);
 
   return (
