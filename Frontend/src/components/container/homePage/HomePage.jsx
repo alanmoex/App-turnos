@@ -19,7 +19,7 @@ const HomePage = () => {
           <h2>Expertos en el cuidado de tu salud</h2>
         </Col>
       </Row>
-      {/*    <AppointmentHour hours={5}></AppointmentHour> */}
+      {/*  <AppointmentHour hours={5}></AppointmentHour> */}
     </div>
   );
 };

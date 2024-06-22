@@ -6,6 +6,7 @@ import TurnosPaciente from "./components/container/TurnosPacientes/TurnosPacient
 import AppointmentPatient from "./components/container/appointment_patient/Appointmnet_patient";
 import AddCmSysAdmin from "./components/container/addCmSysAdmin/AddCmSysAdmin";
 import AddDoctor from "./components/container/addDoctor/AddDoctor";
+import { RoleProvider } from "./components/common/contextRole/ContextRole";
 
 function App() {
   /*   let patientsList = [
@@ -143,9 +144,11 @@ function App() {
   ]);
 
   return (
-    <div className="d-flex flex-column align-items-center">
-      {<RouterProvider router={router} />}
-    </div>
+    <RoleProvider>
+      <div className="d-flex flex-column align-items-center">
+        {<RouterProvider router={router} />}
+      </div>
+    </RoleProvider>
   );
 }
 

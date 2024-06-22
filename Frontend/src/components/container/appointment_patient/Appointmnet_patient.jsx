@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import NavBar from "../../common/navBar/navBar";
-import "./Appointment_patient.css"; // Asegúrate de tener este archivo CSS
+import "./Appointment_patient.css";
 
 function AppointmentPatient() {
   return (
