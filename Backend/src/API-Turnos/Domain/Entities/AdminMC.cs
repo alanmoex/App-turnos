@@ -8,8 +8,7 @@ public class AdminMC : User
     public AdminMC()
     {
     }
-    public AdminMC(int id, string name, string email, string password, MedicalCenter medicalCenter){
-        Id = id;
+    public AdminMC(string name, string email, string password, MedicalCenter medicalCenter){
         Name = name;
         Email = email;
         Password = password;

@@ -17,7 +17,7 @@ const NavBar = () => {
   };
 
   const handleLogoutClick = () => {
-    setRole("guest"); // Cambiar el rol a 'guest' al cerrar sesión
+    setRole("guest");
     navigate("/login");
   };
 
@@ -55,13 +55,13 @@ const NavBar = () => {
             {role === "patient" && (
               <>
                 <NavItem className="me-2">
-                  <Button onClick={() => navigate("/Appointment_patient")}>
+                  <Button onClick={() => navigate("/AppointmentPatient")}>
                     Mis Citas
                   </Button>
                 </NavItem>
                 <NavItem className="me-2">
                   <Button onClick={() => navigate("/TurnosPacientes")}>
-                    Historial Médico
+                    Reservar Turno
                   </Button>
                 </NavItem>
               </>

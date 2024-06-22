@@ -12,8 +12,8 @@ public class Appointment
     public DateTime AppointmentDateTime { get; set; }
 
     public Medic Medic { get; set; }
-
     public Patient Patient { get; set; }
+    public MedicalCenter MedicalCenter { get; set; }
 
     public bool IsCancelled { get; set; }
 

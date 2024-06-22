@@ -1,6 +1,5 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import * as Components from "./Components";
-import { useContext } from "react";
 import { RoleContext } from "../../common/contextRole/ContextRole";
 import { useNavigate } from "react-router-dom";
 
@@ -29,35 +28,23 @@ function Login() {
     if (username.length === 0) {
       userRef.current.focus();
       setError({ ...error, username: true });
-      return alerts();
+      setMessage("Debe ingresar un usuario válido");
+      return;
     }
 
     if (password.length === 0) {
       passRef.current.focus();
       setError({ ...error, password: true });
-      return alerts();
+      setMessage("Debe ingresar una contraseña válida");
+      return;
     }
 
     alert("Has ingresado correctamente");
+    setRole("patient");
+    navigate("/");
   };
 
-  const alerts = () => {
-    if (password === "") {
-      setMessage("Debe ingresar una contraseña válida");
-    }
-
-    if (username === "") {
-      setMessage("Debe ingresar un usuario válido");
-    }
-
-    if (username !== "" && password !== "") {
-      setMessage("Has ingresado correctamente");
-      setRole("patient");
-      navigate("/");
-    }
-  };
-
-  const [signIn, toggle] = React.useState(true);
+  const [signIn, toggle] = useState(true);
 
   return (
     <>

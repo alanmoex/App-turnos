@@ -23,7 +23,7 @@ var connection = new SqliteConnection(connectionString);
 connection.Open();
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
-    options.UseSqlite(connection, b => b.MigrationsAssembly("API")));
+    options.UseSqlite(connection, b => b.MigrationsAssembly("Infrastructure")));
 #region Services
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IPatientService, PatientService>();
@@ -46,6 +46,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyHeader()
+           .AllowAnyMethod();
+});
 
 app.UseHttpsRedirection();
 

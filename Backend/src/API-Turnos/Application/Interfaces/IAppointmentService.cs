@@ -7,9 +7,9 @@ namespace Application.Interfaces;
 
 public interface IAppointmentService
 {
-    Appointment? GetById(int id);
-    List<Appointment> GetAll();
+    AppointmentDto? GetById(int id);
+    List<AppointmentDto> GetAll();
     Appointment Create(AppointmentCreateRequest appointmentCreateRequest);
-    Appointment Update(int id, AppointmentUpdateRequest appointmentUpdateRequest);
+     void Update(int id, AppointmentUpdateRequest appointmentUpdateRequest);
     void Delete(int id);
 }

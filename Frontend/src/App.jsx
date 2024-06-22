@@ -3,10 +3,12 @@ import HomePage from "./components/container/homePage/HomePage";
 import Login from "./components/container/login/Login";
 import RegisterPatient from "./components/container/registerPatients/RegisterPatient";
 import TurnosPaciente from "./components/container/TurnosPacientes/TurnosPaciente";
-import AppointmentPatient from "./components/container/appointment_patient/Appointmnet_patient";
-import AddCmSysAdmin from "./components/container/addCmSysAdmin/AddCmSysAdmin";
-import AddDoctor from "./components/container/addDoctor/AddDoctor";
+import ShiftManagement from "./components/container/shiftManagement/ShiftManagement";
+import PatientManagement from "./components/container/patientManagement/PatientManagement";
+import ManagementMedicalCenters from "./components/container/ManagementMedicalCenters/ManagementMedicalCenters";
+import AppointmentSelection from "./components/container/appointmentSelection/AppointmentSelection";
 import { RoleProvider } from "./components/common/contextRole/ContextRole";
+import AppointmentPatient from "./components/container/appointment_patient/Appointmnet_patient";
 
 function App() {
   /*   let patientsList = [
@@ -138,9 +140,11 @@ function App() {
     { path: "/login", element: <Login /> },
     { path: "/registerPatient", element: <RegisterPatient /> },
     { path: "/TurnosPacientes", element: <TurnosPaciente /> },
-    { path: "/Appointment_patient", element: <AppointmentPatient /> },
-    { path: "/AddCmSysAdmin", element: <AddCmSysAdmin /> },
-    { path: "/AddDoctor", element: <AddDoctor /> },
+    { path: "/GestionTurnos", element: <ShiftManagement /> },
+    { path: "/GestionPacientes", element: <PatientManagement /> },
+    { path: "/GestionCentroMedico", element: <ManagementMedicalCenters /> },
+    { path: "/SeleccionarTurno", element: <AppointmentSelection /> },
+    { path: "/AppointmentPatient", element: <AppointmentPatient /> },
   ]);
 
   return (

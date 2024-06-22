@@ -11,9 +11,17 @@ public class MedicRepository : EfRepository<Medic>, IMedicRepository
     {
     }
 
-    public List<Specialty> GetMedicSpecialties(int medicId)
+    public override Medic? GetById<TId>(TId id)
     {
-        return _context.Medics.Include(a => a.Specialties).Where(a => a.Id == medicId)
-            .Select(a => a.Specialties).FirstOrDefault() ?? new List<Specialty>();
+        return _context.Medics
+                .Include(m => m.Specialties)
+                .SingleOrDefault(m => m.Id.Equals(id));
+    }
+
+    public override List<Medic> GetAll()
+    {
+        return _context.Medics
+                .Include(m => m.Specialties)
+                .ToList();
     }
 }

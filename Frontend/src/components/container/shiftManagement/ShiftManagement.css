@@ -1,0 +1,41 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+table {
+  width: 200%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #000;
+  text-align: center;
+}
+
+th {
+  background-color: black;
+  color: #f4f4f4;
+}
+
+.editar,
+.cancelar {
+  padding: 5px 10px;
+  margin: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  background-color: black;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
