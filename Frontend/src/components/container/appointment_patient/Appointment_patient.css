@@ -1,0 +1,69 @@
+.page-container {
+  background-color: #5b5d5e; /* Color de fondo gris */
+  min-height: 100vh; /* Altura mínima de la página, para que ocupe toda la pantalla */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.content-container {
+  flex: 1; /* Esto hace que ocupe el espacio restante verticalmente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.appointment-card {
+  width: 50rem;
+  background-color: #e9ecef;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.info-section {
+  flex: 1;
+  padding: 1rem;
+}
+
+.doctor-info p {
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.appointment-time {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.appointment-time p {
+  margin: 0;
+  font-size: 16px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .appointment-card {
+    width: 90%;
+  }
+
+  .doctor-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .doctor-info p {
+    font-size: 16px;
+  }
+
+  .appointment-time p {
+    font-size: 14px;
+  }
+}

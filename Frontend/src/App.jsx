@@ -7,6 +7,9 @@ import ShiftManagement from "./components/container/shiftManagement/ShiftManagem
 import PatientManagement from "./components/container/patientManagement/PatientManagement";
 import ManagementMedicalCenters from "./components/container/ManagementMedicalCenters/ManagementMedicalCenters";
 import AppointmentSelection from "./components/container/appointmentSelection/AppointmentSelection";
+import { RoleProvider } from "./components/common/contextRole/ContextRole";
+import AppointmentPatient from "./components/container/appointment_patient/Appointmnet_patient";
+
 function App() {
   /*   let patientsList = [
     {
@@ -141,12 +144,15 @@ function App() {
     { path: "/GestionPacientes", element: <PatientManagement /> },
     { path: "/GestionCentroMedico", element: <ManagementMedicalCenters /> },
     { path: "/SeleccionarTurno", element: <AppointmentSelection /> },
+    { path: "/AppointmentPatient", element: <AppointmentPatient /> },
   ]);
 
   return (
-    <div className="d-flex flex-column align-items-center">
-      {<RouterProvider router={router} />}
-    </div>
+    <RoleProvider>
+      <div className="d-flex flex-column align-items-center">
+        {<RouterProvider router={router} />}
+      </div>
+    </RoleProvider>
   );
 }
 
