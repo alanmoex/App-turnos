@@ -28,6 +28,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IMedicService, MedicService>();
+builder.Services.AddScoped<IMedicalCenterService, MedicalCenterService>();
 builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
 #endregion
 
@@ -35,6 +36,7 @@ builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IMedicRepository, MedicRepository>();
+builder.Services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
 builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 #endregion
 
