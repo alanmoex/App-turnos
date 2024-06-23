@@ -10,4 +10,11 @@ public class MedicRepository : EfRepository<Medic>, IMedicRepository
     public MedicRepository(ApplicationContext context) : base(context)
     {
     }
+
+    public override List<Medic> GetAll()
+    {
+        return _context.Medics
+            .Include(m=> m.Specialties)
+            .ToList();
+    }
 }

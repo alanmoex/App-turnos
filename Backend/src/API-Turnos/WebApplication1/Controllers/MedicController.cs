@@ -12,9 +12,11 @@ namespace API.Controllers;
 public class MedicController : ControllerBase
 {
     private readonly IMedicService _medicService;
-    public MedicController(IMedicService medicService)
+    private readonly ISpecialtyService _specialtyService;
+    public MedicController(IMedicService medicService, ISpecialtyService specialtyService)
     {
         _medicService = medicService;
+        _specialtyService = specialtyService;
     }
 
     [HttpGet]
@@ -75,4 +77,23 @@ public class MedicController : ControllerBase
             throw;
         }
     }
+
+    [HttpGet("[action]")]
+    public ActionResult<List<MedicDto>> GetMedicsBySpecialty(int specialtyId)
+    {
+        var specialty = _specialtyService.GetById(specialtyId);
+
+        if (specialty == null)
+        {
+            return NotFound($"No se encontró ninguna especialidad con ID {specialtyId}");
+        }
+
+        var medics = _medicService.GetAll();
+
+        // Filtrar los médicos que tienen la especialidad específica
+        var medicsInSpecialty = medics.Where(m => m.Specialties.Any(s => s.Id == specialty.Id)).ToList();
+
+        return Ok(medicsInSpecialty);
+    }
+
 }
