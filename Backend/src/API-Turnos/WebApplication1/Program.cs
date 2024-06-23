@@ -28,7 +28,7 @@ builder.Services.AddSwaggerGen(setupAction =>
     {
         Type = SecuritySchemeType.Http,
         Scheme = "Bearer",
-        Description = "Acá pegar el token generado al loguearse."
+        Description = "Acï¿½ pegar el token generado al loguearse."
     });
 
     setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -39,7 +39,7 @@ builder.Services.AddSwaggerGen(setupAction =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "API-TurnosBearerAuth" } //Tiene que coincidir con el id seteado arriba en la definición
+                    Id = "API-TurnosBearerAuth" } //Tiene que coincidir con el id seteado arriba en la definiciï¿½n
                 }, new List<string>() }
     });
 
@@ -85,6 +85,7 @@ builder.Services.AddScoped<IMedicService, MedicService>();
 builder.Services.AddScoped<IMedicalCenterService, MedicalCenterService>();
 builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
 builder.Services.AddScoped<IAdminMCService, AdminMCService>();
+builder.Services.AddScoped<IWorkScheduleService,WorkScheduleService>();
 #endregion
 
 #region Repositories
@@ -95,6 +96,7 @@ builder.Services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
 builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 builder.Services.AddScoped<IAdminMCRepository, AdminMCRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IWorkScheduleRepository, WorkScheduleRepository>();
 #endregion
 
 var app = builder.Build();
