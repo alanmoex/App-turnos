@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InicialMigration : Migration
+    public partial class initialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -82,10 +82,10 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", maxLength: 8, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    UserType = table.Column<string>(type: "nvarchar(20)", maxLength: 8, nullable: false),
                     MedicalCenterId = table.Column<int>(type: "INTEGER", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: true)
                 },
@@ -224,21 +224,21 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Discriminator", "Email", "LastName", "Name", "Password" },
+                columns: new[] { "Id", "Email", "LastName", "Name", "Password", "UserType" },
                 values: new object[,]
                 {
-                    { 1, "Patient", "john.doe@example.com", "Doe", "John", "123" },
-                    { 2, "Patient", "emily.johnson@example.com", "Johnson", "Emily", "123" },
-                    { 3, "Patient", "george.peterson@example.com", "Peterson", "George", "123" }
+                    { 1, "john.doe@example.com", "Doe", "John", "123", "Patient" },
+                    { 2, "emily.johnson@example.com", "Johnson", "Emily", "123", "Patient" },
+                    { 3, "george.peterson@example.com", "Peterson", "George", "123", "Patient" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Discriminator", "Email", "Name", "Password" },
+                columns: new[] { "Id", "Email", "Name", "Password", "UserType" },
                 values: new object[,]
                 {
-                    { 4, "SysAdmin", "admin1@example.com", "Admin1", "admin123" },
-                    { 5, "SysAdmin", "admin2@example.com", "Admin2", "admin123" }
+                    { 4, "sysadmin1@example.com", "Admin1", "admin123", "SysAdmin" },
+                    { 5, "sysadmin2@example.com", "Admin2", "admin123", "SysAdmin" }
                 });
 
             migrationBuilder.InsertData(
@@ -265,11 +265,11 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Discriminator", "Email", "MedicalCenterId", "Name", "Password" },
+                columns: new[] { "Id", "Email", "MedicalCenterId", "Name", "Password", "UserType" },
                 values: new object[,]
                 {
-                    { 6, "AdminMC", "admin1@example.com", 1, "Admin 1", "password1" },
-                    { 7, "AdminMC", "admin2@example.com", 2, "Admin 2", "password2" }
+                    { 6, "admin1@example.com", 1, "Admin 1", "password1", "AdminMC" },
+                    { 7, "admin2@example.com", 2, "Admin 2", "password2", "AdminMC" }
                 });
 
             migrationBuilder.InsertData(

@@ -23,7 +23,7 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>().HasDiscriminator(u => u.UserType);
 
             modelBuilder.Entity<Patient>().HasData(CreatePatientDataSeed());
             modelBuilder.Entity<Medic>().HasData(CreateMedicDataSeed());
@@ -115,8 +115,8 @@ namespace Infrastructure.Data
         {
             SysAdmin[] result = new SysAdmin[]
             {
-                new SysAdmin { Id = 4, Name = "Admin1", Email = "admin1@example.com", Password = "admin123" },
-                new SysAdmin { Id = 5, Name = "Admin2", Email = "admin2@example.com", Password = "admin123" }
+                new SysAdmin { Id = 4, Name = "Admin1", Email = "sysadmin1@example.com", Password = "admin123" },
+                new SysAdmin { Id = 5, Name = "Admin2", Email = "sysadmin2@example.com", Password = "admin123" }
             };
             return result;
         }
