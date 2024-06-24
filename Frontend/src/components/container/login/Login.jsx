@@ -1,21 +1,22 @@
 import { useState, useRef, useContext } from "react";
 import * as Components from "./Components";
-import { RoleContext } from "../../common/contextRole/ContextRole";
 import { useNavigate } from "react-router-dom";
+import { AuthenticationContext } from "../../../services/authentication/authenticationContext";
+import { API_BASE_URL } from "../../../api";
 
 function Login() {
   const navigate = useNavigate();
-  const { setRole } = useContext(RoleContext);
-  const [username, setUsername] = useState("");
+  const { handleLogin } = useContext(AuthenticationContext);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState({ username: false, password: false });
+  const [error, setError] = useState({ email: false, password: false });
   const [message, setMessage] = useState("");
   const userRef = useRef(null);
   const passRef = useRef(null);
 
-  const usernameHandler = (event) => {
-    setError({ ...error, username: false });
-    setUsername(event.target.value);
+  const emailHandler = (event) => {
+    setError({ ...error, email: false });
+    setEmail(event.target.value);
   };
 
   const passwordHandler = (event) => {
@@ -23,11 +24,11 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const loginHandler = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (username.length === 0) {
+    if (email.length === 0) {
       userRef.current.focus();
-      setError({ ...error, username: true });
+      setError({ ...error, email: true });
       setMessage("Debe ingresar un usuario válido");
       return;
     }
@@ -39,8 +40,21 @@ function Login() {
       return;
     }
 
-    alert("Has ingresado correctamente");
-    setRole("patient");
+    const response = await fetch(`${API_BASE_URL}/Authentication/authenticate`, {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password}),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      handleLogin(data.token);
+    }else{
+      alert("Error de autenticación")
+    }
+    
     navigate("/");
   };
 
@@ -50,13 +64,13 @@ function Login() {
     <>
       <Components.Conteiner>
         <Components.SignUpContainer signinIn={signIn}>
-          <Components.Form onSubmit={loginHandler}>
+          <Components.Form onSubmit={handleSubmit}>
             <Components.Title>Crear cuenta</Components.Title>
             <Components.Input
               type="text"
               placeholder="Nombre"
-              value={username}
-              onChange={usernameHandler}
+              value={email}
+              onChange={emailHandler}
             />
             <Components.Input type="text" placeholder="Apellido" />
             <Components.Input type="text" placeholder="DNI" />
@@ -72,13 +86,13 @@ function Login() {
         </Components.SignUpContainer>
 
         <Components.SignInContainer signinIn={signIn}>
-          <Components.Form onSubmit={loginHandler}>
+          <Components.Form onSubmit={handleSubmit}>
             <Components.Title>MediCare</Components.Title>
             <Components.Input
               type="text"
               placeholder="Usuario"
-              value={username}
-              onChange={usernameHandler}
+              value={email}
+              onChange={emailHandler}
               ref={userRef}
             />
             <Components.Input
@@ -130,16 +144,16 @@ export default Login;
 import "./Login.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState({ username: false, password: false });
+  const [error, setError] = useState({ email: false, password: false });
   const [message, setMessage] = useState("");
   const userRef = useRef(null);
   const passRef = useRef(null);
 
-  const usernameHandler = (event) => {
-    setError({ ...error, username: false });
-    setUsername(event.target.value);
+  const emailHandler = (event) => {
+    setError({ ...error, email: false });
+    setEmail(event.target.value);
   };
 
   const passwordHandler = (event) => {
@@ -151,7 +165,7 @@ function Login() {
     event.preventDefault();
     if (userRef.current.value.length === 0) {
       userRef.current.focus();
-      setError({ ...error, username: true });
+      setError({ ...error, email: true });
       return alerts();
     }
 
@@ -169,11 +183,11 @@ function Login() {
       setMessage("Debe ingresar una contraseña válida");
     }
 
-    if (username === "") {
+    if (email === "") {
       setMessage("Debe ingresar un usuario válido");
     }
 
-    if (username != "" && password != "") {
+    if (email != "" && password != "") {
       setMessage("");
     }
   };
@@ -188,13 +202,13 @@ function Login() {
           <div className="form-group">
             <input
               ref={userRef}
-              className={error.username && "border border-danger"}
+              className={error.email && "border border-danger"}
               type="text"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               placeholder="Usuario"
-              value={username}
-              onChange={usernameHandler}
+              value={email}
+              onChange={emailHandler}
             />
           </div>
           <div className="form-group">
