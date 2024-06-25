@@ -1,19 +1,25 @@
-import { useState, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import PropTypes from "prop-types";
 import jwt_decode from "jwt-decode";
 
 export const AuthenticationContext = createContext();
 
-const tokenValue = JSON.parse(localStorage.getItem("token"));
+const tokenValue = localStorage.getItem("token");
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [token, setToken] = useState(tokenValue);
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     if (token) {
-      const decoded = jwt_decode(token);
-      setUserInfo(decoded);
+      try {
+        const decoded = jwt_decode(token);
+        setUserInfo(decoded);
+      } catch (error) {
+        console.error("Error decoding JWT token:", error);
+        setUserInfo(null);
+      }
     } else {
       setUserInfo(null);
     }
@@ -24,14 +30,15 @@ export const AuthenticationContextProvider = ({ children }) => {
     setToken(null);
   };
 
-  const handleLogin = (email, role) => {
-    const tokenData = { email, role };
-    localStorage.setItem("token", JSON.stringify({ email }));
-    setToken({ email });
+  const handleLogin = (token) => {
+    localStorage.setItem("token", token);
+    setToken(token);
   };
 
   return (
-    <AuthenticationContext.Provider value={{ token, handleLogin, handleLogout }}>
+    <AuthenticationContext.Provider
+      value={{ token, userInfo, handleLogin, handleLogout }}
+    >
       {children}
     </AuthenticationContext.Provider>
   );

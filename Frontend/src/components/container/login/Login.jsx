@@ -1,10 +1,10 @@
 import { useState, useRef, useContext } from "react";
 import * as Components from "./Components";
 import { useNavigate } from "react-router-dom";
-import { AuthenticationContext } from "../../../services/authentication/authenticationContext";
 import { API_BASE_URL } from "../../../api";
+import { AuthenticationContext } from "../../../services/authentication/authenticationContext";
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate();
   const { handleLogin } = useContext(AuthenticationContext);
   const [email, setEmail] = useState("");
@@ -40,22 +40,28 @@ function Login() {
       return;
     }
 
-    const response = await fetch(`${API_BASE_URL}/Authentication/authenticate`, {
-      method: "POST",
-      headers:{
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password}),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      handleLogin(data.token);
-    }else{
-      alert("Error de autenticación")
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/Authentication/authenticate`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+      if (response.ok) {
+        const data = await response.text();
+        handleLogin(data);
+        navigate("/");
+      } else {
+        alert("Error de autenticación");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("Error de conexión");
     }
-    
-    navigate("/");
   };
 
   const [signIn, toggle] = useState(true);
@@ -63,7 +69,7 @@ function Login() {
   return (
     <>
       <Components.Conteiner>
-        <Components.SignUpContainer signinIn={signIn}>
+        <Components.SignUpContainer $signinIn={signIn}>
           <Components.Form onSubmit={handleSubmit}>
             <Components.Title>Crear cuenta</Components.Title>
             <Components.Input
@@ -85,7 +91,7 @@ function Login() {
           </Components.Form>
         </Components.SignUpContainer>
 
-        <Components.SignInContainer signinIn={signIn}>
+        <Components.SignInContainer $signinIn={signIn}>
           <Components.Form onSubmit={handleSubmit}>
             <Components.Title>MediCare</Components.Title>
             <Components.Input
@@ -107,9 +113,9 @@ function Login() {
           </Components.Form>
         </Components.SignInContainer>
 
-        <Components.OverlayContainer signinIn={signIn}>
-          <Components.Overlay signinIn={signIn}>
-            <Components.LeftOverLayPanel signinIn={signIn}>
+        <Components.OverlayContainer $signinIn={signIn}>
+          <Components.Overlay $signinIn={signIn}>
+            <Components.LeftOverLayPanel $signinIn={signIn}>
               <Components.Title>¡Bienvenido!</Components.Title>
               <Components.Paragraph>
                 Ingrese sus datos y únase a nosotros!
@@ -119,14 +125,12 @@ function Login() {
               </Components.GhostButton>
             </Components.LeftOverLayPanel>
 
-            <Components.RightOverLayPanel signinIn={signIn}>
+            <Components.RightOverLayPanel $signinIn={signIn}>
               <Components.Title>Hola, Usuario/a!</Components.Title>
               <Components.Paragraph>
                 Para solicitar, modificar o eliminar sus turnos, ingrese su
-                usuario y contraseña.
-                <p>
-                  <span>Si no tienes una cuenta, hacé click acá!</span>
-                </p>
+                usuario y contraseña. <br></br>
+                <br></br> Si no tienes una cuenta, hacé click acá!
               </Components.Paragraph>
               <Components.GhostButton onClick={() => toggle(false)}>
                 Registrarse
@@ -137,7 +141,7 @@ function Login() {
       </Components.Conteiner>
     </>
   );
-}
+};
 
 export default Login;
 /*import { useRef, useState } from "react";
