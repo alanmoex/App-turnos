@@ -35,7 +35,7 @@ namespace Infrastructure.Services
                 return null;
             }
 
-            if (authenticationRequest.UserType == typeof(Patient).Name 
+            /*if (authenticationRequest.UserType == typeof(Patient).Name 
                 || authenticationRequest.UserType == typeof(AdminMC).Name
                 || authenticationRequest.UserType == typeof(SysAdmin).Name) 
             {
@@ -43,9 +43,9 @@ namespace Infrastructure.Services
                 {
                     return user;
                 }
-            }
-
-            return null;
+            //*/
+            //return null;
+            return user;
         }
 
         public string Authenticate(AuthenticationRequest authenticationRequest) 
@@ -64,7 +64,7 @@ namespace Infrastructure.Services
             var claimsForToken = new List<Claim>();
             claimsForToken.Add(new Claim("sub", user.Id.ToString())); 
             claimsForToken.Add(new Claim("given_name", user.Name));
-            claimsForToken.Add(new Claim("role", authenticationRequest.UserType));
+            claimsForToken.Add(new Claim("role", user.UserType));
 
             var jwtSecurityToken = new JwtSecurityToken(
               _options.Issuer,

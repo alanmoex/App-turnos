@@ -10,6 +10,5 @@ namespace Application.Models.Requests
 
         [Required]
         public string Password { get; set; }
-        public string? UserType { get; set; }
     }
 }

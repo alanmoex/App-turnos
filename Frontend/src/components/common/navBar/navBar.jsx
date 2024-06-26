@@ -2,12 +2,14 @@ import { useContext } from "react";
 import { Button, Nav, NavDropdown, NavItem, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-import { RoleContext } from "../contextRole/ContextRole";
+import { AuthenticationContext } from "../../../services/authentication/authenticationContext";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { role, setRole } = useContext(RoleContext);
-
+  const { userInfo } = useContext(AuthenticationContext);
+  const { handleLogout } = useContext(AuthenticationContext);
+  const role = userInfo?.role || "Guest";
+  const name = userInfo?.given_name;
   const handleRegisterClick = () => {
     navigate("/registerPatient");
   };
@@ -17,8 +19,8 @@ const NavBar = () => {
   };
 
   const handleLogoutClick = () => {
-    setRole("guest");
     navigate("/login");
+    handleLogout();
   };
 
   return (
@@ -42,14 +44,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center">
-            {role !== "guest" && (
-              <NavDropdown title="USUARIO" id="basic-nav-dropdown">
-                <NavDropdown.Item onClick={handleLogoutClick}>
-                  Cerrar Sesión
-                </NavDropdown.Item>
-              </NavDropdown>
-            )}
-            {role === "guest" && (
+            {role === "Guest" && (
               <>
                 <NavItem className="me-2">
                   <Button onClick={handleRegisterClick}>REGISTRARSE</Button>
@@ -59,7 +54,7 @@ const NavBar = () => {
                 </NavItem>
               </>
             )}
-            {role === "patient" && (
+            {role === "Patient" && (
               <>
                 <NavItem className="me-2">
                   <Button onClick={() => navigate("/AppointmentPatient")}>
@@ -73,7 +68,7 @@ const NavBar = () => {
                 </NavItem>
               </>
             )}
-            {role === "centralmedic" && (
+            {role === "AdminMC" && (
               <>
                 <NavItem className="me-2">
                   <Button onClick={() => navigate("/admin")}>
@@ -86,6 +81,17 @@ const NavBar = () => {
                   </Button>
                 </NavItem>
               </>
+            )}
+            {role !== "guest" && (
+              <NavDropdown
+                title={name}
+                id="basic-nav-dropdown"
+                align={{ lg: "end" }}
+              >
+                <NavDropdown.Item onClick={handleLogoutClick}>
+                  Cerrar Sesión
+                </NavDropdown.Item>
+              </NavDropdown>
             )}
           </Nav>
         </Navbar.Collapse>

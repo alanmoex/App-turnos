@@ -8,56 +8,44 @@ namespace Application.Services;
 public class AvailableAppointmentService : IAvailableAppointmentService
 {
     private readonly IAvailableAppointmentRepository _availableAppointmentRepository;
-    public AvailableAppointmentService(IAvailableAppointmentRepository availableAppointmentRepository)
+
+    private readonly IMedicRepository _medicRepository;
+    public AvailableAppointmentService(IAvailableAppointmentRepository availableAppointmentRepository, IMedicRepository medicRepository)
     {
         _availableAppointmentRepository = availableAppointmentRepository;
+        _medicRepository = medicRepository;
     }
 
-    public Patient Create(PatientCreateRequest availableAppointmentCreateRequest)
+    public AvailableAppointment Create(DateTime dateTime, Medic medic)
     {
-        var newPatient = new Patient(availableAppointmentCreateRequest.Name, AvailableAppointmentCreateRequest.LastName, AvailableAppointmentCreateRequest.Email, AvailableAppointmentCreateRequest.Password);
-        return _availableAppointmentRepository.Add(newPatient);
+        var newAvailableAppointment = new AvailableAppointment(dateTime, medic);
+        return _availableAppointmentRepository.Add(newAvailableAppointment);
     }
 
     public void Delete(int id)
     {
-        var obj = _AvailableAppointmentRepository.GetById(id);
+        var obj = _availableAppointmentRepository.GetById(id);
 
         if (obj == null)
             throw new Exception("");
 
-        _AvailableAppointmentRepository.Delete(obj);
+        _availableAppointmentRepository.Delete(obj);
     }
 
-    public List<PatientDto> GetAll()
+    public List<AvailableAppointmentDto> GetAll()
     {
-        var list = _AvailableAppointmentRepository.GetAll();
+        var list = _availableAppointmentRepository.GetAll();
 
-        return PatientDto.CreateList(list);
+        return AvailableAppointmentDto.CreateList(list);
     }
 
-    public PatientDto GetById(int id)
+    public AvailableAppointmentDto GetById(int id)
     {
-        var obj = _AvailableAppointmentRepository.GetById(id)
+        var obj = _availableAppointmentRepository.GetById(id)
             ?? throw new Exception("");
 
-        return PatientDto.Create(obj);
+        return AvailableAppointmentDto.Create(obj);
     }
 
-    public void Update(int id, PatientUpdateRequest AvailableAppointmentUpdateRequest)
-    {
-        var obj = _AvailableAppointmentRepository.GetById(id)
-            ?? throw new Exception("");
-
-        if (AvailableAppointmentUpdateRequest.Name != string.Empty) obj.Name = AvailableAppointmentUpdateRequest.Name;
-
-        if (AvailableAppointmentUpdateRequest.LastName != string.Empty) obj.LastName = AvailableAppointmentUpdateRequest.LastName;
-
-        if (AvailableAppointmentUpdateRequest.Email != string.Empty) obj.Email = AvailableAppointmentUpdateRequest.Email;
-
-        if (AvailableAppointmentUpdateRequest.Password != string.Empty) obj.Password = AvailableAppointmentUpdateRequest.Password;
-
-        _AvailableAppointmentRepository.Update(obj);
-    }
 
 }

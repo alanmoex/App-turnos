@@ -7,9 +7,9 @@ namespace Application.Interfaces;
 
 public interface IAvailableAppointmentService
 {
-    AvailableAppointment GetById(int id);
-    List<AvailableAppointment> GetAll();
-    AvailableAppointment Create(AppointmentCreateRequest appointmentCreateRequest);
-    void Update(int id, AppointmentUpdateRequest appointmentUpdateRequest);
+
+    AvailableAppointmentDto GetById(int id);
+    List<AvailableAppointmentDto> GetAll();
+    AvailableAppointment Create(DateTime dateTime, Medic medic);
     void Delete(int id);
 }
