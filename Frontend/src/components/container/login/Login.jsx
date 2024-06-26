@@ -89,7 +89,7 @@ function Login() {
               ref={passRef}
             />
             <p>{message}</p>
-            <Components.Button>Login</Components.Button>
+            <Components.Button>Iniciar sesion</Components.Button>
           </Components.Form>
         </Components.SignInContainer>
 

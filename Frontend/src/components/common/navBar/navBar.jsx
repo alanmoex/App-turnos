@@ -42,6 +42,13 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center">
+            {role !== "guest" && (
+              <NavDropdown title="USUARIO" id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={handleLogoutClick}>
+                  Cerrar Sesión
+                </NavDropdown.Item>
+              </NavDropdown>
+            )}
             {role === "guest" && (
               <>
                 <NavItem className="me-2">
@@ -79,13 +86,6 @@ const NavBar = () => {
                   </Button>
                 </NavItem>
               </>
-            )}
-            {role !== "guest" && (
-              <NavDropdown title="USUARIO" id="basic-nav-dropdown">
-                <NavDropdown.Item onClick={handleLogoutClick}>
-                  Cerrar Sesión
-                </NavDropdown.Item>
-              </NavDropdown>
             )}
           </Nav>
         </Navbar.Collapse>

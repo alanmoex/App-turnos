@@ -9,12 +9,12 @@ const HomePage = () => {
       <Row>
         <Navbar></Navbar>
       </Row>
-      <Row className="h-50">
+      <Row className="h-25">
         <Col className="d-flex align-items-end justify-content-end pe-5 pb-3 me-5">
           <h1>MediCare</h1>
         </Col>
       </Row>
-      <Row className="h-50">
+      <Row className="h-25">
         <Col className="d-flex align-items-start justify-content-end pe-5 me-5">
           <h2>Expertos en el cuidado de tu salud</h2>
         </Col>
