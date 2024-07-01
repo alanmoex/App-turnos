@@ -58,8 +58,8 @@ connection.Open();
 builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlite(connection, b => b.MigrationsAssembly("Infrastructure")));
 
-builder.Services.AddAuthentication("Bearer") 
-    .AddJwtBearer(options => 
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new()
         {
@@ -85,7 +85,8 @@ builder.Services.AddScoped<IMedicService, MedicService>();
 builder.Services.AddScoped<IMedicalCenterService, MedicalCenterService>();
 builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
 builder.Services.AddScoped<IAdminMCService, AdminMCService>();
-builder.Services.AddScoped<IWorkScheduleService,WorkScheduleService>();
+builder.Services.AddScoped<IWorkScheduleService, WorkScheduleService>();
+builder.Services.AddScoped<ISysAdminService, SysAdminService>();
 #endregion
 
 #region Repositories
@@ -97,6 +98,7 @@ builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 builder.Services.AddScoped<IAdminMCRepository, AdminMCRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IWorkScheduleRepository, WorkScheduleRepository>();
+builder.Services.AddScoped<ISysAdminRepository, SysAdminRepository>();
 #endregion
 
 var app = builder.Build();

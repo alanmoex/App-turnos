@@ -12,7 +12,6 @@ namespace Infrastructure.Data
 
         public DbSet<AdminMC> AdminMCs { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<AvailableAppointment> AvailableAppointments { get; set; }
         public DbSet<Medic> Medics { get; set; }
         public DbSet<MedicalCenter> MedicalCenters { get; set; }
         public DbSet<Patient> Patients { get; set; }
@@ -33,7 +32,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<SysAdmin>().HasData(CreateSysAdminDataSeed());
             modelBuilder.Entity<AdminMC>().HasData(CreateAdminMCDataSeed());
             modelBuilder.Entity<Appointment>().HasData(CreateAppointmentDataSeed());
-            modelBuilder.Entity<AvailableAppointment>().HasData(CreateAvailableAppointmentDataSeed());
+
 
             // Relación muchos a muchos entre Medic y Specialty
             modelBuilder.Entity<Medic>()
@@ -52,7 +51,7 @@ namespace Infrastructure.Data
                     .ToTable("MedicWorkSchedules")
                     .HasData(CreateMedicWorkScheduleDataSeed())
                     );
-            
+
         }
 
         private Patient[] CreatePatientDataSeed()
@@ -133,7 +132,7 @@ namespace Infrastructure.Data
 
         private object[] CreateAppointmentDataSeed()
         {
-            object[] result = new []
+            object[] result = new[]
             {
                 new  { Id = 1, AppointmentDateTime = new DateTime(2023, 6, 21, 10, 0, 0), MedicId = 1, PatientId = 1, MedicalCenterId = 1, IsCancelled = false },
                 new  { Id = 2, AppointmentDateTime = new DateTime(2023, 6, 22, 11, 0, 0), MedicId = 2, PatientId = 2, MedicalCenterId = 2, IsCancelled = false },
@@ -161,7 +160,7 @@ namespace Infrastructure.Data
 
         private object[] CreateMedicSpecialtyDataSeed()
         {
-            object[] result = new []
+            object[] result = new[]
             {
                 new { MedicId = 1, SpecialtiesId = 1 },
                 new { MedicId = 2, SpecialtiesId = 1 },
@@ -175,7 +174,7 @@ namespace Infrastructure.Data
 
         private object[] CreateMedicWorkScheduleDataSeed()
         {
-            object[] result = new []
+            object[] result = new[]
             {
                 new { MedicId = 1, WorkSchedulesId = 1 },
                 new { MedicId = 1, WorkSchedulesId = 2 },

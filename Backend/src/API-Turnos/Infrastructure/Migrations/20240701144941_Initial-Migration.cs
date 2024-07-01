@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -96,26 +96,6 @@ namespace Infrastructure.Migrations
                         name: "FK_Users_MedicalCenters_MedicalCenterId",
                         column: x => x.MedicalCenterId,
                         principalTable: "MedicalCenters",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AvailableAppointments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    DateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    MedicId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AvailableAppointments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AvailableAppointments_Medics_MedicId",
-                        column: x => x.MedicId,
-                        principalTable: "Medics",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -283,22 +263,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AvailableAppointments",
-                columns: new[] { "Id", "DateTime", "MedicId" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2023, 6, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, new DateTime(2023, 6, 22, 10, 30, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 3, new DateTime(2023, 6, 23, 11, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 4, new DateTime(2023, 6, 21, 15, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 5, new DateTime(2023, 6, 22, 15, 30, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 6, new DateTime(2023, 6, 23, 16, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 7, new DateTime(2023, 6, 21, 17, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 8, new DateTime(2023, 6, 22, 17, 30, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 9, new DateTime(2023, 6, 23, 18, 0, 0, 0, DateTimeKind.Unspecified), 3 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "MedicSpecialties",
                 columns: new[] { "MedicId", "SpecialtiesId" },
                 values: new object[,]
@@ -342,11 +306,6 @@ namespace Infrastructure.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AvailableAppointments_MedicId",
-                table: "AvailableAppointments",
-                column: "MedicId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Medics_MedicalCenterId",
                 table: "Medics",
                 column: "MedicalCenterId");
@@ -372,9 +331,6 @@ namespace Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Appointments");
-
-            migrationBuilder.DropTable(
-                name: "AvailableAppointments");
 
             migrationBuilder.DropTable(
                 name: "MedicSpecialties");
