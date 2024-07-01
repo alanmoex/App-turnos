@@ -7,8 +7,8 @@ import ShiftManagement from "./components/container/shiftManagement/ShiftManagem
 import PatientManagement from "./components/container/patientManagement/PatientManagement";
 import ManagementMedicalCenters from "./components/container/ManagementMedicalCenters/ManagementMedicalCenters";
 import AppointmentSelection from "./components/container/appointmentSelection/AppointmentSelection";
-import { RoleProvider } from "./components/common/contextRole/ContextRole";
 import AppointmentPatient from "./components/container/appointment_patient/Appointmnet_patient";
+import { AuthenticationContextProvider } from "./services/authentication/AuthenticationContext";
 
 function App() {
   /*   let patientsList = [
@@ -148,11 +148,11 @@ function App() {
   ]);
 
   return (
-    <RoleProvider>
+    <AuthenticationContextProvider>
       <div className="d-flex flex-column align-items-center">
         {<RouterProvider router={router} />}
       </div>
-    </RoleProvider>
+    </AuthenticationContextProvider>
   );
 }
 

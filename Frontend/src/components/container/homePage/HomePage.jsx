@@ -1,7 +1,6 @@
 import Navbar from "../../common/navBar/navBar";
 import { Col, Row } from "react-bootstrap";
 import "./HomePage.css";
-/* import AppointmentHour from "../../common/appointmentHour/AppointmentHour"; */
 
 const HomePage = () => {
   return (
@@ -19,7 +18,6 @@ const HomePage = () => {
           <h2>Expertos en el cuidado de tu salud</h2>
         </Col>
       </Row>
-      {/*  <AppointmentHour hours={5}></AppointmentHour> */}
     </div>
   );
 };

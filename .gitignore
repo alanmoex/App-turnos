@@ -19,12 +19,8 @@
 # Mono auto generated files
 mono_crash.*
 
-# Build Folders 
-[Bb]in/
-[Oo]bj/
 
 # Build results
-**/[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -34,8 +30,8 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
-[Oo]bj/
+#[Bb]in/
+#[Oo]bj/
 [Ll]og/
 [Ll]ogs/
 
@@ -275,9 +271,6 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
-
-# SQLite files
-*.db
 
 # Business Intelligence projects
 *.rdl.data
