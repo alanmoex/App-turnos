@@ -12,7 +12,7 @@ namespace API.Controllers;
 public class SysAdminController : ControllerBase
 {
     private readonly ISysAdminService _sysAdminService;
-    public SysAdminController(ISysadminService sysadminService)
+    public SysAdminController(ISysAdminService sysadminService)
     {
         _sysAdminService = sysadminService;
     }
