@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Button, Nav, NavDropdown, NavItem, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-import { AuthenticationContext } from "../../../services/authentication/authenticationContext";
+import { AuthenticationContext } from "../../../services/authentication/AuthenticationContext";
 
 const NavBar = () => {
   const navigate = useNavigate();

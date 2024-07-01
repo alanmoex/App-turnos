@@ -8,7 +8,7 @@ import PatientManagement from "./components/container/patientManagement/PatientM
 import ManagementMedicalCenters from "./components/container/ManagementMedicalCenters/ManagementMedicalCenters";
 import AppointmentSelection from "./components/container/appointmentSelection/AppointmentSelection";
 import AppointmentPatient from "./components/container/appointment_patient/Appointmnet_patient";
-import { AuthenticationContextProvider } from "./services/authentication/authenticationContext";
+import { AuthenticationContextProvider } from "./services/authentication/AuthenticationContext";
 
 function App() {
   /*   let patientsList = [

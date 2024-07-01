@@ -2,7 +2,7 @@ import { useState, useRef, useContext } from "react";
 import * as Components from "./Components";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../../api";
-import { AuthenticationContext } from "../../../services/authentication/authenticationContext";
+import { AuthenticationContext } from "../../../services/authentication/AuthenticationContext";
 
 const Login = () => {
   const navigate = useNavigate();
