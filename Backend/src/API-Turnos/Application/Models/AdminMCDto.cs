@@ -7,7 +7,7 @@ public class AdminMCDto
     public int Id {get;set;}
     public string Name {get;set;}
     public string Email {get;set;}
-    public string Password {get;set;}
+    public MedicalCenterDto MedicalCenter {get; set;}
 
     public static AdminMCDto Create(AdminMC adminMC)
     {
@@ -15,7 +15,7 @@ public class AdminMCDto
         dto.Id = adminMC.Id;
         dto.Name = adminMC.Name;
         dto.Email= adminMC.Email;
-        dto.Password = adminMC.Password;
+        dto.MedicalCenter = MedicalCenterDto.Create(adminMC.MedicalCenter);
 
         return dto;
     }

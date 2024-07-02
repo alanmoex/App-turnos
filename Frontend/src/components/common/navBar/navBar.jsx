@@ -82,6 +82,20 @@ const NavBar = () => {
                 </NavItem>
               </>
             )}
+            {role === "SysAdmin" && (
+              <>
+                <NavItem className="me-2">
+                  <Button onClick={() => navigate("/DashBoard")}>
+                    Panel de Administración
+                  </Button>
+                </NavItem>
+                <NavItem className="me-2">
+                  <Button onClick={() => navigate("/manage-users")}>
+                    Crear Usuarios
+                  </Button>
+                </NavItem>
+              </>
+            )}
             {role !== "guest" && (
               <NavDropdown
                 title={name}

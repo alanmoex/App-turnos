@@ -6,6 +6,7 @@ public class PatientDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    public string Email { get; set; }
     public string LastName { get; set; }
 
     public static PatientDto Create(Patient patient)
@@ -13,6 +14,7 @@ public class PatientDto
         var dto = new PatientDto();
         dto.Id = patient.Id;
         dto.Name = patient.Name;
+        dto.Email = patient.Email;
         dto.LastName = patient.LastName;
 
         return dto;

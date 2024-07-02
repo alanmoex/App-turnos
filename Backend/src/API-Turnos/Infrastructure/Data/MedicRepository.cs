@@ -14,7 +14,8 @@ public class MedicRepository : EfRepository<Medic>, IMedicRepository
     public override List<Medic> GetAll()
     {
         return _context.Medics
-            .Include(m=> m.Specialties)
+            .Include(m => m.Specialties)
+            .Include(m => m.MedicalCenter)
             .ToList();
     }
 }

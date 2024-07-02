@@ -7,7 +7,6 @@ public class SysAdminDto
     public int Id { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }
-    public string Password { get; set; }
 
     public static SysAdminDto Create(SysAdmin sysAdmin)
     {
@@ -15,7 +14,6 @@ public class SysAdminDto
         dto.Id = sysAdmin.Id;
         dto.Name = sysAdmin.Name;
         dto.Email = sysAdmin.Email;
-        dto.Password = sysAdmin.Password;
 
         return dto;
     }
