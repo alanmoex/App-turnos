@@ -71,13 +71,13 @@ const NavBar = () => {
             {role === "AdminMC" && (
               <>
                 <NavItem className="me-2">
-                  <Button onClick={() => navigate("/admin")}>
+                  <Button onClick={() => navigate("/PanelDeControlCM")}>
                     Panel de Administración
                   </Button>
                 </NavItem>
                 <NavItem className="me-2">
-                  <Button onClick={() => navigate("/manage-users")}>
-                    Gestionar Usuarios
+                  <Button onClick={() => navigate("/AgregarMedico")}>
+                    Agregar Medico
                   </Button>
                 </NavItem>
               </>
@@ -85,12 +85,12 @@ const NavBar = () => {
             {role === "SysAdmin" && (
               <>
                 <NavItem className="me-2">
-                  <Button onClick={() => navigate("/DashBoard")}>
+                  <Button onClick={() => navigate("/PanelDeControl")}>
                     Panel de Administración
                   </Button>
                 </NavItem>
                 <NavItem className="me-2">
-                  <Button onClick={() => navigate("/manage-users")}>
+                  <Button onClick={() => navigate("/RegisterUsers")}>
                     Crear Usuarios
                   </Button>
                 </NavItem>

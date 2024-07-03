@@ -168,9 +168,9 @@ const DashBoard = () => {
         </Form.Group>
       </Form>
       {loading ? (
-        <div>Loading...</div>
+        <div>Cargando...</div>
       ) : error ? (
-        <div>Error: {error}</div>
+        <div>El servicio esta caído intente mas</div>
       ) : (
         <DashBoardTable
           columns={columns[selectedEntity]}

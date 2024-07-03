@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { API_BASE_URL } from "../api";
 
 const useApi = (initialEntity) => {
@@ -7,12 +7,13 @@ const useApi = (initialEntity) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`${API_BASE_URL}/${entity}`);
-      if (!response.ok)
-        throw new Error("El servicio esta caído, intente mas tarde");
+      if (!response.ok) {
+        throw new Error("El servicio está caído, intente más tarde");
+      }
       const result = await response.json();
       setData(result);
       setLoading(false);
@@ -20,55 +21,70 @@ const useApi = (initialEntity) => {
       setError(err.message);
       setLoading(false);
     }
-  };
+  }, [entity]);
 
-  const createEntity = async (newEntity) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${entity}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newEntity),
-      });
-      if (!response.ok) throw new Error(`Error al crear ${entity}`);
-      fetchData();
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  const createEntity = useCallback(
+    async (newEntity) => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/${entity}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newEntity),
+        });
+        if (!response.ok) {
+          throw new Error(`Error al crear ${entity}`);
+        }
+        fetchData();
+      } catch (err) {
+        setError(err.message);
+      }
+    },
+    [entity, fetchData]
+  );
 
-  const updateEntity = async (id, updatedEntity) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${entity}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedEntity),
-      });
-      if (!response.ok) throw new Error(`Error al actualizar ${entity}`);
-      fetchData();
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  const updateEntity = useCallback(
+    async (id, updatedEntity) => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/${entity}/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedEntity),
+        });
+        if (!response.ok) {
+          throw new Error(`Error al actualizar ${entity}`);
+        }
+        fetchData();
+      } catch (err) {
+        setError(err.message);
+      }
+    },
+    [entity, fetchData]
+  );
 
-  const deleteEntity = async (id) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${entity}/${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) throw new Error(`Error al eliminar ${entity}`);
-      fetchData();
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  const deleteEntity = useCallback(
+    async (id) => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/${entity}/${id}`, {
+          method: "DELETE",
+        });
+        if (!response.ok) {
+          throw new Error(`Error al eliminar ${entity}`);
+        }
+        fetchData();
+      } catch (err) {
+        setError(err.message);
+      }
+    },
+    [entity, fetchData]
+  );
 
   useEffect(() => {
     fetchData();
-  }, [entity]);
+  }, [fetchData]);
 
   return {
     data,
