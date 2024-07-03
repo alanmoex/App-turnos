@@ -5,7 +5,7 @@ namespace Application;
 public class AppointmentDto
 {
     public int Id { get; set; }
-    public DateTime AppointmnetDateTime { get; set; }
+    public DateTime AppointmentDateTime { get; set; }
     public MedicDto Medic { get; set; }
 
     public PatientDto Patient { get; set; }
@@ -17,7 +17,7 @@ public class AppointmentDto
     {
         var dto = new AppointmentDto();
         dto.Id = appointment.Id;
-        dto.AppointmnetDateTime = appointment.AppointmentDateTime;
+        dto.AppointmentDateTime = appointment.AppointmentDateTime;
         dto.Medic = MedicDto.Create(appointment.Medic);
         dto.Patient = PatientDto.Create(appointment.Patient);
         dto.IsCancelled = appointment.IsCancelled;

@@ -10,4 +10,11 @@ public class AdminMCRepository: EfRepository<AdminMC>, IAdminMCRepository
     public AdminMCRepository(ApplicationContext context) : base(context)
     {
     }
+
+    public override List<AdminMC> GetAll()
+    {
+        return _context.AdminMCs
+            .Include(a=> a.MedicalCenter)
+            .ToList();
+    }
 }

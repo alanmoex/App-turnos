@@ -6,14 +6,12 @@ public class MedicalCenterDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public List<MedicDto> Medics { get; set; }
 
     public static MedicalCenterDto Create(MedicalCenter medicalCenter)
     {
         var dto = new MedicalCenterDto();
         dto.Id = medicalCenter.Id;
         dto.Name = medicalCenter.Name;
-        dto.Medics = MedicDto.CreateList(medicalCenter.Medics);
 
         return dto;
     }
