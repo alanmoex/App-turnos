@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import PropTypes from "prop-types";
 import jwt_decode from "jwt-decode";
 
@@ -23,21 +23,28 @@ export const AuthenticationContextProvider = ({ children }) => {
     } else {
       setUserInfo(null);
     }
-  }, [token]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setToken(null);
+    setUserInfo(null);
   };
 
   const handleLogin = (token) => {
     localStorage.setItem("token", token);
     setToken(token);
+    const decoded = jwt_decode(token);
+    setUserInfo(decoded);
+  };
+
+  const isAuthorized = (requiredRole) => {
+    return userInfo && userInfo.role === requiredRole;
   };
 
   return (
     <AuthenticationContext.Provider
-      value={{ token, userInfo, handleLogin, handleLogout }}
+      value={{ token, userInfo, handleLogin, handleLogout, isAuthorized }}
     >
       {children}
     </AuthenticationContext.Provider>
@@ -47,3 +54,5 @@ export const AuthenticationContextProvider = ({ children }) => {
 AuthenticationContextProvider.propTypes = {
   children: PropTypes.node,
 };
+
+export const useAuth = () => useContext(AuthenticationContext);
