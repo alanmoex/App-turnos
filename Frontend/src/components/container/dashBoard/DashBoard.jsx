@@ -1,40 +1,50 @@
 import { useEffect, useState } from "react";
 import { Form, Container } from "react-bootstrap";
-import { API_BASE_URL } from "../../../api";
 import DashBoardTable from "../../common/dashBoardTable/DashBoardTable";
+import useApi from "../../../custom/useApi";
 
 const DashBoard = () => {
   const [selectedEntity, setSelectedEntity] = useState("AdminMC");
-  const [data, setData] = useState([]);
+  const { data, loading, error, setEntity, updateEntity, deleteEntity } =
+    useApi("AdminMC");
 
   const mapData = (entity, data) => {
     switch (entity) {
       case "AdminMC":
-        return data.map((item) => ({
-          ...item,
-          medicalCenter: item.medicalCenter ? item.medicalCenter.name : "",
+        return data.map((adminMC) => ({
+          ...adminMC,
+          medicalCenter: adminMC.medicalCenter
+            ? adminMC.medicalCenter.name
+            : "",
         }));
       case "Appointments":
-        return data.map((item) => ({
-          ...item,
-          date: new Date(item.appointmentDateTime).toLocaleDateString(),
-          time: new Date(item.appointmentDateTime).toLocaleTimeString(),
-          patientName: `${item.patient.name} ${item.patient.lastName}`,
-          medicName: `${item.medic.name} ${item.medic.lastName}`,
-          specialties: item.medic.specialties
-            .map((specialty) => specialty.name)
-            .join(", "),
-          isCancelled: item.isCancelled ? "Cancelled" : "Active",
+        return data.map((appointment) => ({
+          ...appointment,
+          date: new Date(appointment.appointmentDateTime).toLocaleDateString(),
+          time: new Date(appointment.appointmentDateTime).toLocaleTimeString(),
+          patientName: appointment.patient
+            ? `${appointment.patient.name} ${appointment.patient.lastName}`
+            : "No Patient",
+          medicName: appointment.medic
+            ? `${appointment.medic.name} ${appointment.medic.lastName}`
+            : "No Medic",
+          specialties:
+            appointment.medic && appointment.medic.specialties
+              ? appointment.medic.specialties
+                  .map((specialty) => specialty.name)
+                  .join(", ")
+              : "",
+          isCancelled: appointment.isCancelled ? "Cancelado" : "Activo",
         }));
       case "Medic":
-        return data.map((medico) => ({
-          nombre: medico.name,
-          apellido: medico.lastName,
-          numeroLicencia: medico.licenseNumber,
-          especialidades: medico.specialties
-            .map((specialty) => specialty.name)
-            .join(", "),
-          centroMedico: medico.medicalCenter ? medico.medicalCenter.name : "",
+        return data.map((medic) => ({
+          name: medic.name,
+          lastName: medic.lastName,
+          licenseNumber: medic.licenseNumber,
+          specialties: medic.specialties
+            ? medic.specialties.map((specialty) => specialty.name).join(", ")
+            : "",
+          medicalCenter: medic.medicalCenter ? medic.medicalCenter.name : "",
         }));
       case "MedicalCenter":
         return data.map((center) => ({
@@ -73,71 +83,27 @@ const DashBoard = () => {
     }
   };
 
-  useEffect(() => {
-    fetch(`${API_BASE_URL}/${selectedEntity}`, {
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const mappedData = mapData(selectedEntity, data);
-        setData(mappedData);
-      })
-      .catch((error) => console.log(error));
-  }, [selectedEntity]);
-
-  const removeEntity = async (id) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${selectedEntity}/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (response.ok) {
-        const updatedData = data.filter((item) => item.id !== id);
-        setData(updatedData);
-      } else {
-        alert(`Error al eliminar ${selectedEntity}`);
-      }
-    } catch (error) {
-      console.error("Error al eliminar", error);
-      alert("Error de conexión");
-    }
-  };
-
-  const saveEntity = async (index, updatedEntity) => {
-    const url = `${API_BASE_URL}/${selectedEntity}/${updatedEntity.id}`;
-    const body =
+  const handleSave = async (index, updatedEntity) => {
+    const entityId = updatedEntity.id;
+    const updatedEntityData =
       selectedEntity === "Appointments"
-        ? JSON.stringify({
+        ? {
+            ...updatedEntity,
             appointmentDateTime: new Date(
               `${updatedEntity.date}T${updatedEntity.time}`
             ).toISOString(),
-          })
-        : JSON.stringify(updatedEntity);
-
-    try {
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body,
-      });
-      if (response.ok) {
-        const updatedData = [...data];
-        updatedData[index] = updatedEntity;
-        setData(updatedData);
-      } else {
-        alert(`Error al actualizar el ${selectedEntity}`);
-      }
-    } catch (error) {
-      console.error("Error al actualizar", error);
-      alert("Error de conexión");
-    }
+          }
+        : updatedEntity;
+    await updateEntity(entityId, updatedEntityData);
   };
+
+  const handleDelete = async (id) => {
+    await deleteEntity(id);
+  };
+
+  useEffect(() => {
+    setEntity(selectedEntity);
+  }, [selectedEntity, setEntity]);
 
   const columns = {
     AdminMC: [
@@ -155,11 +121,11 @@ const DashBoard = () => {
       { Header: "Estado", accessor: "isCancelled", editable: false },
     ],
     Medic: [
-      { Header: "Nombre", accessor: "nombre", editable: true },
-      { Header: "Apellido", accessor: "apellido", editable: true },
-      { Header: "Nº de Licencia", accessor: "numeroLicencia", editable: true },
-      { Header: "Especialidad", accessor: "especialidades", editable: false },
-      { Header: "Centro Médico", accessor: "centroMedico", editable: false },
+      { Header: "Nombre", accessor: "name", editable: true },
+      { Header: "Apellido", accessor: "lastName", editable: true },
+      { Header: "Nº de Licencia", accessor: "licenseNumber", editable: true },
+      { Header: "Especialidad", accessor: "specialties", editable: false },
+      { Header: "Centro Médico", accessor: "medicalCenter", editable: false },
     ],
     MedicalCenter: [{ Header: "Name", accessor: "name", editable: true }],
     Patient: [
@@ -198,16 +164,21 @@ const DashBoard = () => {
             <option value="Specialty">Especialidades</option>
             <option value="SysAdmin">Administradores del Sistema</option>
             <option value="WorkSchedule">Horarios de Trabajo</option>
-            {/* Agrega aquí otras opciones de entidad según sea necesario */}
           </Form.Control>
         </Form.Group>
       </Form>
-      <DashBoardTable
-        columns={columns[selectedEntity]}
-        data={data}
-        onSave={saveEntity}
-        onDelete={removeEntity}
-      />
+      {loading ? (
+        <div>Loading...</div>
+      ) : error ? (
+        <div>Error: {error}</div>
+      ) : (
+        <DashBoardTable
+          columns={columns[selectedEntity]}
+          data={mapData(selectedEntity, data)}
+          onSave={handleSave}
+          onDelete={handleDelete}
+        />
+      )}
     </Container>
   );
 };

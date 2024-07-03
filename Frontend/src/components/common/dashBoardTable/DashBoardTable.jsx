@@ -95,7 +95,6 @@ DashBoardTable.propTypes = {
   columns: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
   onSave: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
