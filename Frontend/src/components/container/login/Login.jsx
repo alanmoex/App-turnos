@@ -7,12 +7,22 @@ import { AuthenticationContext } from "../../../services/authentication/Authenti
 const Login = () => {
   const navigate = useNavigate();
   const { handleLogin } = useContext(AuthenticationContext);
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ email: false, password: false });
   const [message, setMessage] = useState("");
   const userRef = useRef(null);
   const passRef = useRef(null);
+
+  const nameHandler = (event) => {
+    setName(event.target.value);
+  };
+
+  const lastNameHandler = (event) => {
+    setLastName(event.target.value);
+  };
 
   const emailHandler = (event) => {
     setError({ ...error, email: false });
@@ -64,23 +74,57 @@ const Login = () => {
     }
   };
 
+  const handleRegister = async (event) => {
+    event.preventDefault();
+
+    const newPatient = {
+      name: name,
+      lastName: lastName,
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/Patient`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPatient),
+      });
+      if (!response.ok) throw new Error(`Error al crear el paciente`);
+      alert("Usuario creado correctamente, por favor iniciar sesión");
+    } catch (error) {
+      console.error("Error al crear usuario:", error);
+    }
+  };
+
   const [signIn, toggle] = useState(true);
 
   return (
     <>
       <Components.Conteiner>
         <Components.SignUpContainer $signinIn={signIn}>
-          <Components.Form onSubmit={handleSubmit}>
+          <Components.Form onSubmit={handleRegister}>
             <Components.Title>Crear cuenta</Components.Title>
             <Components.Input
               type="text"
               placeholder="Nombre"
+              value={name}
+              onChange={nameHandler}
+            />
+            <Components.Input
+              type="text"
+              placeholder="Apellido"
+              value={lastName}
+              onChange={lastNameHandler}
+            />
+            <Components.Input
+              type="email"
+              placeholder="Email"
               value={email}
               onChange={emailHandler}
             />
-            <Components.Input type="text" placeholder="Apellido" />
-            <Components.Input type="text" placeholder="DNI" />
-            <Components.Input type="email" placeholder="Email" />
             <Components.Input
               type="password"
               placeholder="Contraseña"
@@ -109,7 +153,7 @@ const Login = () => {
               ref={passRef}
             />
             <p>{message}</p>
-            <Components.Button>Login</Components.Button>
+            <Components.Button>Iniciar sesión</Components.Button>
           </Components.Form>
         </Components.SignInContainer>
 

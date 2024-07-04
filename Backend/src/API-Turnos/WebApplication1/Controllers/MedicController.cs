@@ -43,7 +43,8 @@ public class MedicController : ControllerBase
     [HttpPost]
     public IActionResult Create(MedicCreateRequest medicCreateRequest)
     {
-        return Ok(_medicService.Create(medicCreateRequest));
+        _medicService.Create(medicCreateRequest);
+        return Ok();
 
     }
 
@@ -85,12 +86,12 @@ public class MedicController : ControllerBase
 
         if (specialty == null)
         {
-            return NotFound($"No se encontró ninguna especialidad con ID {specialtyId}");
+            return NotFound($"No se encontrï¿½ ninguna especialidad con ID {specialtyId}");
         }
 
         var medics = _medicService.GetAll();
 
-        // Filtrar los médicos que tienen la especialidad específica
+        // Filtrar los mï¿½dicos que tienen la especialidad especï¿½fica
         var medicsInSpecialty = medics.Where(m => m.Specialties.Any(s => s.Id == specialty.Id)).ToList();
 
         return Ok(medicsInSpecialty);

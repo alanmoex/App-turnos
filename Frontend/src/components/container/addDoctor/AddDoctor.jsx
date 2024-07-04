@@ -10,7 +10,7 @@ const AddDoctor = () => {
   const [specialties, setSpecialties] = useState("");
   const [medicalCenterId, setMedicalCenterId] = useState(null);
   const { userInfo } = useContext(AuthenticationContext);
-  console.log(userInfo);
+
   useEffect(() => {
     const fetchMedicalCenterId = async () => {
       try {
@@ -55,7 +55,6 @@ const AddDoctor = () => {
       medicalCenterId: medicalCenterId,
       specialties: specialtiesArray,
     };
-
     console.log(newMedic);
 
     try {
@@ -67,6 +66,7 @@ const AddDoctor = () => {
         body: JSON.stringify(newMedic),
       });
       if (!response.ok) throw new Error("Error al crear el medico");
+      alert("Medico agregado correctamente");
     } catch (error) {
       console.error("Error al crear usuario:", error);
     }

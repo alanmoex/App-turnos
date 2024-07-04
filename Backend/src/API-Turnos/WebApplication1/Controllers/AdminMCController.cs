@@ -35,6 +35,12 @@ public class AdminMCController : ControllerBase
         return _adminMCService.GetById(id);
     }
 
+    [HttpGet("[action]/{id}")]
+    public async Task<ActionResult<AdminMCDto>> GetByIdAsync(int id)
+    {
+        return await _adminMCService.GetByIdAsync(id);
+    }
+
     [HttpPut("{id}")]
     public IActionResult Update(int id, AdminMCUpdateRequest adminMCUpdateRequest)
     {

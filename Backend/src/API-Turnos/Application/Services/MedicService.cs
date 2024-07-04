@@ -72,20 +72,6 @@ public class MedicService : IMedicService
 
         if (medicUpdateRequest.LicenseNumber != string.Empty) obj.LicenseNumber = medicUpdateRequest.LicenseNumber;
 
-        if (medicUpdateRequest.Specialties != null)
-        {
-            var specialties = new List<Specialty>();
-            foreach (var specialtyId in medicUpdateRequest.Specialties)
-            {
-                var specialty = _specialtyRepository.GetById(specialtyId);
-                if (specialty != null)
-                {
-                    specialties.Add(specialty);
-                }
-            }
-            obj.Specialties = specialties;
-        }
-
         _medicRepository.Update(obj);
     }
 
