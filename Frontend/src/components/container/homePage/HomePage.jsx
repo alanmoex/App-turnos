@@ -1,8 +1,12 @@
 import Navbar from "../../common/navBar/navBar";
 import { Col, Row } from "react-bootstrap";
 import "./HomePage.css";
+import { AuthenticationContext } from "../../../services/authentication/AuthenticationContext";
+import { useContext } from "react";
 
 const HomePage = () => {
+  const { userInfo } = useContext(AuthenticationContext);
+  console.log(userInfo);
   return (
     <div className="container-fluid background-image">
       <Row>

@@ -17,4 +17,11 @@ public class AdminMCRepository: EfRepository<AdminMC>, IAdminMCRepository
             .Include(a=> a.MedicalCenter)
             .ToList();
     }
+
+    public override AdminMC? GetById<TId>(TId id)
+        {
+            return _context.AdminMCs
+                .Include(a => a.MedicalCenter)
+                .FirstOrDefault(a => a.Id.Equals(id));
+        }
 }
