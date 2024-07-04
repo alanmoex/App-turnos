@@ -10,9 +10,6 @@ const NavBar = () => {
   const { handleLogout } = useContext(AuthenticationContext);
   const role = userInfo?.role || "Guest";
   const name = userInfo?.given_name;
-  const handleRegisterClick = () => {
-    navigate("/registerPatient");
-  };
 
   const handleLoginClick = () => {
     navigate("/login");
@@ -47,7 +44,7 @@ const NavBar = () => {
             {role === "Guest" && (
               <>
                 <NavItem className="me-2">
-                  <Button onClick={handleRegisterClick}>REGISTRARSE</Button>
+                  <Button onClick={handleLoginClick}>REGISTRARSE</Button>
                 </NavItem>
                 <NavItem className="me-2">
                   <Button onClick={handleLoginClick}>INICIAR SESIÓN</Button>
