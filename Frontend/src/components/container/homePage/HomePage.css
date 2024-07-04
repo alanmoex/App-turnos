@@ -1,0 +1,14 @@
+.background-image {
+  background-image: url("../../../assets/background-image-homepage.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 7em;
+}
