@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\54341\\.nuget\\packages\\": {}
+    "C:\\Users\\aguss\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+      "projectUniqueName": "c:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
+      "projectPath": "c:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\aguss\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aguss\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,8 +53,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
+            "c:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+              "projectPath": "c:\\Users\\aguss\\Desktop\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
             }
           }
         }
@@ -89,7 +89,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,22 +1,12 @@
-import { useEffect, useState } from "react";
 import MedicsList from "../../common/medicList/MedicsList";
-import { API_BASE_URL } from "../../../api";
 import NavBar from "../../common/navBar/navBar";
 import { Row } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 const AppointmentSelection = () => {
-  const [medics, setMedics] = useState([]);
+  const location = useLocation();
+  const medics = location && location.state ? location.state.medicos : [];
 
-  useEffect(() => {
-    fetch(`${API_BASE_URL}/Medic`, {
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => setMedics(data))
-      .catch((error) => console.log(error));
-  }, []);
   return (
     <>
       <Row className="container-fluid p-0 mb-2">
@@ -27,7 +17,5 @@ const AppointmentSelection = () => {
     </>
   );
 };
-
-AppointmentSelection.propTypes = {};
 
 export default AppointmentSelection;
