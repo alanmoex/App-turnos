@@ -21,11 +21,12 @@ public class Appointment
     public Appointment() 
     {
     }
-    public Appointment(DateTime appointmentDateTime, Medic medic, Patient patient)
+    public Appointment(DateTime appointmentDateTime, Medic medic, Patient patient, MedicalCenter medicalCenter)
     {
         AppointmentDateTime = appointmentDateTime;
         Medic = medic;
         Patient = patient;
+        MedicalCenter = medicalCenter;
         IsCancelled = false;
     }
 
