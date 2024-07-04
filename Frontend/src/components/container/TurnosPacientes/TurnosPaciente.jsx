@@ -91,7 +91,7 @@ function TurnosPacientes() {
               className="centroMedic"
               onChange={handleCentroMedicoChange}
             >
-              <option>Seleccione un centro e médico</option>
+              <option>Seleccione un centro médico</option>
               {centrosMedicos.map((centro) => (
                 <option key={centro.id} value={centro.id}>
                   {centro.name}

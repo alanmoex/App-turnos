@@ -32,14 +32,7 @@ public class AdminMCController : ControllerBase
     [HttpGet("{id}")]
     public ActionResult<AdminMCDto> GetById(int id)
     {
-        try
-        {
-            return _adminMCService.GetById(id);
-        }
-        catch (System.Exception)
-        {
-            return NotFound();
-        }
+        return _adminMCService.GetById(id);
     }
 
     [HttpPut("{id}")]
