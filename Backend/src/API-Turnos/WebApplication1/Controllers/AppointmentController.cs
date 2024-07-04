@@ -13,10 +13,12 @@ namespace API.Controllers;
 public class AppointmentsController : ControllerBase
 {
     private readonly IAppointmentService _appointmentService;
+    private readonly IPatientService _patientService;
 
-    public AppointmentsController(IAppointmentService appointmentService)
+    public AppointmentsController(IAppointmentService appointmentService, IPatientService patientService)
     {
         _appointmentService = appointmentService;
+        _patientService = patientService;
     }
 
     [HttpGet]
@@ -38,7 +40,7 @@ public class AppointmentsController : ControllerBase
         var createdAppointment = _appointmentService.Create(appointmentCreateRequest);
 
 
-        return Ok(createdAppointment);
+        return Ok();
     }
 
     [HttpPut("{id}")]
@@ -62,5 +64,22 @@ public class AppointmentsController : ControllerBase
     {
         _appointmentService.Delete(id);
         return Ok();
+    }
+
+    [HttpGet("[action]")]
+    public ActionResult<List<AppointmentDto>> GetAppointmentsByPatient(int patientId)
+    {
+        var patient = _patientService.GetById(patientId);
+
+        if (patient == null)
+        {
+            return NotFound($"No se encontro ningun turno");
+        }
+
+        var appointments = _appointmentService.GetAll();
+
+        var appointmentsByPatient = appointments.Where(a => a.Patient.Id == patient.Id).ToList();
+
+        return Ok(appointmentsByPatient);
     }
 }

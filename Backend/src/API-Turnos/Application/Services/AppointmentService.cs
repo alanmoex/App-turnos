@@ -12,12 +12,14 @@ namespace Application.Services
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IMedicRepository _medicRepository;
         private readonly IPatientRepository _patientRepository;
+        private readonly IMedicalCenterRepository _medicalCenterRepository;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, IMedicRepository medicRepository, IPatientRepository patientRepository)
+        public AppointmentService(IAppointmentRepository appointmentRepository, IMedicRepository medicRepository, IPatientRepository patientRepository, IMedicalCenterRepository medicalCenterRepository)
         {
             _appointmentRepository = appointmentRepository;
             _medicRepository = medicRepository;
             _patientRepository = patientRepository;
+            _medicalCenterRepository = medicalCenterRepository;
         }
 
         public AppointmentDto? GetById(int id)
@@ -40,14 +42,17 @@ namespace Application.Services
         public Appointment Create(AppointmentCreateRequest appointmentCreateRequest)
         {
             var medic = _medicRepository.GetById(appointmentCreateRequest.MedicId)
-                         ?? throw new Exception("Medic not found.");
+                            ?? throw new Exception("Medic not found.");
             var patient = _patientRepository.GetById(appointmentCreateRequest.PatientId)
-                           ?? throw new Exception("Patient not found.");
+                            ?? throw new Exception("Patient not found.");
+            var medicalCenter = _medicalCenterRepository.GetById(appointmentCreateRequest.MedicalCenterId)
+                            ?? throw new Exception("Medical Center not found.");
 
             var newAppointment = new Appointment(
                 appointmentDateTime: appointmentCreateRequest.AppointmentDateTime,
                 medic: medic,
-                patient: patient
+                patient: patient,
+                medicalCenter: medicalCenter
             );
 
             return _appointmentRepository.Add(newAppointment);
@@ -71,6 +76,7 @@ namespace Application.Services
             }
 
             // Llamar al método de repositorio para actualizar el appointment
+            _appointmentRepository.Update(appointment);
             
         }
         public void Delete(int id)

@@ -11,4 +11,6 @@ public class AppointmentCreateRequest
 
     public int PatientId { get; set; }
 
+    public int MedicalCenterId { get; set; }
+
 }
