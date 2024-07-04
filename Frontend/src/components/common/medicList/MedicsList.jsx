@@ -12,6 +12,7 @@ const MedicsList = ({ medics }) => {
       specialties={m.specialties}
       workSchedules={m.workSchedules}
       appointments={m.appointments}
+      medicalCenterId={m.medicalCenter.id}
     ></MedicItem>
   ));
 
