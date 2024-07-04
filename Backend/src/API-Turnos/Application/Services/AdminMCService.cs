@@ -47,6 +47,14 @@ public class AdminMCService : IAdminMCService
         return AdminMCDto.Create(obj);
     }
 
+    public async Task<AdminMCDto> GetByIdAsync(int id)
+    {
+        var obj = await _adminMCRepository.GetByIdAsync(id)
+            ?? throw new Exception("");
+
+        return AdminMCDto.Create(obj);
+    }
+
     public void Update(int id,AdminMCUpdateRequest adminMCUpdateRequest)
     {
         var obj = _adminMCRepository.GetById(id) 

@@ -5,4 +5,5 @@ namespace Domain;
 
 public interface IAdminMCRepository : IBaseRepository<AdminMC>
 {
+    Task<AdminMC?> GetByIdAsync<TId>(TId id);
 }
