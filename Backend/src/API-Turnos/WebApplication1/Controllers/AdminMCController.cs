@@ -4,11 +4,16 @@ using Application.Interfaces;
 using Domain.Entities;
 using Application.Models.Requests;
 using Application;
+using Microsoft.AspNetCore.Authorization;
+using Domain.Entities;
+using System.Security.Claims;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
+
 public class AdminMCController : ControllerBase
 {   
     private readonly IAdminMCService _adminMCService;
@@ -20,13 +25,24 @@ public class AdminMCController : ControllerBase
     [HttpGet]
     public ActionResult<List<AdminMCDto>> GetAll()
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         return _adminMCService.GetAll();
     }
 
     [HttpPost]
     public IActionResult Create(AdminMCCreateRequest adminMCCreateRequest)
     {
-        return Ok(_adminMCService.Create(adminMCCreateRequest));
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
+        return Ok(_adminMCService.Create(adminMCCreateRequest)); 
+        
     }
 
     [HttpGet("{id}")]
@@ -44,6 +60,12 @@ public class AdminMCController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Update(int id, AdminMCUpdateRequest adminMCUpdateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
+       
         try
         {
             _adminMCService.Update(id, adminMCUpdateRequest);
@@ -59,6 +81,12 @@ public class AdminMCController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
+        
         try
         {
             _adminMCService.Delete(id);
@@ -73,4 +101,6 @@ public class AdminMCController : ControllerBase
     
 
 }
+
+
 
