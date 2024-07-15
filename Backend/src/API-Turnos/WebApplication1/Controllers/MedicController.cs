@@ -3,11 +3,15 @@ using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
 using Application;
 using Application.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
+using Domain.Entities;
+using System.Security.Claims;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 
 public class MedicController : ControllerBase
 {
@@ -22,6 +26,11 @@ public class MedicController : ControllerBase
     [HttpGet]
     public ActionResult<List<MedicDto>> GetAll()
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         return _medicService.GetAll();
     }
 
@@ -43,6 +52,11 @@ public class MedicController : ControllerBase
     [HttpPost]
     public IActionResult Create(MedicCreateRequest medicCreateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         _medicService.Create(medicCreateRequest);
         return Ok();
 
@@ -51,6 +65,11 @@ public class MedicController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Update([FromRoute] int id, [FromBody] MedicUpdateRequest medicUpdateRequest )
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         try
         {
              _medicService.Update(id, medicUpdateRequest);
@@ -67,6 +86,11 @@ public class MedicController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete([FromRoute] int id)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         try
         {
              _medicService.Delete(id);
