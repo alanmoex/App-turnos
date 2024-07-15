@@ -9,7 +9,7 @@ namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-
+[Authorize]
 public class AppointmentsController : ControllerBase
 {
     private readonly IAppointmentService _appointmentService;
@@ -24,6 +24,11 @@ public class AppointmentsController : ControllerBase
     [HttpGet]
     public ActionResult<List<AppointmentDto>> GetAll()
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name || userRole != typeof(AdminMC).Name || userRole != typeof(Patient).Name)
+            return Forbid();
+
         var appointments = _appointmentService.GetAll();
         return Ok(appointments);
     }
@@ -31,12 +36,19 @@ public class AppointmentsController : ControllerBase
     [HttpGet("{id}")]
     public ActionResult<AppointmentDto> GetById(int id)
     {
+
         var appointment = _appointmentService.GetById(id);
         return Ok(appointment);
     }
     [HttpPost]
     public IActionResult Create(AppointmentCreateRequest appointmentCreateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name || userRole != typeof(AdminMC).Name)
+            return Forbid();
+
+
         var createdAppointment = _appointmentService.Create(appointmentCreateRequest);
 
 
@@ -46,10 +58,15 @@ public class AppointmentsController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Update([FromRoute] int id, [FromBody] AppointmentUpdateRequest appointmentUpdateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name || userRole != typeof(AdminMC).Name)
+            return Forbid();
+
 
         try
         {
-              _appointmentService.Update(id, appointmentUpdateRequest);
+            _appointmentService.Update(id, appointmentUpdateRequest);
             return Ok();
         }
         catch (System.Exception)
@@ -62,6 +79,11 @@ public class AppointmentsController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete([FromRoute] int id)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name || userRole != typeof(AdminMC).Name)
+            return Forbid();
+
         _appointmentService.Delete(id);
         return Ok();
     }

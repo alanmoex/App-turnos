@@ -9,6 +9,7 @@ namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class SysAdminController : ControllerBase
 {
     private readonly ISysAdminService _sysAdminService;
@@ -20,12 +21,22 @@ public class SysAdminController : ControllerBase
     [HttpGet]
     public ActionResult<List<SysAdminDto>> GetAll()
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         return _sysAdminService.GetAll();
     }
 
     [HttpPost]
     public IActionResult Create(SysAdminCreateRequest sysAdminCreateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         return Ok(_sysAdminService.Create(sysAdminCreateRequest));
     }
 
@@ -45,6 +56,11 @@ public class SysAdminController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Update(int id, SysAdminUpdateRequest sysAdminUpdateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         try
         {
             _sysAdminService.Update(id, sysAdminUpdateRequest);
@@ -60,6 +76,11 @@ public class SysAdminController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         try
         {
             _sysAdminService.Delete(id);
