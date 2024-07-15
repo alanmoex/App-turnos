@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {}
+    "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+    "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "projectUniqueName": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "projectPath": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
+        "outputPath": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
