@@ -3320,11 +3320,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
+      "projectUniqueName": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
       "projectName": "API",
-      "projectPath": "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
+      "projectPath": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\API.csproj",
       "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\obj\\",
+      "outputPath": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3341,11 +3341,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
-              "projectPath": "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
+            "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
+              "projectPath": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
             },
-            "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "c:\\Users\\Julián\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

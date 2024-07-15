@@ -4,11 +4,15 @@ using Application.Interfaces;
 using Domain.Entities;
 using Application.Models.Requests;
 using Application;
+using Microsoft.AspNetCore.Authorization;
+using Domain.Entities;
+using System.Security.Claims;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class WorkScheduleController : ControllerBase
 {   
     private readonly IWorkScheduleService _workScheduleService;
@@ -20,12 +24,20 @@ public class WorkScheduleController : ControllerBase
     [HttpGet]
     public ActionResult<List<WorkScheduleDto>> GetAll()
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
         return _workScheduleService.GetAll();
     }
 
     [HttpPost]
     public IActionResult Create(WorkScheduleCreateRequest workScheduleCreateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
         return Ok(_workScheduleService.Create(workScheduleCreateRequest));
     }
 
@@ -45,6 +57,11 @@ public class WorkScheduleController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Update(int id, WorkScheduleUpdateRequest workScheduleUpdateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+            
         try
         {
             _workScheduleService.Update(id, workScheduleUpdateRequest);
@@ -60,6 +77,11 @@ public class WorkScheduleController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         try
         {
             _workScheduleService.Delete(id);
