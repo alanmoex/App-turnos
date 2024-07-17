@@ -4,15 +4,10 @@ using Application.Services;
 using Domain;
 using Domain.Entities;
 using Domain.Interfaces;
-using Hangfire;
-using Hangfire.SQLite;
 using Infrastructure.Data;
-using Infrastructure.Jobs;
 using Infrastructure.Services;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -55,28 +50,13 @@ builder.Services.AddSwaggerGen(setupAction =>
 });
 
 string connectionString = builder.Configuration["ConnectionStrings:DBConnectionString"]!;
-if (string.IsNullOrEmpty(connectionString))
-{
-    throw new ArgumentException("Could not find connection string with name 'DBConnectionString' in application config file");
-}
 
 // Configure the SQLite connection
-/*
 var connection = new SqliteConnection(connectionString);
 connection.Open();
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
-{
-    options.UseSqlite(connection, b => b.MigrationsAssembly("Infrastructure"));
-    options.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.AmbientTransactionWarning));
-});
-*/
-
-// Configure the SQL Server connection
-builder.Services.AddDbContext<ApplicationContext>(options =>
-{
-    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Infrastructure"));
-});
+    options.UseSqlite(connection, b => b.MigrationsAssembly("Infrastructure")));
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer(options =>
@@ -107,11 +87,6 @@ builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
 builder.Services.AddScoped<IAdminMCService, AdminMCService>();
 builder.Services.AddScoped<IWorkScheduleService, WorkScheduleService>();
 builder.Services.AddScoped<ISysAdminService, SysAdminService>();
-
-//builder.Services.AddHangfire(config => config.UseSQLiteStorage(connectionString));
-builder.Services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
-builder.Services.AddHangfireServer();
-
 #endregion
 
 #region Repositories
@@ -127,12 +102,6 @@ builder.Services.AddScoped<ISysAdminRepository, SysAdminRepository>();
 #endregion
 
 var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-    var serviceProvider = scope.ServiceProvider;
-    HangfireConfiguration.ConfigureHangfireJobs(serviceProvider);
-}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -151,11 +120,6 @@ app.UseCors(builder =>
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-app.MapHangfireDashboard("/hangfire", new DashboardOptions
-{
-    DashboardTitle = "Hangfire Dashboard"
-});
 
 app.MapControllers();
 

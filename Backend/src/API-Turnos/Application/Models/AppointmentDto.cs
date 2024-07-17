@@ -1,5 +1,4 @@
 using Domain.Entities;
-using Domain.Enums;
 
 namespace Application;
 
@@ -11,7 +10,7 @@ public class AppointmentDto
 
     public PatientDto Patient { get; set; }
 
-    public AppointmentStatus Status { get; set; }
+    public bool IsCancelled { get; set; }
 
 
     public static AppointmentDto Create(Appointment appointment)
@@ -20,13 +19,8 @@ public class AppointmentDto
         dto.Id = appointment.Id;
         dto.AppointmentDateTime = appointment.AppointmentDateTime;
         dto.Medic = MedicDto.Create(appointment.Medic);
-
-        if (appointment.Patient != null)
-        {
-            dto.Patient = PatientDto.Create(appointment.Patient);
-        }
-
-        dto.Status = appointment.Status;
+        dto.Patient = PatientDto.Create(appointment.Patient);
+        dto.IsCancelled = appointment.IsCancelled;
         return dto;
     }
 

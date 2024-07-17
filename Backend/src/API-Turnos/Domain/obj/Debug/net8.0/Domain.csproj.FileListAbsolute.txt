@@ -46,15 +46,3 @@ c:\Users\Julián\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domai
 c:\Users\Julián\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\refint\Domain.dll
 c:\Users\Julián\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.pdb
 c:\Users\Julián\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\ref\Domain.dll
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\bin\Debug\net8.0\Domain.deps.json
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\bin\Debug\net8.0\Domain.dll
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\bin\Debug\net8.0\Domain.pdb
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.sourcelink.json
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.dll
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\refint\Domain.dll
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\Domain.pdb
-C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\obj\Debug\net8.0\ref\Domain.dll

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {}
+    "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
+    "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+        "projectUniqueName": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+        "projectPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
+        "outputPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
+              "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+                "projectPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+    "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "projectUniqueName": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
+        "projectPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
+        "outputPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -128,14 +128,14 @@
         }
       }
     },
-    "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
+    "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\obj\\",
+        "outputPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -152,8 +152,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
+              "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj": {
+                "projectPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj"
               }
             }
           }
@@ -173,49 +173,33 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Hangfire.AspNetCore": {
-              "target": "Package",
-              "version": "[1.8.14, )"
-            },
-            "Hangfire.SQLite": {
-              "target": "Package",
-              "version": "[1.4.2, )"
-            },
-            "Hangfire.SqlServer": {
-              "target": "Package",
-              "version": "[1.8.14, )"
-            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.7, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[7.6.2, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[7.6.2, )"
             }
           },
           "imports": [

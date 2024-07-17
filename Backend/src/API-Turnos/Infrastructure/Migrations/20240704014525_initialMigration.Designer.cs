@@ -3,7 +3,6 @@ using System;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -12,41 +11,35 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240717142321_initialMigration")]
+    [Migration("20240704014525_initialMigration")]
     partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.6");
 
             modelBuilder.Entity("Domain.Entities.Appointment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("AppointmentDateTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsCancelled")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("MedicId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("MedicalCenterId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<int>("PatientId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -63,28 +56,28 @@ namespace Infrastructure.Migrations
                         {
                             Id = 1,
                             AppointmentDateTime = new DateTime(2023, 6, 21, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
                             MedicId = 1,
                             MedicalCenterId = 1,
-                            PatientId = 1,
-                            Status = 1
+                            PatientId = 1
                         },
                         new
                         {
                             Id = 2,
                             AppointmentDateTime = new DateTime(2023, 6, 22, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = false,
                             MedicId = 2,
                             MedicalCenterId = 2,
-                            PatientId = 2,
-                            Status = 1
+                            PatientId = 2
                         },
                         new
                         {
                             Id = 3,
                             AppointmentDateTime = new DateTime(2023, 6, 23, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCancelled = true,
                             MedicId = 3,
                             MedicalCenterId = 1,
-                            PatientId = 3,
-                            Status = 1
+                            PatientId = 3
                         });
                 });
 
@@ -92,24 +85,22 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LicenseNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("MedicalCenterId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -148,13 +139,11 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -177,13 +166,11 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -211,9 +198,7 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -245,18 +230,16 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Day")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<TimeSpan>("EndTime")
-                        .HasColumnType("time");
+                        .HasColumnType("TEXT");
 
                     b.Property<TimeSpan>("StartTime")
-                        .HasColumnType("time");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -303,10 +286,10 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("MedicSpecialty", b =>
                 {
                     b.Property<int>("MedicId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SpecialtiesId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("MedicId", "SpecialtiesId");
 
@@ -350,10 +333,10 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("MedicWorkSchedule", b =>
                 {
                     b.Property<int>("MedicId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("WorkSchedulesId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("MedicId", "WorkSchedulesId");
 
@@ -409,7 +392,7 @@ namespace Infrastructure.Migrations
                     b.HasBaseType("Domain.Entities.User");
 
                     b.Property<int>("MedicalCenterId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasIndex("MedicalCenterId");
 
@@ -440,7 +423,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasDiscriminator().HasValue("Patient");
 
@@ -499,7 +482,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Medic", "Medic")
                         .WithMany("Appointments")
                         .HasForeignKey("MedicId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.MedicalCenter", "MedicalCenter")
@@ -510,7 +493,9 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Domain.Entities.Patient", "Patient")
                         .WithMany("Appointments")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Medic");
 
@@ -563,7 +548,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.AdminMC", b =>
                 {
                     b.HasOne("Domain.Entities.MedicalCenter", "MedicalCenter")
-                        .WithMany("AdminMCs")
+                        .WithMany()
                         .HasForeignKey("MedicalCenterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -578,8 +563,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.MedicalCenter", b =>
                 {
-                    b.Navigation("AdminMCs");
-
                     b.Navigation("Appointments");
 
                     b.Navigation("Medics");
