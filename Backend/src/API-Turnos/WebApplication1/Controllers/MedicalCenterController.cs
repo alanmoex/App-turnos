@@ -3,15 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
 using Application;
 using Application.Models.Requests;
-using Microsoft.AspNetCore.Authorization;
-using Domain.Entities;
-using System.Security.Claims;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
 
 public class MedicalCenterController : ControllerBase
 {
@@ -24,11 +20,6 @@ public class MedicalCenterController : ControllerBase
     [HttpGet]
     public ActionResult<List<MedicalCenterDto>> GetAll()
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name && userRole != typeof(Patient).Name )
-            return Forbid();
-
         return _medicalCenterService.GetAll();
     }
 
@@ -50,11 +41,6 @@ public class MedicalCenterController : ControllerBase
     [HttpPost]
     public IActionResult Create(MedicalCenterCreateRequest medicalCenterCreateRequest)
     {
-         var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name && userRole != typeof(Patient).Name )
-            return Forbid();
-
         return Ok(_medicalCenterService.Create(medicalCenterCreateRequest));
 
     }
@@ -62,11 +48,6 @@ public class MedicalCenterController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Update([FromRoute] int id, [FromBody] MedicalCenterUpdateRequest medicalCenterUpdateRequest)
     {
-         var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name && userRole != typeof(Patient).Name )
-            return Forbid();
-
         try
         {
             _medicalCenterService.Update(id, medicalCenterUpdateRequest);
@@ -83,11 +64,6 @@ public class MedicalCenterController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete([FromRoute] int id)
     {
-         var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name && userRole != typeof(Patient).Name )
-            return Forbid();
-
         try
         {
             _medicalCenterService.Delete(id);

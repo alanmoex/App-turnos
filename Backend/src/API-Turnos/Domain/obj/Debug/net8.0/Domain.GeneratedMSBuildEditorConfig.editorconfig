@@ -8,10 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Domain
-<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\54341\Desktop\AppTurnos\App-turnos\Backend\src\API-Turnos\Domain\
-=======
-build_property.ProjectDir = c:\Users\Julián\OneDrive\Documentos\GitHub\App-turnos\Backend\src\API-Turnos\Domain\
->>>>>>> development
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
