@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
+      "outputPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\54341\\Desktop\\Test-APP-Turnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
+            "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
             }
           }
         }

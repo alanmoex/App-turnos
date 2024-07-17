@@ -11,6 +11,7 @@ public class MedicalCenter
     public string Name { get; set;}
     public List<Appointment> Appointments { get; set;} = new List<Appointment>();
     public List<Medic> Medics{ get; set;} = new List<Medic>();
+    public List<AdminMC> AdminMCs { get; set; } = new List<AdminMC>();
 
     // Constructor sin parámetros necesario para EF
     public MedicalCenter()

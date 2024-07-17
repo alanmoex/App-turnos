@@ -4,11 +4,14 @@ using Application.Interfaces;
 using Domain.Entities;
 using Application.Models.Requests;
 using Application;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class AdminMCController : ControllerBase
 {   
     private readonly IAdminMCService _adminMCService;
@@ -26,6 +29,11 @@ public class AdminMCController : ControllerBase
     [HttpPost]
     public IActionResult Create(AdminMCCreateRequest adminMCCreateRequest)
     {
+        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (userRole != typeof(SysAdmin).Name)
+            return Forbid();
+
         return Ok(_adminMCService.Create(adminMCCreateRequest));
     }
 

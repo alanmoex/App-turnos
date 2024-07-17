@@ -17,9 +17,9 @@ namespace Infrastructure.Migrations
                 name: "MedicalCenters",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,9 +30,9 @@ namespace Infrastructure.Migrations
                 name: "Specialties",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,11 +43,11 @@ namespace Infrastructure.Migrations
                 name: "WorkSchedules",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Day = table.Column<int>(type: "INTEGER", nullable: false),
-                    StartTime = table.Column<TimeSpan>(type: "TEXT", nullable: false),
-                    EndTime = table.Column<TimeSpan>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Day = table.Column<int>(type: "int", nullable: false),
+                    StartTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    EndTime = table.Column<TimeSpan>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,12 +58,12 @@ namespace Infrastructure.Migrations
                 name: "Medics",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
-                    LicenseNumber = table.Column<string>(type: "TEXT", nullable: false),
-                    MedicalCenterId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MedicalCenterId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,14 +80,14 @@ namespace Infrastructure.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     UserType = table.Column<string>(type: "nvarchar(20)", maxLength: 8, nullable: false),
-                    MedicalCenterId = table.Column<int>(type: "INTEGER", nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", nullable: true)
+                    MedicalCenterId = table.Column<int>(type: "int", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,8 +104,8 @@ namespace Infrastructure.Migrations
                 name: "MedicSpecialties",
                 columns: table => new
                 {
-                    MedicId = table.Column<int>(type: "INTEGER", nullable: false),
-                    SpecialtiesId = table.Column<int>(type: "INTEGER", nullable: false)
+                    MedicId = table.Column<int>(type: "int", nullable: false),
+                    SpecialtiesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -128,8 +128,8 @@ namespace Infrastructure.Migrations
                 name: "MedicWorkSchedules",
                 columns: table => new
                 {
-                    MedicId = table.Column<int>(type: "INTEGER", nullable: false),
-                    WorkSchedulesId = table.Column<int>(type: "INTEGER", nullable: false)
+                    MedicId = table.Column<int>(type: "int", nullable: false),
+                    WorkSchedulesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -152,13 +152,13 @@ namespace Infrastructure.Migrations
                 name: "Appointments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AppointmentDateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    MedicId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PatientId = table.Column<int>(type: "INTEGER", nullable: false),
-                    MedicalCenterId = table.Column<int>(type: "INTEGER", nullable: false),
-                    IsCancelled = table.Column<bool>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AppointmentDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MedicId = table.Column<int>(type: "int", nullable: false),
+                    PatientId = table.Column<int>(type: "int", nullable: true),
+                    MedicalCenterId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -174,13 +174,12 @@ namespace Infrastructure.Migrations
                         column: x => x.MedicId,
                         principalTable: "Medics",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Appointments_Users_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -254,12 +253,12 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Appointments",
-                columns: new[] { "Id", "AppointmentDateTime", "IsCancelled", "MedicId", "MedicalCenterId", "PatientId" },
+                columns: new[] { "Id", "AppointmentDateTime", "MedicId", "MedicalCenterId", "PatientId", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 6, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), false, 1, 1, 1 },
-                    { 2, new DateTime(2023, 6, 22, 11, 0, 0, 0, DateTimeKind.Unspecified), false, 2, 2, 2 },
-                    { 3, new DateTime(2023, 6, 23, 12, 0, 0, 0, DateTimeKind.Unspecified), true, 3, 1, 3 }
+                    { 1, new DateTime(2023, 6, 21, 10, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 1, 1 },
+                    { 2, new DateTime(2023, 6, 22, 11, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, 2, 1 },
+                    { 3, new DateTime(2023, 6, 23, 12, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 3, 1 }
                 });
 
             migrationBuilder.InsertData(
