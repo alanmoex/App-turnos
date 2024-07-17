@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
+using Newtonsoft.Json.Linq;
+using Domain.Enums;
 
 namespace Infrastructure.Data
 {
@@ -33,6 +35,15 @@ namespace Infrastructure.Data
             modelBuilder.Entity<AdminMC>().HasData(CreateAdminMCDataSeed());
             modelBuilder.Entity<Appointment>().HasData(CreateAppointmentDataSeed());
 
+            //Sql server impone restricciones sobre multiples caminos de eliminacion en cascada, por lo
+            //tanto se necesita configurar manualmente el comportamiento de eliminacion.
+            modelBuilder.Entity<Appointment>()
+               .HasOne(a => a.Medic)
+               .WithMany(m => m.Appointments)
+               .HasForeignKey("MedicId")
+               .OnDelete(DeleteBehavior.Restrict);
+
+           
 
             // Relación muchos a muchos entre Medic y Specialty
             modelBuilder.Entity<Medic>()
@@ -69,7 +80,7 @@ namespace Infrastructure.Data
         {
             object[] result = new[]
             {
-                new { Id = 1, Name = "Michael", LastName = "Brown", LicenseNumber = "123456", MedicalCenterId = 1 },
+                new { Id = 1, Name = "Michael", LastName = "Brown", LicenseNumber = "123456", MedicalCenterId = 1, },
                 new { Id = 2, Name = "Jane", LastName = "Smith", LicenseNumber = "654321", MedicalCenterId = 1 },
                 new { Id = 3, Name = "Peter", LastName = "Jackson", LicenseNumber = "321123", MedicalCenterId = 2 }
             };
@@ -134,26 +145,9 @@ namespace Infrastructure.Data
         {
             object[] result = new[]
             {
-                new  { Id = 1, AppointmentDateTime = new DateTime(2023, 6, 21, 10, 0, 0), MedicId = 1, PatientId = 1, MedicalCenterId = 1, IsCancelled = false },
-                new  { Id = 2, AppointmentDateTime = new DateTime(2023, 6, 22, 11, 0, 0), MedicId = 2, PatientId = 2, MedicalCenterId = 2, IsCancelled = false },
-                new  { Id = 3, AppointmentDateTime = new DateTime(2023, 6, 23, 12, 0, 0), MedicId = 3, PatientId = 3, MedicalCenterId = 1, IsCancelled = true }
-            };
-            return result;
-        }
-
-        private object[] CreateAvailableAppointmentDataSeed()
-        {
-            object[] result = new[]
-            {
-                new  { Id = 1, DateTime = new DateTime(2023, 6, 21, 10, 0, 0), MedicId = 1 },
-                new  { Id = 2, DateTime = new DateTime(2023, 6, 22, 10, 30, 0), MedicId = 1 },
-                new  { Id = 3, DateTime = new DateTime(2023, 6, 23, 11, 0, 0), MedicId = 1 },
-                new  { Id = 4, DateTime = new DateTime(2023, 6, 21, 15, 0, 0), MedicId = 2 },
-                new  { Id = 5, DateTime = new DateTime(2023, 6, 22, 15, 30, 0), MedicId = 2 },
-                new  { Id = 6, DateTime = new DateTime(2023, 6, 23, 16, 0, 0), MedicId = 2 },
-                new  { Id = 7, DateTime = new DateTime(2023, 6, 21, 17, 0, 0), MedicId = 3 },
-                new  { Id = 8, DateTime = new DateTime(2023, 6, 22, 17, 30, 0), MedicId = 3 },
-                new  { Id = 9, DateTime = new DateTime(2023, 6, 23, 18, 0, 0), MedicId = 3 }
+                new  { Id = 1, AppointmentDateTime = new DateTime(2023, 6, 21, 10, 0, 0), MedicId = 1, PatientId = 1, MedicalCenterId = 1, Status = AppointmentStatus.Taken},
+                new  { Id = 2, AppointmentDateTime = new DateTime(2023, 6, 22, 11, 0, 0), MedicId = 2, PatientId = 2, MedicalCenterId = 2, Status = AppointmentStatus.Taken},
+                new  { Id = 3, AppointmentDateTime = new DateTime(2023, 6, 23, 12, 0, 0), MedicId = 3, PatientId = 3, MedicalCenterId = 1, Status = AppointmentStatus.Taken}
             };
             return result;
         }

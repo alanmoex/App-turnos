@@ -10,6 +10,8 @@ public interface IAppointmentService
     AppointmentDto? GetById(int id);
     List<AppointmentDto> GetAll();
     Appointment Create(AppointmentCreateRequest appointmentCreateRequest);
-     void Update(int id, AppointmentUpdateRequest appointmentUpdateRequest);
+    void Update(int id, AppointmentUpdateRequest appointmentUpdateRequest);
     void Delete(int id);
+    void CheckAndCreateAutomaticAppointments();
+    void CreateAutomaticAppointments();
 }

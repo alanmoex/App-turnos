@@ -82,4 +82,11 @@ public class AppointmentsController : ControllerBase
 
         return Ok(appointmentsByPatient);
     }
+
+    [HttpPost("create-automatic-appointments")]
+    public IActionResult CreateAutomaticAppointments()
+    {
+        _appointmentService.CreateAutomaticAppointments();
+        return Ok();     
+    }
 }

@@ -16,6 +16,7 @@ public class MedicRepository : EfRepository<Medic>, IMedicRepository
         return _context.Medics
             .Include(m => m.Specialties)
             .Include(m => m.MedicalCenter)
+            .Include(m => m.WorkSchedules)
             .ToList();
     }
 }

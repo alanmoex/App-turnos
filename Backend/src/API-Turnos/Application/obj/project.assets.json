@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Julián\\.nuget\\packages\\": {}
+    "C:\\Users\\54341\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\Julián\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
+      "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\54341\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Julián\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\54341\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,8 +53,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\Julián\\OneDrive\\Documentos\\GitHub\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
+            "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\54341\\Desktop\\AppTurnos\\App-turnos\\Backend\\src\\API-Turnos\\Domain\\Domain.csproj"
             }
           }
         }
@@ -84,18 +84,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.5, 8.0.5]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

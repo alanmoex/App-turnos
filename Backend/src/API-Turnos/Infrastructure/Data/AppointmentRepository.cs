@@ -19,4 +19,12 @@ public class AppointmentRepository : EfRepository<Appointment>, IAppointmentRepo
         .Include(a => a.MedicalCenter)
         .ToList();
     }
+
+    public bool Exists(DateTime appointmentDateTime, int medicId, int medicalCenterId)
+    {
+        return _context.Appointments
+            .Any(a => a.AppointmentDateTime == appointmentDateTime &&
+                      a.Medic.Id == medicId &&
+                      a.MedicalCenter.Id == medicalCenterId);
+    }
 }
