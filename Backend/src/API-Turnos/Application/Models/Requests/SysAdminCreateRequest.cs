@@ -1,10 +1,20 @@
+using System.ComponentModel.DataAnnotations;
 
-
-namespace Application;
-
-public class SysAdminCreateRequest
+namespace Application.Models.Requests
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
+    public class SysAdminCreateRequest
+    {
+        [Required]
+        [StringLength(100, MinimumLength = 1)]
+        public string Name { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [StringLength(100, MinimumLength = 5)]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, MinimumLength = 6)]
+        public string Password { get; set; }
+    }
 }

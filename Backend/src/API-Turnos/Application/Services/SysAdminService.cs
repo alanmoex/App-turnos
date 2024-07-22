@@ -2,6 +2,7 @@ using Application.Interfaces;
 using Application.Models.Requests;
 using Domain;
 using Domain.Entities;
+using Domain.Exceptions;
 
 namespace Application.Services;
 
@@ -14,18 +15,17 @@ public class SysAdminService : ISysAdminService
         _sysAdminRepository = sysAdminRepository;
     }
 
-    public SysAdmin Create(SysAdminCreateRequest sysAdminCreateRequest)
+    public SysAdminDto Create(SysAdminCreateRequest sysAdminCreateRequest)
     {
         var newSysAdmin = new SysAdmin(sysAdminCreateRequest.Name, sysAdminCreateRequest.Email, sysAdminCreateRequest.Password);
-        return _sysAdminRepository.Add(newSysAdmin);
+        var obj = _sysAdminRepository.Add(newSysAdmin);
+        return SysAdminDto.Create(obj);
     }
 
     public void Delete(int id)
     {
-        var obj = _sysAdminRepository.GetById(id);
-
-        if (obj == null)
-            throw new Exception("");
+        var obj = _sysAdminRepository.GetById(id)
+            ?? throw new NotFoundException(typeof(SysAdmin).ToString(), id);
 
         _sysAdminRepository.Delete(obj);
     }
@@ -40,7 +40,7 @@ public class SysAdminService : ISysAdminService
     public SysAdminDto GetById(int id)
     {
         var obj = _sysAdminRepository.GetById(id)
-            ?? throw new Exception("");
+            ?? throw new NotFoundException(typeof(SysAdmin).ToString(), id);
 
         return SysAdminDto.Create(obj);
     }
@@ -48,13 +48,13 @@ public class SysAdminService : ISysAdminService
     public void Update(int id, SysAdminUpdateRequest sysAdminUpdateRequest)
     {
         var obj = _sysAdminRepository.GetById(id)
-            ?? throw new Exception("");
+            ?? throw new NotFoundException(typeof(SysAdmin).ToString(), id);
 
-        if (sysAdminUpdateRequest.Name != string.Empty) obj.Name = sysAdminUpdateRequest.Name;
+        if (sysAdminUpdateRequest.Name != null) obj.Name = sysAdminUpdateRequest.Name;
 
-        if (sysAdminUpdateRequest.Email != string.Empty) obj.Email = sysAdminUpdateRequest.Email;
+        if (sysAdminUpdateRequest.Email != null) obj.Email = sysAdminUpdateRequest.Email;
 
-        if (sysAdminUpdateRequest.Password != string.Empty) obj.Password = sysAdminUpdateRequest.Password;
+        if (sysAdminUpdateRequest.Password != null) obj.Password = sysAdminUpdateRequest.Password;
 
         _sysAdminRepository.Update(obj);
     }

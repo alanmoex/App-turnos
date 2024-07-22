@@ -7,7 +7,7 @@ public interface ISysAdminService
 {
     List<SysAdminDto> GetAll();
     SysAdminDto GetById(int id);
-    SysAdmin Create(SysAdminCreateRequest sysAdminCreateRequest);
+    SysAdminDto Create(SysAdminCreateRequest sysAdminCreateRequest);
     void Update(int id, SysAdminUpdateRequest sysAdminUpdateRequest);
     void Delete(int id);
 }

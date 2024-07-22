@@ -1,18 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
-using Application;
 using Application.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
+using Domain.Exceptions;
+using Application;
+using Domain.Entities;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-
+[Authorize]
 public class MedicController : ControllerBase
 {
     private readonly IMedicService _medicService;
     private readonly ISpecialtyService _specialtyService;
+
     public MedicController(IMedicService medicService, ISpecialtyService specialtyService)
     {
         _medicService = medicService;
@@ -20,81 +23,116 @@ public class MedicController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "SysAdmin,AdminMC,Patient")]
     public ActionResult<List<MedicDto>> GetAll()
     {
-        return _medicService.GetAll();
+        return Ok(_medicService.GetAll());
     }
 
     [HttpGet("{id}")]
-    public ActionResult<MedicDto> GetById([FromRoute]int id)
+    [Authorize(Roles = "SysAdmin,AdminMC,Patient")]
+    public ActionResult<MedicDto> GetById(int id)
     {
         try
         {
             return Ok(_medicService.GetById(id));
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            
-            throw;
+            return NotFound(ex.Message);
         }
-
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
     [HttpPost]
+    [Authorize(Roles = "SysAdmin,AdminMC")]
     public IActionResult Create(MedicCreateRequest medicCreateRequest)
     {
-        _medicService.Create(medicCreateRequest);
-        return Ok();
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
+        try
+        {
+            var medic = _medicService.Create(medicCreateRequest);
+            return CreatedAtAction(nameof(GetById), new { id = medic.Id }, medic);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update([FromRoute] int id, [FromBody] MedicUpdateRequest medicUpdateRequest )
+    [Authorize(Roles = "SysAdmin,AdminMC")]
+    public IActionResult Update(int id, MedicUpdateRequest medicUpdateRequest)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         try
         {
-             _medicService.Update(id, medicUpdateRequest);
-             return Ok();
-            
+            _medicService.Update(id, medicUpdateRequest);
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            
-            throw;
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] int id)
+    [Authorize(Roles = "SysAdmin,AdminMC")]
+    public IActionResult Delete(int id)
     {
         try
         {
-             _medicService.Delete(id);
-             return Ok();
+            _medicService.Delete(id);
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            
-            throw;
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 
     [HttpGet("[action]")]
+    [Authorize(Roles = "SysAdmin,AdminMC,Patient")]
     public ActionResult<List<MedicDto>> GetMedicsBySpecialty(int specialtyId)
     {
-        var specialty = _specialtyService.GetById(specialtyId);
-
-        if (specialty == null)
+        try
         {
-            return NotFound($"No se encontr� ninguna especialidad con ID {specialtyId}");
+            var specialty = _specialtyService.GetById(specialtyId);
+            var medics = _medicService.GetAll();
+            var medicsInSpecialty = medics.Where(m => m.Specialties.Any(s => s.Id == specialty.Id)).ToList();
+
+            return Ok(medicsInSpecialty);
         }
-
-        var medics = _medicService.GetAll();
-
-        // Filtrar los m�dicos que tienen la especialidad espec�fica
-        var medicsInSpecialty = medics.Where(m => m.Specialties.Any(s => s.Id == specialty.Id)).ToList();
-
-        return Ok(medicsInSpecialty);
+        catch (NotFoundException ex)
+        {
+            return NotFound("Specialty not found");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
-
 }

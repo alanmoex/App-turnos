@@ -1,73 +1,113 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
-using Domain.Entities;
 using Application.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
+using Domain.Exceptions;
 using Application;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class PatientController : ControllerBase
-{   
+{
     private readonly IPatientService _patientService;
+
     public PatientController(IPatientService patientService)
     {
         _patientService = patientService;
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "SysAdmin")]
     public ActionResult<PatientDto> GetById(int id)
     {
         try
         {
-            return _patientService.GetById(id);
+            return Ok(_patientService.GetById(id));
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            return NotFound();
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 
     [HttpGet]
+    [Authorize(Roles = "SysAdmin")]
     public ActionResult<List<PatientDto>> GetAll()
     {
-        return _patientService.GetAll();
+        return Ok(_patientService.GetAll());
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public IActionResult Create(PatientCreateRequest patientCreateRequest)
     {
-        return Ok(_patientService.Create(patientCreateRequest));
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            var patient = _patientService.Create(patientCreateRequest);
+            return CreatedAtAction(nameof(GetById), new { id = patient.Id }, patient);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "SysAdmin,AdminMC")]
     public IActionResult Delete(int id)
     {
         try
         {
             _patientService.Delete(id);
-            return Ok();
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            return NotFound();
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "SysAdmin,AdminMC")]
     public IActionResult Update(int id, PatientUpdateRequest patientUpdateRequest)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         try
         {
             _patientService.Update(id, patientUpdateRequest);
-            return Ok();
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            return BadRequest();
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
-
 }

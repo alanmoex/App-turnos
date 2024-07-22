@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models.Requests;
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Interfaces;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -35,26 +36,22 @@ namespace Infrastructure.Services
                 return null;
             }
 
-            /*if (authenticationRequest.UserType == typeof(Patient).Name 
-                || authenticationRequest.UserType == typeof(AdminMC).Name
-                || authenticationRequest.UserType == typeof(SysAdmin).Name) 
+            
+            if (user.Password == authenticationRequest.Password)
             {
-                if (user.UserType == authenticationRequest.UserType && user.Password == authenticationRequest.Password)
-                {
-                    return user;
-                }
-            //*/
-            //return null;
-            return user;
+                return user;
+            }
+            
+            return null;
         }
 
         public string Authenticate(AuthenticationRequest authenticationRequest) 
         {
             var user = ValidateUser(authenticationRequest);
 
-            if (user == null) 
+            if (user == null)
             {
-                throw new Exception("User authentication failed");
+                throw new NotAllowedException("User authentication failed");
             }
 
             var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_options.SecretForKey));

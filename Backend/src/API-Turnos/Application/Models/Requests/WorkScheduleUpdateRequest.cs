@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Application
+namespace Application.Models.Requests
 {
     public class WorkScheduleUpdateRequest
     {

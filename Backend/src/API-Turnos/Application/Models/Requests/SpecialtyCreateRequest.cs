@@ -1,6 +1,11 @@
-﻿namespace Application;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class SpecialtyCreateRequest
+namespace Application.Models.Requests
 {
-    public string Name { get; set; }
+    public class SpecialtyCreateRequest
+    {
+        [Required]
+        [StringLength(100, MinimumLength = 1)]
+        public string Name { get; set; }
+    }
 }

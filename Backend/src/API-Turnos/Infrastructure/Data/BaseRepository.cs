@@ -11,7 +11,7 @@ namespace Infrastructure.Data
             _context = context;
         }
 
-        public T Add(T entity)
+        public virtual T Add(T entity)
         {
             _context.Set<T>().Add(entity);
             _context.SaveChanges();
@@ -27,13 +27,13 @@ namespace Infrastructure.Data
             return _context.Set<T>().Find(new object[] { id });
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
             _context.SaveChanges();
         }
 
-        public T Update(T entity)
+        public virtual T Update(T entity)
         {
             _context.Set<T>().Update(entity);
             _context.SaveChanges();
