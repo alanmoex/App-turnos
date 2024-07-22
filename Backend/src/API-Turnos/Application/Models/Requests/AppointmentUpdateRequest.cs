@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-namespace Application.Models.Requests;
+using System;
+using System.ComponentModel.DataAnnotations;
 
-
-public class AppointmentUpdateRequest
+namespace Application.Models.Requests
 {
-
-    public DateTime AppointmentDateTime { get; set; }
-
-
+    public class AppointmentUpdateRequest
+    {
+        [Required]
+        public DateTime AppointmentDateTime { get; set; }
+    }
 }

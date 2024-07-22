@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240717142321_initialMigration")]
+    [Migration("20240722014145_initialMigration")]
     partial class initialMigration
     {
         /// <inheritdoc />
@@ -499,18 +499,19 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Medic", "Medic")
                         .WithMany("Appointments")
                         .HasForeignKey("MedicId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.MedicalCenter", "MedicalCenter")
                         .WithMany("Appointments")
                         .HasForeignKey("MedicalCenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Patient", "Patient")
                         .WithMany("Appointments")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Medic");
 
@@ -524,7 +525,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.MedicalCenter", "MedicalCenter")
                         .WithMany("Medics")
                         .HasForeignKey("MedicalCenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("MedicalCenter");
@@ -565,7 +566,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.MedicalCenter", "MedicalCenter")
                         .WithMany("AdminMCs")
                         .HasForeignKey("MedicalCenterId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("MedicalCenter");

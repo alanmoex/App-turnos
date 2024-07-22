@@ -2,6 +2,7 @@
 using Application.Models.Requests;
 using Domain;
 using Domain.Entities;
+using Domain.Exceptions;
 
 namespace Application.Services;
 
@@ -13,18 +14,17 @@ public class PatientService : IPatientService
         _patientRepository = patientRepository;
     }
 
-    public Patient Create(PatientCreateRequest patientCreateRequest)
+    public PatientDto Create(PatientCreateRequest patientCreateRequest)
     {
         var newPatient = new Patient(patientCreateRequest.Name, patientCreateRequest.LastName, patientCreateRequest.Email, patientCreateRequest.Password);
-        return _patientRepository.Add(newPatient);
+        var obj = _patientRepository.Add(newPatient);
+        return PatientDto.Create(obj);
     }
 
     public void Delete(int id)
     {
-        var obj = _patientRepository.GetById(id);
-
-        if (obj == null)
-            throw new Exception("");
+        var obj = _patientRepository.GetById(id)
+            ?? throw new NotFoundException(typeof(Patient).ToString(), id);
 
         _patientRepository.Delete(obj);
     }
@@ -38,25 +38,26 @@ public class PatientService : IPatientService
     public PatientDto GetById(int id)
     {
         var obj = _patientRepository.GetById(id)
-            ?? throw new Exception("");
-        
+            ?? throw new NotFoundException(typeof(Patient).ToString(), id);
+
         return PatientDto.Create(obj);
     }
 
     public void Update(int id,PatientUpdateRequest patientUpdateRequest)
     {
-        var obj = _patientRepository.GetById(id) 
-            ?? throw new Exception("");
-        
-        if (patientUpdateRequest.Name != string.Empty) obj.Name = patientUpdateRequest.Name;
+        var obj = _patientRepository.GetById(id)
+            ?? throw new NotFoundException(typeof(Patient).ToString(), id);
 
-        if (patientUpdateRequest.LastName != string.Empty) obj.LastName = patientUpdateRequest.LastName;
+        if (patientUpdateRequest.Name != null) obj.Name = patientUpdateRequest.Name;
 
-        if (patientUpdateRequest.Email != string.Empty) obj.Email = patientUpdateRequest.Email;
+        if (patientUpdateRequest.LastName != null) obj.LastName = patientUpdateRequest.LastName;
 
-        if (patientUpdateRequest.Password != string.Empty) obj.Password = patientUpdateRequest.Password;
+        if (patientUpdateRequest.Email != null) obj.Email = patientUpdateRequest.Email;
+
+        if (patientUpdateRequest.Password != null) obj.Password = patientUpdateRequest.Password;
         
         _patientRepository.Update(obj);
     }
+
 
 }

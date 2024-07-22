@@ -37,13 +37,23 @@ namespace Infrastructure.Data
 
             //Sql server impone restricciones sobre multiples caminos de eliminacion en cascada, por lo
             //tanto se necesita configurar manualmente el comportamiento de eliminacion.
-            modelBuilder.Entity<Appointment>()
+            /*modelBuilder.Entity<Appointment>()
                .HasOne(a => a.Medic)
                .WithMany(m => m.Appointments)
                .HasForeignKey("MedicId")
                .OnDelete(DeleteBehavior.Restrict);
 
-           
+            modelBuilder.Entity<MedicalCenter>()
+               .HasMany(m => m.AdminMCs)
+               .WithOne(a => a.MedicalCenter)
+               .HasForeignKey("MedicalCenterId")
+               .OnDelete(DeleteBehavior.Cascade);*/
+
+            //Disable all default relationship cascade delete behavior
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.NoAction;
+            }
 
             // Relación muchos a muchos entre Medic y Specialty
             modelBuilder.Entity<Medic>()

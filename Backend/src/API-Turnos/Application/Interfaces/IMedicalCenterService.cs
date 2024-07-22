@@ -8,7 +8,7 @@ public interface IMedicalCenterService
 {
     List<MedicalCenterDto> GetAll();
     MedicalCenterDto GetById(int id);
-    MedicalCenter Create(MedicalCenterCreateRequest medicCreateRequest);
+    MedicalCenterDto Create(MedicalCenterCreateRequest medicCreateRequest);
     void Update(int id, MedicalCenterUpdateRequest medicUpdateRequest);
     void Delete(int id);
 }

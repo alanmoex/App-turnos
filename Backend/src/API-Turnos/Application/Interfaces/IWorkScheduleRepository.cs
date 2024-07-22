@@ -7,7 +7,7 @@ public interface IWorkScheduleService
 {
     List<WorkScheduleDto> GetAll();
     WorkScheduleDto GetById(int id);
-    WorkSchedule Create(WorkScheduleCreateRequest workScheduleCreateRequest);   
+    WorkScheduleDto Create(WorkScheduleCreateRequest workScheduleCreateRequest);   
     void Update(int id, WorkScheduleUpdateRequest workScheduleUpdateRequest);
     void Delete(int id);
 }

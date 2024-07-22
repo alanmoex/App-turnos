@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Application
+namespace Application.Models.Requests
 {
     public class WorkScheduleCreateRequest
     {
+        [Required]
+
         public DayOfWeek Day { get; set; }
 
         [Required]

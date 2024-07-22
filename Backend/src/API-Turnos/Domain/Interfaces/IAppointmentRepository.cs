@@ -6,4 +6,5 @@ namespace Domain;
 public interface IAppointmentRepository : IBaseRepository<Appointment>
 {
     bool Exists(DateTime appointmentDateTime, int medicId, int medicalCenterId);
+    List<Appointment> GetByMedicalCenterId(int medicalCenterId);
 }

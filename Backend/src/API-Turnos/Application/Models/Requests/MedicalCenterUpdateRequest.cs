@@ -1,7 +1,11 @@
-﻿namespace Application.Models.Requests;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class MedicalCenterUpdateRequest
+namespace Application.Models.Requests
 {
-    public string Name { get; set; }
+    public class MedicalCenterUpdateRequest
+    {
+        [Required]
+        [StringLength(100, MinimumLength = 1)]
+        public string Name { get; set; }
+    }
 }
-

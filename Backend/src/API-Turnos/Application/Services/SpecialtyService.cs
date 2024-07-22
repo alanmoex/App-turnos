@@ -1,30 +1,29 @@
-﻿using Domain;
+﻿using Application.Models.Requests;
+using Domain;
 using Domain.Entities;
+using Domain.Exceptions;
 
 namespace Application;
 
 public class SpecialtyService : ISpecialtyService
 {
     private readonly ISpecialtyRepository _specialtyRepository;
-    private readonly IMedicRepository _medicRepository;
-    public SpecialtyService(ISpecialtyRepository specialtyRepository, IMedicRepository medicRepository)
+    public SpecialtyService(ISpecialtyRepository specialtyRepository)
     {
         _specialtyRepository = specialtyRepository;
-        _medicRepository = medicRepository;
     }
 
-    public Specialty Create(SpecialtyCreateRequest specialtyCreateRequest)
+    public SpecialtyDto Create(SpecialtyCreateRequest specialtyCreateRequest)
     {
         var newSpecialty = new Specialty(specialtyCreateRequest.Name);
-        return _specialtyRepository.Add(newSpecialty);
+        var obj = _specialtyRepository.Add(newSpecialty);
+        return SpecialtyDto.Create(obj);
     }
 
     public void Delete(int id)
     {
-        var obj = _specialtyRepository.GetById(id);
-
-        if (obj == null)
-            throw new Exception("");
+        var obj = _specialtyRepository.GetById(id)
+            ?? throw new NotFoundException(typeof(Specialty).ToString(), id);
 
         _specialtyRepository.Delete(obj);
     }
@@ -38,7 +37,7 @@ public class SpecialtyService : ISpecialtyService
     public SpecialtyDto GetById(int id)
     {
         var obj = _specialtyRepository.GetById(id)
-            ?? throw new Exception("");
+            ?? throw new NotFoundException(typeof(Specialty).ToString(), id);
         
         return SpecialtyDto.Create(obj);
     }
@@ -46,7 +45,7 @@ public class SpecialtyService : ISpecialtyService
     public void Update(int id,SpecialtyUpdateRequest specialtyUpdateRequest)
     {
         var obj = _specialtyRepository.GetById(id) 
-            ?? throw new Exception("");
+            ?? throw new NotFoundException(typeof(Specialty).ToString(), id);
         
         if (specialtyUpdateRequest.Name != string.Empty) obj.Name = specialtyUpdateRequest.Name;
                 

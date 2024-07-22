@@ -1,102 +1,113 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
-using Application;
 using Application.Models.Requests;
+using Application;
 using Microsoft.AspNetCore.Authorization;
-using Domain.Entities;
-using System.Security.Claims;
+using Domain.Exceptions;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-
 public class MedicalCenterController : ControllerBase
 {
     private readonly IMedicalCenterService _medicalCenterService;
+
     public MedicalCenterController(IMedicalCenterService medicalCenterService)
     {
         _medicalCenterService = medicalCenterService;
     }
 
     [HttpGet]
+    [Authorize(Roles = "Patient, SysAdmin, AdminMC")]
     public ActionResult<List<MedicalCenterDto>> GetAll()
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name && userRole != typeof(Patient).Name )
-            return Forbid();
-
-        return _medicalCenterService.GetAll();
+        return Ok(_medicalCenterService.GetAll());
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "Patient, SysAdmin, AdminMC")]
     public ActionResult<MedicalCenterDto> GetById([FromRoute] int id)
     {
         try
         {
             return Ok(_medicalCenterService.GetById(id));
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-
-            throw;
+            return NotFound(new { Message = ex.Message });
         }
-
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
     [HttpPost]
-    public IActionResult Create(MedicalCenterCreateRequest medicalCenterCreateRequest)
+    [Authorize(Roles = "SysAdmin")]
+    public IActionResult Create([FromBody] MedicalCenterCreateRequest medicalCenterCreateRequest)
     {
-         var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name && userRole != typeof(Patient).Name )
-            return Forbid();
-
-        return Ok(_medicalCenterService.Create(medicalCenterCreateRequest));
-
+        try
+        {
+            var medicalCenter = _medicalCenterService.Create(medicalCenterCreateRequest);
+            return CreatedAtAction(nameof(GetById), new { id = medicalCenter.Id }, medicalCenter);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "SysAdmin")]
     public IActionResult Update([FromRoute] int id, [FromBody] MedicalCenterUpdateRequest medicalCenterUpdateRequest)
     {
-         var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name && userRole != typeof(Patient).Name )
-            return Forbid();
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
         try
         {
             _medicalCenterService.Update(id, medicalCenterUpdateRequest);
-            return Ok();
-
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-
-            throw;
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "SysAdmin")]
     public IActionResult Delete([FromRoute] int id)
     {
-         var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name && userRole != typeof(Patient).Name )
-            return Forbid();
-
         try
         {
             _medicalCenterService.Delete(id);
-            return Ok();
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-
-            throw;
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 }

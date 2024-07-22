@@ -9,7 +9,7 @@ public class AppointmentDto
     public DateTime AppointmentDateTime { get; set; }
     public MedicDto Medic { get; set; }
 
-    public PatientDto Patient { get; set; }
+    public PatientDto? Patient { get; set; }
 
     public AppointmentStatus Status { get; set; }
 

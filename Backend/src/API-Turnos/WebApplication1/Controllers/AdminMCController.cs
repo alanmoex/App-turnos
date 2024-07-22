@@ -1,19 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
-using Domain.Entities;
 using Application.Models.Requests;
 using Application;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
+using Domain.Exceptions;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[Authorize(Roles = "SysAdmin")]
 public class AdminMCController : ControllerBase
-{   
+{
     private readonly IAdminMCService _adminMCService;
     public AdminMCController(IAdminMCService adminMCService)
     {
@@ -23,46 +21,72 @@ public class AdminMCController : ControllerBase
     [HttpGet]
     public ActionResult<List<AdminMCDto>> GetAll()
     {
-        return _adminMCService.GetAll();
+        return Ok(_adminMCService.GetAll());
     }
 
     [HttpPost]
     public IActionResult Create(AdminMCCreateRequest adminMCCreateRequest)
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-        if (userRole != typeof(SysAdmin).Name)
-            return Forbid();
-
-        return Ok(_adminMCService.Create(adminMCCreateRequest));
+        try
+        {
+            var adminMC = _adminMCService.Create(adminMCCreateRequest);
+            return CreatedAtAction(nameof(GetById), new { id = adminMC.Id }, adminMC);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
     [HttpGet("{id}")]
     public ActionResult<AdminMCDto> GetById(int id)
     {
-        return _adminMCService.GetById(id);
+        try
+        {
+            return Ok(_adminMCService.GetById(id));
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
-    [HttpGet("[action]/{id}")]
-    public async Task<ActionResult<AdminMCDto>> GetByIdAsync(int id)
-    {
-        return await _adminMCService.GetByIdAsync(id);
-    }
 
     [HttpPut("{id}")]
     public IActionResult Update(int id, AdminMCUpdateRequest adminMCUpdateRequest)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         try
         {
             _adminMCService.Update(id, adminMCUpdateRequest);
-            return Ok();
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            return BadRequest();
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
-
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
@@ -70,15 +94,15 @@ public class AdminMCController : ControllerBase
         try
         {
             _adminMCService.Delete(id);
-            return Ok();
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            return NotFound();
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
-
-    
-
 }
-
