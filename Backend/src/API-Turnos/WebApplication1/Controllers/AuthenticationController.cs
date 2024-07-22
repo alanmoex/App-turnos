@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
-using Application;
 using Application.Models.Requests;
-using Domain.Entities;
+using Domain.Exceptions;
 
 namespace API.Controllers;
 
@@ -23,9 +21,20 @@ public class AuthenticationController : ControllerBase
 
     [HttpPost("authenticate")]
     public ActionResult<string> Authenticate(AuthenticationRequest authenticationRequest)
-    {
-        string token = _customAuthenticationService.Authenticate(authenticationRequest);
+    {        
+        try
+        {
+            string token = _customAuthenticationService.Authenticate(authenticationRequest);
+            return Ok(token);
+        }
+        catch (NotAllowedException ex)
+        {
+            return BadRequest(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
 
-        return Ok(token);
     }
 }

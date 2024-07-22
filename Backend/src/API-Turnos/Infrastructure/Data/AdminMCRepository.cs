@@ -25,10 +25,4 @@ public class AdminMCRepository: EfRepository<AdminMC>, IAdminMCRepository
                 .FirstOrDefault(a => a.Id.Equals(id));
         }
     
-    public async Task<AdminMC?> GetByIdAsync<TId>(TId id)
-    {
-        return await _context.AdminMCs
-            .Include(a => a.MedicalCenter)
-            .FirstOrDefaultAsync(a => a.Id.Equals(id));
-    }
 }

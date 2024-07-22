@@ -72,8 +72,7 @@ namespace Infrastructure.Migrations
                         name: "FK_Medics_MedicalCenters_MedicalCenterId",
                         column: x => x.MedicalCenterId,
                         principalTable: "MedicalCenters",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -96,8 +95,7 @@ namespace Infrastructure.Migrations
                         name: "FK_Users_MedicalCenters_MedicalCenterId",
                         column: x => x.MedicalCenterId,
                         principalTable: "MedicalCenters",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -167,14 +165,12 @@ namespace Infrastructure.Migrations
                         name: "FK_Appointments_MedicalCenters_MedicalCenterId",
                         column: x => x.MedicalCenterId,
                         principalTable: "MedicalCenters",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_Medics_MedicId",
                         column: x => x.MedicId,
                         principalTable: "Medics",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_Users_PatientId",
                         column: x => x.PatientId,

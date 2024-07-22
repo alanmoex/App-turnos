@@ -1,22 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
-using Application;
 using Application.Models.Requests;
 using Microsoft.AspNetCore.Authorization;
+using Domain.Exceptions;
+using Application;
 using Domain.Entities;
-using System.Security.Claims;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-
 public class MedicController : ControllerBase
 {
     private readonly IMedicService _medicService;
     private readonly ISpecialtyService _specialtyService;
+
     public MedicController(IMedicService medicService, ISpecialtyService specialtyService)
     {
         _medicService = medicService;
@@ -24,101 +23,116 @@ public class MedicController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "SysAdmin,AdminMC,Patient")]
     public ActionResult<List<MedicDto>> GetAll()
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
-            return Forbid();
-
-        return _medicService.GetAll();
+        return Ok(_medicService.GetAll());
     }
 
     [HttpGet("{id}")]
-    public ActionResult<MedicDto> GetById([FromRoute]int id)
+    [Authorize(Roles = "SysAdmin,AdminMC,Patient")]
+    public ActionResult<MedicDto> GetById(int id)
     {
         try
         {
             return Ok(_medicService.GetById(id));
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            
-            throw;
+            return NotFound(ex.Message);
         }
-
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
     [HttpPost]
+    [Authorize(Roles = "SysAdmin,AdminMC")]
     public IActionResult Create(MedicCreateRequest medicCreateRequest)
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
-            return Forbid();
-
-        _medicService.Create(medicCreateRequest);
-        return Ok();
-
-    }
-
-    [HttpPut("{id}")]
-    public IActionResult Update([FromRoute] int id, [FromBody] MedicUpdateRequest medicUpdateRequest )
-    {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
-            return Forbid();
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
         try
         {
-             _medicService.Update(id, medicUpdateRequest);
-             return Ok();
-            
+            var medic = _medicService.Create(medicCreateRequest);
+            return CreatedAtAction(nameof(GetById), new { id = medic.Id }, medic);
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            
-            throw;
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
+    }
+
+    [HttpPut("{id}")]
+    [Authorize(Roles = "SysAdmin,AdminMC")]
+    public IActionResult Update(int id, MedicUpdateRequest medicUpdateRequest)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            _medicService.Update(id, medicUpdateRequest);
+            return NoContent();
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] int id)
+    [Authorize(Roles = "SysAdmin,AdminMC")]
+    public IActionResult Delete(int id)
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
-            return Forbid();
-
         try
         {
-             _medicService.Delete(id);
-             return Ok();
+            _medicService.Delete(id);
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            
-            throw;
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 
     [HttpGet("[action]")]
+    [Authorize(Roles = "SysAdmin,AdminMC,Patient")]
     public ActionResult<List<MedicDto>> GetMedicsBySpecialty(int specialtyId)
     {
-        var specialty = _specialtyService.GetById(specialtyId);
-
-        if (specialty == null)
+        try
         {
-            return NotFound($"No se encontr� ninguna especialidad con ID {specialtyId}");
+            var specialty = _specialtyService.GetById(specialtyId);
+            var medics = _medicService.GetAll();
+            var medicsInSpecialty = medics.Where(m => m.Specialties.Any(s => s.Id == specialty.Id)).ToList();
+
+            return Ok(medicsInSpecialty);
         }
-
-        var medics = _medicService.GetAll();
-
-        // Filtrar los m�dicos que tienen la especialidad espec�fica
-        var medicsInSpecialty = medics.Where(m => m.Specialties.Any(s => s.Id == specialty.Id)).ToList();
-
-        return Ok(medicsInSpecialty);
+        catch (NotFoundException ex)
+        {
+            return NotFound("Specialty not found");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
-
 }

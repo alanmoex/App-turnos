@@ -1,21 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Application.Interfaces;
-using Domain.Entities;
 using Application.Models.Requests;
-using Application;
 using Microsoft.AspNetCore.Authorization;
-using Domain.Entities;
-using System.Security.Claims;
+using Domain.Exceptions;
+using Application;
 
 namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[Authorize(Roles = "AdminMC, SysAdmin")]
 public class WorkScheduleController : ControllerBase
-{   
+{
     private readonly IWorkScheduleService _workScheduleService;
+
     public WorkScheduleController(IWorkScheduleService workScheduleService)
     {
         _workScheduleService = workScheduleService;
@@ -24,21 +22,30 @@ public class WorkScheduleController : ControllerBase
     [HttpGet]
     public ActionResult<List<WorkScheduleDto>> GetAll()
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
-            return Forbid();
-        return _workScheduleService.GetAll();
+        return Ok(_workScheduleService.GetAll());
     }
 
     [HttpPost]
-    public IActionResult Create(WorkScheduleCreateRequest workScheduleCreateRequest)
+    public IActionResult Create([FromBody] WorkScheduleCreateRequest workScheduleCreateRequest)
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
-            return Forbid();
-        return Ok(_workScheduleService.Create(workScheduleCreateRequest));
+        try
+        {
+            var workSchedule = _workScheduleService.Create(workScheduleCreateRequest);
+            return CreatedAtAction(nameof(GetById), new { id = workSchedule.Id }, workSchedule);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
+        }
     }
 
     [HttpGet("{id}")]
@@ -46,54 +53,66 @@ public class WorkScheduleController : ControllerBase
     {
         try
         {
-            return _workScheduleService.GetById(id);
+            return Ok(_workScheduleService.GetById(id));
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            return NotFound();
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, WorkScheduleUpdateRequest workScheduleUpdateRequest)
+    public IActionResult Update(int id, [FromBody] WorkScheduleUpdateRequest workScheduleUpdateRequest)
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
-            return Forbid();
-            
         try
         {
             _workScheduleService.Update(id, workScheduleUpdateRequest);
-            return Ok();
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            return BadRequest();
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
-
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-
-        if (userRole != typeof(AdminMC).Name && userRole != typeof(SysAdmin).Name)
-            return Forbid();
-
         try
         {
             _workScheduleService.Delete(id);
-            return Ok();
+            return NoContent();
         }
-        catch (System.Exception)
+        catch (NotFoundException ex)
         {
-            return NotFound();
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An unexpected error occurred.");
         }
     }
-
-    
-
 }
+
 

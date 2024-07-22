@@ -1,9 +1,20 @@
-﻿namespace Application;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class PatientUpdateRequest
+namespace Application.Models.Requests
 {
-    public string Name { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
+    public class PatientUpdateRequest
+    {
+        [StringLength(100, MinimumLength = 1)]
+        public string? Name { get; set; }
+
+        [StringLength(100, MinimumLength = 1)]
+        public string? LastName { get; set; }
+
+        [EmailAddress]
+        [StringLength(100, MinimumLength = 5)]
+        public string? Email { get; set; }
+
+        [StringLength(100, MinimumLength = 6)]
+        public string? Password { get; set; }
+    }
 }

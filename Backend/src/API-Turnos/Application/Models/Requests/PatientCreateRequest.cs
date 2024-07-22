@@ -1,9 +1,24 @@
-﻿namespace Application.Models.Requests;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class PatientCreateRequest
+namespace Application.Models.Requests
 {
-    public string Name { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
+    public class PatientCreateRequest
+    {
+        [Required]
+        [StringLength(100, MinimumLength = 1)]
+        public string Name { get; set; }
+
+        [Required]
+        [StringLength(100, MinimumLength = 1)]
+        public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [StringLength(100, MinimumLength = 5)]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, MinimumLength = 6)]
+        public string Password { get; set; }
+    }
 }

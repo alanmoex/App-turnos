@@ -2,6 +2,7 @@ using Application.Interfaces;
 using Application.Models.Requests;
 using Domain;
 using Domain.Entities;
+using Domain.Exceptions;
 
 namespace Application.Services;
 
@@ -26,7 +27,7 @@ public class MedicService : IMedicService
     public MedicDto GetById(int id)
     {
         var obj = _medicRepository.GetById(id)
-           ?? throw new Exception("");
+           ?? throw new NotFoundException(typeof(Medic).ToString(), id);
 
         var dto = MedicDto.Create(obj);
 
@@ -34,7 +35,7 @@ public class MedicService : IMedicService
 
     }
 
-    public Medic Create(MedicCreateRequest medicCreateRequest)
+    public MedicDto Create(MedicCreateRequest medicCreateRequest)
     {
         var specialties = new List<Specialty>();
         foreach (var specialtyId in medicCreateRequest.Specialties)
@@ -46,8 +47,13 @@ public class MedicService : IMedicService
             }
         }
 
+        if (!specialties.Any())
+        {
+            throw new NotFoundException("No specialties found with the provided IDs.");
+        }
+
         var medicalCenter = _medicalCenterRepository.GetById(medicCreateRequest.MedicalCenterId)
-                         ?? throw new Exception("Medic not found.");
+                         ?? throw new NotFoundException(typeof(MedicalCenter).ToString(), medicCreateRequest.MedicalCenterId);
 
         var newMedic = new Medic(
 
@@ -58,30 +64,30 @@ public class MedicService : IMedicService
             specialties: specialties
         );
 
-        return _medicRepository.Add(newMedic);
+        var obj = _medicRepository.Add(newMedic);
+        return MedicDto.Create(obj);
     }
 
     public void Update(int id, MedicUpdateRequest medicUpdateRequest)
     {
 
         var obj = _medicRepository.GetById(id)
-         ?? throw new Exception("");
-        if (medicUpdateRequest.Name != string.Empty) obj.Name = medicUpdateRequest.Name;
+            ?? throw new NotFoundException(typeof(Medic).ToString(), id);
 
-        if (medicUpdateRequest.LastName != string.Empty) obj.LastName = medicUpdateRequest.LastName;
+        if (medicUpdateRequest.Name != null) obj.Name = medicUpdateRequest.Name;
 
-        if (medicUpdateRequest.LicenseNumber != string.Empty) obj.LicenseNumber = medicUpdateRequest.LicenseNumber;
+        if (medicUpdateRequest.LastName != null) obj.LastName = medicUpdateRequest.LastName;
+
+        if (medicUpdateRequest.LicenseNumber != null) obj.LicenseNumber = medicUpdateRequest.LicenseNumber;
 
         _medicRepository.Update(obj);
     }
 
     public void Delete(int id)
     {
-        var obj = _medicRepository.GetById(id);
-        if (obj == null)
-        {
-            throw new Exception("");
-        }
+        var obj = _medicRepository.GetById(id)
+            ?? throw new NotFoundException(typeof(Medic).ToString(), id);
+
         _medicRepository.Delete(obj);
     }
 

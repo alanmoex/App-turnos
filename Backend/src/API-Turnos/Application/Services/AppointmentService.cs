@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System;
 using Domain;
 using System.Transactions;
+using Domain.Enums;
+using Domain.Exceptions;
 
 namespace Application.Services
 {
@@ -13,23 +15,21 @@ namespace Application.Services
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IMedicRepository _medicRepository;
         private readonly IMedicalCenterRepository _medicalCenterRepository;
+        private readonly IPatientRepository _patientRepository;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, IMedicRepository medicRepository, IMedicalCenterRepository medicalCenterRepository)
+        public AppointmentService(IAppointmentRepository appointmentRepository, IMedicRepository medicRepository, IMedicalCenterRepository medicalCenterRepository, IPatientRepository patientRepository)
         {
             _appointmentRepository = appointmentRepository;
             _medicRepository = medicRepository;
             _medicalCenterRepository = medicalCenterRepository;
+            _patientRepository = patientRepository;
         }
 
         public AppointmentDto? GetById(int id)
         {
-            var appointment = _appointmentRepository.GetById(id);
-            if (appointment == null)
-            {
-                throw new Exception("Appointment not found.");
-            }
-            var dto = AppointmentDto.Create(appointment);
-            return dto;
+            var appointment = _appointmentRepository.GetById(id)
+                ?? throw new NotFoundException(typeof(Appointment).ToString(), id);
+            return AppointmentDto.Create(appointment);
         }
 
         public List<AppointmentDto> GetAll()
@@ -38,12 +38,12 @@ namespace Application.Services
             return AppointmentDto.CreateList(list);
         }
 
-        public Appointment Create(AppointmentCreateRequest appointmentCreateRequest)
+        public AppointmentDto Create(AppointmentCreateRequest appointmentCreateRequest)
         {
             var medic = _medicRepository.GetById(appointmentCreateRequest.MedicId)
-                            ?? throw new Exception("Medic not found.");
+                ?? throw new NotFoundException(typeof(Medic).ToString(), appointmentCreateRequest.MedicId);
             var medicalCenter = _medicalCenterRepository.GetById(appointmentCreateRequest.MedicalCenterId)
-                            ?? throw new Exception("Medical Center not found.");
+                ?? throw new NotFoundException(typeof(MedicalCenter).ToString(), appointmentCreateRequest.MedicalCenterId);
 
             var newAppointment = new Appointment(
                 appointmentDateTime: appointmentCreateRequest.AppointmentDateTime,
@@ -51,34 +51,24 @@ namespace Application.Services
                 medicalCenter: medicalCenter
             );
 
-            return _appointmentRepository.Add(newAppointment);
+            var appointment = _appointmentRepository.Add(newAppointment);
+            return AppointmentDto.Create(appointment);
         }
 
         public void Update(int id, AppointmentUpdateRequest appointmentUpdateRequest)
         {
             var appointment = _appointmentRepository.GetById(id)
-                             ?? throw new Exception("Appointment not found.");
+                ?? throw new NotFoundException(typeof(Appointment).ToString(), id);
 
-            if (appointmentUpdateRequest == null)
-            {
-                throw new ArgumentNullException(nameof(appointmentUpdateRequest), "Appointment update request cannot be null.");
-            }
-
-            if (appointmentUpdateRequest.AppointmentDateTime != default)
-            {
-                appointment.AppointmentDateTime = appointmentUpdateRequest.AppointmentDateTime;
-            }
+            appointment.AppointmentDateTime = appointmentUpdateRequest.AppointmentDateTime;
 
             _appointmentRepository.Update(appointment);
-            
         }
+
         public void Delete(int id)
         {
-            var appointment = _appointmentRepository.GetById(id);
-            if (appointment == null)
-            {
-                throw new Exception("Appointment not found.");
-            }
+            var appointment = _appointmentRepository.GetById(id)
+                ?? throw new NotFoundException(typeof(Appointment).ToString(), id);
             _appointmentRepository.Delete(appointment);
         }
 
@@ -153,7 +143,51 @@ namespace Application.Services
                 }
 
                 transactionScope.Complete();
-            }                    
+            }
+        }
+
+        public void TakeAppointment(int appointmentId, int patientId)
+        {
+            var appointment = _appointmentRepository.GetById(appointmentId)
+                             ?? throw new NotFoundException(typeof(Appointment).ToString(), appointmentId);
+
+            if (appointment.Status != AppointmentStatus.Available)
+            {
+                throw new InvalidOperationException("The appointment is not available.");
+            }
+
+            var patient = _patientRepository.GetById(patientId)
+                           ?? throw new NotFoundException(typeof(Patient).ToString(), patientId);
+
+            appointment.Patient = patient;
+            appointment.Status = AppointmentStatus.Taken;
+
+            _appointmentRepository.Update(appointment);
+        }
+
+        public void CancelAppointment(int appointmentId, int patientId)
+        {
+            var appointment = _appointmentRepository.GetById(appointmentId)
+                             ?? throw new NotFoundException(typeof(Appointment).ToString(), appointmentId);
+
+            if (appointment.Status != AppointmentStatus.Taken || appointment.Patient?.Id != patientId)
+            {
+                throw new InvalidOperationException("The appointment cannot be canceled by this patient.");
+            }
+
+            var patient = _patientRepository.GetById(patientId)
+                           ?? throw new NotFoundException(typeof(Patient).ToString(), patientId);
+
+            appointment.Patient = null;
+            appointment.Status = AppointmentStatus.Available;
+
+            _appointmentRepository.Update(appointment);
+        }
+
+        public List<AppointmentDto> GetAppointmentsByMedicalCenterId(int medicalCenterId)
+        {
+            var appointments = _appointmentRepository.GetByMedicalCenterId(medicalCenterId);
+            return AppointmentDto.CreateList(appointments);
         }
     }
 }

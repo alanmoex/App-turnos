@@ -1,10 +1,19 @@
-using System.Collections.Generic;
-namespace Application.Models.Requests;
+using System;
+using System.ComponentModel.DataAnnotations;
 
-
-public class AppointmentCreateRequest
+namespace Application.Models.Requests
 {
-    public DateTime AppointmentDateTime { get; set; }
-    public int MedicId { get; set; }
-    public int MedicalCenterId { get; set; }
+    public class AppointmentCreateRequest
+    {
+        [Required]
+        public DateTime AppointmentDateTime { get; set; }
+
+        [Required]
+        [Range(1, int.MaxValue)]
+        public int MedicId { get; set; }
+
+        [Required]
+        [Range(1, int.MaxValue)]
+        public int MedicalCenterId { get; set; }
+    }
 }
